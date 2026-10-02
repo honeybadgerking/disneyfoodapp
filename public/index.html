@@ -1,0 +1,1760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Disneyland &amp; DCA Food &amp; Drink Checklist</title>
+<style>
+  :root {
+    --dl-navy: #1b2a4a;
+    --dl-gold: #c9a24b;
+    --dca-teal: #0f6b6b;
+  --hotels: #6b3fa0;
+  --downtown: #a63d40;
+    --halloween: #b5651d;
+    --bg: #faf7f1;
+    --card: #ffffff;
+    --text: #23272f;
+    --muted: #6b7280;
+    --done-bg: #eef7ee;
+    --done-border: #8bc48b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    padding: 20px 16px 60px;
+  }
+  .header {
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .header h1 {
+    font-size: 1.4rem;
+    margin: 0 0 4px;
+    color: var(--dl-navy);
+  }
+  .header p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  .storage-banner {
+    max-width: 480px;
+    margin: 0 auto 16px;
+    background: #fff4e0;
+    border: 1px solid #e8c988;
+    color: #7a5a12;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    padding: 10px 14px;
+    border-radius: 10px;
+  }
+  .toggle-wrap {
+    max-width: 480px;
+    margin: 0 auto 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--card);
+    border-radius: 999px;
+    padding: 6px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  }
+  .toggle-option {
+    flex: 1;
+    text-align: center;
+    padding: 9px 12px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .toggle-option.active.regular {
+    background: var(--dca-teal);
+    color: white;
+  }
+  .toggle-option.active.holiday {
+    background: var(--halloween);
+    color: white;
+  }
+  .area-filter-wrap {
+    max-width: 480px;
+    margin: 0 auto 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  .area-filter-btn {
+    background: #fff;
+    border: 1px solid #e2ddd0;
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 7px 14px;
+    border-radius: 999px;
+  }
+  .area-filter-btn.active[data-area="dl"] { background: var(--dl-navy); border-color: var(--dl-navy); color: white; }
+  .area-filter-btn.active[data-area="dca"] { background: var(--dca-teal); border-color: var(--dca-teal); color: white; }
+  .area-filter-btn.active[data-area="hotels"] { background: var(--hotels); border-color: var(--hotels); color: white; }
+  .area-filter-btn.active[data-area="downtown"] { background: var(--downtown); border-color: var(--downtown); color: white; }
+  .progress-wrap {
+    max-width: 480px;
+    margin: 0 auto 20px;
+    background: var(--card);
+    border-radius: 14px;
+    padding: 14px 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  }
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .progress-bar {
+    height: 10px;
+    background: #e5e0d4;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--dl-gold), var(--dca-teal));
+    width: 0%;
+    transition: width 0.3s ease, background 0.3s ease;
+  }
+  .search-wrap {
+    max-width: 480px;
+    margin: 0 auto 20px;
+    position: relative;
+  }
+  .search-input {
+    width: 100%;
+    font-family: inherit;
+    font-size: 0.9rem;
+    padding: 10px 34px 10px 14px;
+    border: 1px solid #e5e0d4;
+    border-radius: 999px;
+    background: var(--card);
+    color: var(--text);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .search-input:focus {
+    outline: none;
+    border-color: var(--dca-teal);
+  }
+  .search-clear {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font-size: 15px;
+    display: none;
+    padding: 4px;
+  }
+  .search-clear.visible {
+    display: block;
+  }
+  .flag-filter-btn {
+    display: block;
+    margin: 0 auto 16px;
+    background: #fff;
+    border: 1px solid #e5c8a8;
+    color: #a15c1a;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 999px;
+  }
+  .flag-filter-btn.active {
+    background: #a15c1a;
+    color: white;
+    border-color: #a15c1a;
+  }
+  .flag-btn {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: #c9c2b0;
+    font-size: 15px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0;
+    opacity: 0.55;
+  }
+  .flag-btn.flagged {
+    opacity: 1;
+  }
+  .flag-btn:active {
+    background: #fff4e0;
+  }
+  .item.flagged {
+    border-color: #e5c8a8;
+  }
+  .section {
+    max-width: 480px;
+    margin: 0 auto 22px;
+  }
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0 0 10px;
+    padding-left: 2px;
+  }
+  .section-title.dl { color: var(--dl-navy); }
+  .section-title.dca { color: var(--dca-teal); }
+  .section-title.hotels { color: var(--hotels); }
+  .section-title.downtown { color: var(--downtown); }
+  .section-title.deleted { color: #a39a86; }
+  .restaurant-group {
+    margin-bottom: 14px;
+  }
+  .restaurant-name {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 0 0 6px;
+    padding-left: 4px;
+  }
+  .item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: var(--card);
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+  .item:active { transform: scale(0.995); }
+  .item.done {
+    background: var(--done-bg);
+    border-color: var(--done-border);
+  }
+  .checkbox {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    border: 2px solid #c9c2b0;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: white;
+    background: white;
+  }
+  .item.done .checkbox {
+    background: var(--done-border);
+    border-color: var(--done-border);
+  }
+  .item-text {
+    flex: 1;
+  }
+  .item-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1.3;
+  }
+  .item.done .item-name {
+    text-decoration: line-through;
+    color: var(--muted);
+  }
+  .item-desc {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 2px;
+    line-height: 1.3;
+  }
+  .item.done .item-desc {
+    text-decoration: line-through;
+  }
+  .delete-btn {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: #c9c2b0;
+    font-size: 16px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0;
+  }
+  .delete-btn:active {
+    background: #fde8e8;
+    color: #b3261e;
+  }
+  .item.deleted {
+    background: #f4f2ec;
+    opacity: 0.8;
+  }
+  .item.deleted .item-name {
+    text-decoration: line-through;
+    color: var(--muted);
+  }
+  .restore-btn {
+    flex-shrink: 0;
+    border: 1px solid #c9c2b0;
+    background: white;
+    color: var(--muted);
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 999px;
+  }
+  .restore-btn:active {
+    background: var(--done-bg);
+    border-color: var(--done-border);
+    color: #3a6b3a;
+  }
+  .footer-note {
+    max-width: 480px;
+    margin: 20px auto 0;
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.4;
+  }
+  .empty-note {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-style: italic;
+    padding: 8px 4px;
+  }
+  .reset-btn {
+    display: block;
+    margin: 24px auto 0;
+    background: none;
+    border: 1px solid #d1cabb;
+    color: var(--muted);
+    font-size: 0.8rem;
+    padding: 8px 16px;
+    border-radius: 999px;
+  }
+  .backup-wrap {
+    max-width: 480px;
+    margin: 20px auto 0;
+    text-align: center;
+  }
+  .backup-btn {
+    background: none;
+    border: 1px solid #d1cabb;
+    color: var(--muted);
+    font-size: 0.78rem;
+    padding: 8px 14px;
+    border-radius: 999px;
+    margin: 0 4px;
+  }
+  .backup-panel {
+    max-width: 480px;
+    margin: 12px auto 0;
+    display: none;
+  }
+  .backup-panel.visible {
+    display: block;
+  }
+  .save-status {
+    max-width: 480px;
+    margin: 0 auto 14px;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 18px;
+  }
+  .save-status .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--done-border);
+    display: inline-block;
+  }
+  .save-status.saving .dot {
+    background: var(--dl-gold);
+  }
+  .backup-textarea {
+    width: 100%;
+    height: 90px;
+    font-family: monospace;
+    font-size: 0.7rem;
+    padding: 8px;
+    border: 1px solid #d1cabb;
+    border-radius: 8px;
+    resize: vertical;
+    box-sizing: border-box;
+  }
+  .backup-action {
+    display: block;
+    margin: 8px auto 0;
+    background: var(--dca-teal);
+    color: white;
+    border: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 999px;
+  }
+  .auth-gate {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 100;
+  }
+  .auth-gate-card {
+    max-width: 360px;
+    width: 100%;
+    background: var(--card);
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    padding: 32px 24px;
+    text-align: center;
+  }
+  .auth-gate-emoji {
+    font-size: 2.2rem;
+    margin-bottom: 8px;
+  }
+  .auth-gate-title {
+    font-size: 1.15rem;
+    margin: 0 0 8px;
+    color: var(--dl-navy);
+  }
+  .auth-gate-sub {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.4;
+    margin: 0 0 22px;
+  }
+  .google-signin-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    background: white;
+    border: 1px solid #d1cabb;
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 11px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .google-signin-btn:disabled {
+    opacity: 0.6;
+  }
+  .auth-gate-status {
+    min-height: 16px;
+    font-size: 0.78rem;
+    color: var(--downtown);
+    margin: 14px 0 0;
+  }
+  .user-badge {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    max-width: 480px;
+    margin: 0 auto 14px;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+  .user-avatar {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+  }
+  .user-signout-btn {
+    background: none;
+    border: none;
+    color: var(--dca-teal);
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-decoration: underline;
+    padding: 0;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<div class="auth-gate" id="auth-gate">
+  <div class="auth-gate-card">
+    <div class="auth-gate-emoji">🎢</div>
+    <h1 class="auth-gate-title">Disneyland Resort Food &amp; Drink List</h1>
+    <p class="auth-gate-sub">Sign in with Google to start your own checklist — it'll sync automatically across your devices.</p>
+    <button class="google-signin-btn" id="google-signin-btn" type="button">
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.72v2.26h2.92c1.7-1.57 2.68-3.88 2.68-6.62z"/><path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.92-2.26c-.81.54-1.85.86-3.04.86-2.34 0-4.32-1.58-5.03-3.7H.96v2.33A9 9 0 0 0 9 18z"/><path fill="#FBBC05" d="M3.97 10.72A5.4 5.4 0 0 1 3.69 9c0-.6.1-1.18.28-1.72V4.95H.96A9 9 0 0 0 0 9c0 1.45.35 2.83.96 4.05l3.01-2.33z"/><path fill="#EA4335" d="M9 3.58c1.32 0 2.51.45 3.44 1.35l2.58-2.58C13.46.89 11.43 0 9 0A9 9 0 0 0 .96 4.95l3.01 2.33C4.68 5.16 6.66 3.58 9 3.58z"/></svg>
+      Sign in with Google
+    </button>
+    <p class="auth-gate-status" id="auth-gate-status"></p>
+  </div>
+</div>
+
+<div id="app-root" style="display:none">
+
+<div class="user-badge" id="user-badge">
+  <img class="user-avatar" id="user-avatar" src="" alt="">
+  <span id="user-name"></span>
+  <button class="user-signout-btn" id="signout-btn" type="button">Sign out</button>
+</div>
+
+<div class="header">
+  <h1 id="page-title">🎢 Disneyland Resort Food &amp; Drink List</h1>
+  <p id="page-subtitle">New items to try — updated Oct 2026</p>
+</div>
+
+<div class="storage-banner" id="storage-banner" style="display:none"></div>
+
+<div class="save-status" id="save-status"><span class="dot"></span><span id="save-status-text">All changes saved automatically</span></div>
+
+<div class="toggle-wrap">
+  <div class="toggle-option regular active" id="toggle-regular">🎢 Regular</div>
+  <div class="toggle-option holiday" id="toggle-holiday">🎃 Halloween</div>
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-label">
+    <span id="progress-text">0 of 0 tried</span>
+    <span id="progress-pct">0%</span>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+</div>
+
+<div class="search-wrap">
+  <input type="text" class="search-input" id="search-input" placeholder="Search items or restaurants...">
+  <button class="search-clear" id="search-clear" aria-label="Clear search">✕</button>
+</div>
+
+<button class="flag-filter-btn" id="flag-filter-btn">🚩 Flagged for next trip only</button>
+
+<div class="area-filter-wrap" id="area-filter-wrap">
+  <button class="area-filter-btn active" id="area-filter-dl" data-area="dl">🏰 Disneyland Park</button>
+  <button class="area-filter-btn active" id="area-filter-dca" data-area="dca">🎡 California Adventure</button>
+  <button class="area-filter-btn active" id="area-filter-hotels" data-area="hotels">🏨 Hotels</button>
+  <button class="area-filter-btn active" id="area-filter-downtown" data-area="downtown">🛍️ Downtown Disney</button>
+</div>
+
+<div class="section" id="section-dl">
+  <div class="section-title dl">🏰 Disneyland Park</div>
+  <div id="dl-list"></div>
+  <div class="empty-note" id="dl-empty">No items yet</div>
+</div>
+
+<div class="section" id="section-dca">
+  <div class="section-title dca">🎡 Disney California Adventure</div>
+  <div id="dca-list"></div>
+  <div class="empty-note" id="dca-empty">No items yet</div>
+</div>
+
+<div class="section" id="section-hotels">
+  <div class="section-title hotels">🏨 Disneyland Resort Hotels</div>
+  <div id="hotels-list"></div>
+  <div class="empty-note" id="hotels-empty">No items yet</div>
+</div>
+
+<div class="section" id="section-downtown">
+  <div class="section-title downtown">🛍️ Downtown Disney District</div>
+  <div id="downtown-list"></div>
+  <div class="empty-note" id="downtown-empty">No items yet</div>
+</div>
+
+<div class="section">
+  <div class="section-title deleted">🗑️ Deleted</div>
+  <div id="deleted-list"></div>
+  <div class="empty-note" id="deleted-empty">No deleted items</div>
+</div>
+
+<div class="footer-note">
+  Tap an item to mark it as tried. Your progress is saved automatically and will still be here next time you open this checklist.
+</div>
+
+<button class="reset-btn" id="reset-btn">Reset all</button>
+
+<div class="backup-wrap">
+  <button class="backup-btn" id="save-file-btn">💾 Save to file</button>
+  <label class="backup-btn" for="load-file-input" id="load-file-btn">📂 Load from file</label>
+  <input type="file" id="load-file-input" accept="application/json,.json" style="position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;">
+  <button class="backup-btn" id="export-btn">Export progress</button>
+  <button class="backup-btn" id="import-btn">Import progress</button>
+  <div class="backup-panel" id="backup-panel">
+    <textarea class="backup-textarea" id="backup-textarea" placeholder="Paste your saved progress here to restore it..."></textarea>
+    <button class="backup-action" id="backup-action-btn">Copy</button>
+  </div>
+</div>
+
+</div><!-- /app-root -->
+
+<script>
+  // ---- STORAGE LAYER ----
+  // Prefers window.storage (available when this file runs as a Claude artifact).
+  // Falls back to localStorage (available when opened as a plain HTML file in
+  // a browser). Only if neither is available do we fall back to no persistence.
+  let storageBackend = null; // 'widget' | 'local' | null
+
+  async function detectStorageBackend() {
+    const testKey = '__storage_test__';
+    // Try widget storage first, but verify it actually works with a real
+    // round trip — window.storage can exist as an object yet fail silently
+    // in some embed contexts, so presence alone isn't proof it functions.
+    if (typeof window.storage !== 'undefined') {
+      try {
+        await window.storage.set(testKey, '1', false);
+        const result = await window.storage.get(testKey, false);
+        if (result && result.value === '1') {
+          storageBackend = 'widget';
+          return;
+        }
+      } catch (err) {
+        // fall through to localStorage
+      }
+    }
+    try {
+      window.localStorage.setItem(testKey, '1');
+      const val = window.localStorage.getItem(testKey);
+      window.localStorage.removeItem(testKey);
+      if (val === '1') {
+        storageBackend = 'local';
+        return;
+      }
+    } catch (err) {
+      // fall through
+    }
+    storageBackend = null;
+  }
+
+  async function storageGet(key) {
+    if (storageBackend === 'widget') {
+      const result = await window.storage.get(key, false);
+      return result ? result.value : null;
+    }
+    if (storageBackend === 'local') {
+      return window.localStorage.getItem(key);
+    }
+    throw new Error('No storage backend available');
+  }
+
+  async function storageSet(key, value) {
+    if (storageBackend === 'widget') {
+      await window.storage.set(key, value, false);
+      return;
+    }
+    if (storageBackend === 'local') {
+      window.localStorage.setItem(key, value);
+      return;
+    }
+    throw new Error('No storage backend available');
+  }
+
+  // ---- DATA ----
+  // Every item is tagged holiday: false (year-round / current 70th-anniversary items)
+  // or holiday: true (Halloween Time, available Aug 18 onward)
+  const data = {
+    dl: [
+      // Regular
+      { name: "Dole Whip (pineapple soft-serve, float, or swirl)", loc: "Tiki Juice Bar", desc: "Dairy-free pineapple soft serve — Disneyland's most iconic snack", holiday: false },
+      { name: "Monte Cristo Sandwich", loc: "Cafe Orleans", desc: "Battered, deep-fried turkey, ham, and Swiss with berry purée", holiday: false },
+      { name: "Pommes Frites", loc: "Cafe Orleans", desc: "Fries tossed with parmesan, garlic, and parsley, cajun remoulade", holiday: false },
+      { name: "Gumbo", loc: "Cafe Orleans", desc: "Cajun-style stew served with rice", holiday: false },
+      { name: "Hand-Dipped Corn Dog", loc: "Little Red Wagon", desc: "Fresh, hand-battered corn dog — a Disneyland classic", holiday: false },
+      { name: "Churros", loc: "Various carts throughout the park", desc: "Fried dough pastry coated in cinnamon sugar", holiday: false },
+      { name: "Mickey Pretzel", loc: "Various pretzel carts", desc: "Soft pretzel shaped like Mickey's ears", holiday: false },
+      { name: "Mickey Premium Ice Cream Bar", loc: "Various ice cream carts", desc: "Vanilla ice cream bar dipped in chocolate, Mickey-shaped", holiday: false },
+      { name: "Popcorn (caramel, cheddar, and classic)", loc: "Various popcorn carts", desc: "Classic popcorn in sweet and savory flavors", holiday: false },
+      { name: "Fried Pickles", loc: "Carnation Cafe", desc: "Fried pickle spears with dipping sauce", holiday: false },
+      { name: "Meat/veggie skewers", loc: "Bengal Barbecue", desc: "Grilled meat and veggie skewers, an Adventureland staple", holiday: false },
+      { name: "Raspberry Rose Macaron", loc: "Jolly Holiday Bakery Cafe", desc: "Delicate macaron with raspberry rose filling", holiday: false },
+      { name: "Chili in a Bread Cone", loc: "Refreshment Corner", desc: "Beef chili, cheddar, and corn chips in a bread cone", holiday: false },
+      { name: "Cheesy Garlic Pretzel Bread", loc: "Maurice's Treats / Edelweiss Snacks", desc: "Pretzel bread stuffed with cheesy garlic spread — viral favorite", holiday: false },
+      { name: "Coconut Cheesecake", loc: "Jolly Holiday Bakery Cafe", desc: "Mini cheesecake rolled in toasted coconut, coconut whipped cream", holiday: false },
+      { name: "Pineapple Upside Down Sundae", loc: "The Tropical Hideaway", desc: "DOLE Whip with caramel drizzle and pineapple upside-down cake", holiday: false },
+      { name: "Lemon Chiffon Pretzel", loc: "Pretzels near Star Tours", desc: "Pretzel filled with cream cheese, dipped in lemon icing", holiday: false },
+      { name: "Five-Blossom Bread (pretzel knot)", loc: "Oga's Cantina", desc: "Pretzel knot bread served at the Star Wars cantina", holiday: false },
+      { name: "Fuzzy Tauntaun", loc: "Oga's Cantina", desc: "Ketel One Botanical Peach & Orange Vodka, peach schnapps, and orange juice with a tingling foam", holiday: false },
+      { name: "Yub Nub", loc: "Oga's Cantina", desc: "Pineapple and spiced rum with citrus juices and passion fruit, served in a souvenir vessel", holiday: false },
+      { name: "Filet Mignon", loc: "Blue Bayou Restaurant", desc: "Bayou potatoes, braised Swiss chard, and shallot demi-glace", holiday: false },
+      { name: "Chicken Gumbo", loc: "Blue Bayou Restaurant", desc: "Tasso ham, andouille sausage, and peppers with steamed rice", holiday: false },
+      { name: "Crab Cakes", loc: "Blue Bayou Restaurant", desc: "Remoulade sauce and petite apple-arugula salad", holiday: false },
+      { name: "Banana Upside-down Cake", loc: "Blue Bayou Restaurant", desc: "Bananas Foster style with brûléed banana", holiday: false },
+      { name: "Roasted Chicken", loc: "Blue Bayou Restaurant", desc: "A longtime signature entree at this Pirates of the Caribbean-set restaurant", holiday: false },
+      { name: "Lacquered Chicken", loc: "Blue Bayou Restaurant", desc: "New Aug. 2026 entree — spoon bread, sautéed greens, kumquat chow chow, and sauce à l'orange", holiday: false },
+      { name: "French Quarter Fields", loc: "Blue Bayou Restaurant", desc: "New Aug. 2026 starter — little gem lettuce, crispy quinoa, green grapes, apples, and cranberry vinaigrette", holiday: false },
+      { name: "Southern Sunset Old Fashioned", loc: "Blue Bayou Restaurant", desc: "New Aug. 2026 signature cocktail", holiday: false },
+      // Halloween
+      { name: "Spicy Chicken Sandwich", loc: "Carnation Cafe", desc: "Panko-fried chicken breast in chile sauce with pepper jack and mustard slaw on a brioche bun", holiday: true },
+      { name: "Caramel Apple Martini", loc: "Carnation Cafe", desc: "Kissed Caramel Smirnoff, Bols Butterscotch, sour apple juice, and a caramel apple lollipop", holiday: true },
+      { name: "Elysian Night Owl Pumpkin Ale", loc: "Carnation Cafe", desc: "Elysian Brewing seasonal pumpkin ale", holiday: true },
+      { name: "Spaten Oktoberfest Ur-Märzen", loc: "Carnation Cafe", desc: "Traditional Oktoberfest lager", holiday: true },
+      { name: "Apple Pie Dip", loc: "Churros near Sleeping Beauty Castle / Town Square", desc: "Cream cheese frosting under spiced apple compote, served with a churro", holiday: true },
+      { name: "Rest in Chocolate", loc: "Gibson Girl Ice Cream Parlor", desc: "Chocolate ice cream in a chocolate-covered waffle cup, buried under cookie crumbles, gummy worms, and a chocolate tombstone", holiday: true },
+      { name: "BooGogi Beef Toastie with Corn Cheese Soup", loc: "Jolly Holiday Bakery Cafe", desc: "Marinated beef, grilled onion, mozzarella, pickled radish, and kimchi aioli on sourdough, with corn cheese soup alongside", holiday: true },
+      { name: "Mickey-shaped Ghost Cookie", loc: "Jolly Holiday Bakery Cafe", desc: "Shortbread dipped in chocolate", holiday: true },
+      { name: "Mickey Pumpkin Cupcake", loc: "Jolly Holiday Bakery Cafe", desc: "Cream cheese frosting, brown sugar crumbles, and orange white chocolate mousse, finished with chocolate ears", holiday: true },
+      { name: "Mickey Mummy Macaron", loc: "Jolly Holiday Bakery Cafe", desc: "Cookies and creme filling", holiday: true },
+      { name: "Brownie Pie", loc: "Jolly Holiday Bakery Cafe", desc: "Fudge brownie baked into a pie crust, topped with ganache, colored mousse, and sprinkles", holiday: true },
+      { name: "Halloween Matterhorn Macaroon", loc: "Jolly Holiday Bakery Cafe", desc: "Coconut macaroon in white chocolate and sprinkles", holiday: true },
+      { name: "Caramel Apple Cheesecake", loc: "Jolly Holiday Bakery Cafe", desc: "Caramel cheesecake with caramelized apple filling, caramel drip, and orange white chocolate mousse", holiday: true },
+      { name: "Pumpkin Muffin", loc: "Jolly Holiday Bakery Cafe", desc: "Pumpkin muffin with cream cheese icing", holiday: true },
+      { name: "Pumpkin Cold Brew", loc: "Jolly Holiday Bakery Cafe", desc: "Cold brew with vanilla foam and spiced sugar (non-alcoholic)", holiday: true },
+      { name: "Maple-Bacon Cinnamon Roll", loc: "Jolly Holiday Bakery Cafe", desc: "Maple cream cheese, glazed bacon, and pecans under a white chocolate drizzle", holiday: true },
+      { name: "Spicy Chili-Cheese Corn Dog", loc: "Little Red Wagon", desc: "Hand-dipped corn dog under spicy chili, jalapeno-cilantro crema, cheddar, and hot cheese puff dust", holiday: true },
+      { name: "Lychee-Strawberry Green Tea", loc: "Little Red Wagon", desc: "Non-alcoholic specialty tea", holiday: true },
+      { name: "Churro Hand Tart", loc: "Market House", desc: "Pastry tart filled with spiced cake, rolled in cinnamon sugar", holiday: true },
+      { name: "Shortbread Bat Cookie", loc: "Market House", desc: "Dark chocolate-dipped bat with a vampire Mickey face", holiday: true },
+      { name: "Pumpkin Cake", loc: "Plaza Inn", desc: "Pumpkin mousse filling, whipped frosting, chocolate stem", holiday: true },
+      { name: "Villainous Red Velvet Cake", loc: "Plaza Inn", desc: "Raspberry jam, chocolate chips, black ganache frosting", holiday: true },
+      { name: "Birria Potato", loc: "Refreshment Corner", desc: "Baked potato stuffed with beef birria and pepper jack, salsa verde on top, consomme on the side for dipping", holiday: true },
+      { name: "Iced Pandan Cooler", loc: "Bengal Barbecue", desc: "Pandan cooler with brown sugar popping spheres and ube cream (non-alcoholic)", holiday: true },
+      { name: "Miso Soup", loc: "The Tropical Hideaway", desc: "Miso soup with seaweed, tofu, and green onion", holiday: true },
+      { name: "Dole Whip Cone", loc: "Tiki Juice Bar", desc: "Pineapple Dole Whip in a sugar cone with Halloween sprinkles", holiday: true },
+      { name: "Pozole", loc: "Rancho del Zocalo Restaurante", desc: "Pork pozole with onions, cabbage, lime, and sliced radishes, served with corn tortilla chips", holiday: true },
+      { name: "Iced Chocolate Cafe", loc: "Rancho del Zocalo Restaurante", desc: "Hot chocolate, espresso, cream, and coconut over ice (non-alcoholic)", holiday: true },
+      { name: "Pinwheels", loc: "Ship to Shore Marketplace", desc: "Fried wheat pinwheels with lemon juice and hot sauce", holiday: true },
+      { name: "Pumpkin Crunch Cake", loc: "River Belle Terrace", desc: "Pumpkin filling, spiced chantilly cream, and a house-made graham cracker", holiday: true },
+      { name: "Chili-Cheese Fries", loc: "Stage Door Café", desc: "Chili, beef, shredded cheese, sour cream, and green onion", holiday: true },
+      { name: "Strawberry Soda", loc: "Stage Door Café", desc: "Sprite with strawberry puree (non-alcoholic)", holiday: true },
+      { name: "Chili-Cheese Fries", loc: "The Golden Horseshoe", desc: "Same build as Stage Door Café's chili-cheese fries", holiday: true },
+      { name: "Apple Pie Sundae", loc: "The Golden Horseshoe", desc: "A slice of apple pie under vanilla ice cream, salted caramel, cinnamon streusel, whipped cream, and a cherry", holiday: true },
+      { name: "Strawberry Soda", loc: "The Golden Horseshoe", desc: "Sprite with strawberry puree (non-alcoholic)", holiday: true },
+      { name: "Seaborn Cherry Temple Cocktail", loc: "Cafe Orleans", desc: "Seasonal specialty cocktail", holiday: true },
+      { name: "Pumpkin Cookies", loc: "Harbour Galley", desc: "Packs of six or 13, while supplies last", holiday: true },
+      { name: "Whipped Cream Cheese Dip", loc: "Harbour Galley", desc: "Dip served alongside the pumpkin cookies", holiday: true },
+      { name: "Brown Butter Maple Cold Brew", loc: "Harbour Galley", desc: "Beignet-flavored cold brew with maple and brown butter syrup, brown butter cold foam (non-alcoholic)", holiday: true },
+      { name: "Frightfully Festive Cocoa Dip", loc: "Mint Julep Bar", desc: "Seasonal whipped cocoa dip", holiday: true },
+      { name: "Grizzly Pumpkin Cold Brew Latte", loc: "Hungry Bear Barbecue Jamboree", desc: "French Roast cold brew with whipped cream, pumpkin spice, and a pumpkin candy (non-alcoholic)", holiday: true },
+      { name: "Matterhorn Puff", loc: "Edelweiss Snacks", desc: "Cinnamon apples and cream inside, chocolate and snow sugar on top", holiday: true },
+      { name: "Cranberry Cream Cheese Dip", loc: "Churros near Casey Jr. Circus Train / it's a small world Promenade", desc: "Cranberry cream cheese dip served with a churro or pretzel", holiday: true },
+      { name: "Sea Salt Vanilla Cream", loc: "Maurice's Treats", desc: "Sea salt vanilla cream with Halloween sprinkles", holiday: true },
+      { name: "Enchanted Pumpkin Stump", loc: "Red Rose Taverne", desc: "Shortbread cookie hiding a mini pumpkin pie, topped with pumpkin mousse, sprinkles, silver stars, and a chocolate branch", holiday: true },
+      { name: "French Toast Cold Brew", loc: "Red Rose Taverne", desc: "French Roast cold brew with brown sugar and vanilla, cinnamon cream and cinnamon cereal on top (non-alcoholic)", holiday: true },
+      { name: "Heatwave Pizza Slice", loc: "Alien Pizza Planet", desc: "Spicy blush sauce, mozzarella and pepper jack, Italian sausage, pepperoni, smoked bratwurst, red Fresno chiles, basil, and hot honey drizzle", holiday: true },
+      { name: "Spicy Blush Pasta", loc: "Alien Pizza Planet", desc: "Italian sausage, chef's choice pasta, spicy blush sauce, tomato relish", holiday: true },
+      { name: "Seasonal Alien Macarooooon", loc: "Alien Pizza Planet", desc: "Berries and cream macaron", holiday: true },
+      { name: "Halloween Green Drink", loc: "Alien Pizza Planet", desc: "Apple juice and apple syrup under caramel cold foam and sprinkles (non-alcoholic)", holiday: true },
+      { name: "Caramel-Peanut Butter Candy Dip", loc: "Churros near Buzz Lightyear Astro Blasters", desc: "Loaded dip with chocolate-peanut butter flakes and candy corn, served with a churro", holiday: true },
+      { name: "Stellar Spicy Chicken Sandwich", loc: "Galactic Grill", desc: "Panko-crusted chicken, ghost pepper salsa verde, pepper jack, pico de gallo, cilantro lime slaw, and crispy onions", holiday: true },
+      { name: "Darth by Chocolate", loc: "Galactic Grill", desc: "Chocolate pudding, red velvet sponge, chocolate mousse, and crushed chocolate creme cookies", holiday: true },
+      { name: "Pumpkin Cream Sweet Tea", loc: "Galactic Grill", desc: "Sweet tea with pumpkin cream foam (non-alcoholic)", holiday: true },
+      { name: "Spicy Pickle Popcorn", loc: "Popcorn near Star Trader", desc: "Popcorn tossed with crushed hot cheese puffs and dill pickle seasoning", holiday: true },
+      { name: "Supernova Pretzel", loc: "Pretzel near Star Tours", desc: "Jalapeno cheese-filled pretzel with spicy crumble and lime", holiday: true },
+      { name: "Coco Lantern Sipper", loc: "Rancho del Zocalo Restaurante / Ship to Shore Marketplace", desc: "Collectible Coco lantern sipper featuring Miguel and Héctor — from Sept. 3 while supplies last, limit two per transaction", holiday: true },
+    ],
+    dca: [
+      // Regular
+      { name: "Soju-matcha cocktail with honey cold foam", loc: "Schmoozies", desc: "Matcha and soju cocktail topped with honey cold foam", holiday: false },
+      { name: "\"Big Dipper\" Cheeseburger", loc: "Flo's V8 Cafe", desc: "Beef patty, American cheese, pickles, pepperoncini cheese sauce", holiday: false },
+      { name: "Winner's Circle Chicken and Waffle", loc: "Flo's V8 Cafe", desc: "Fried chicken with a buttermilk waffle and maple syrup", holiday: false },
+      { name: "Fast Track Loaded Fries", loc: "Flo's V8 Cafe", desc: "Fries topped with chili, cheese sauce, and pepperoncini", holiday: false },
+      { name: "Fillmore Groovy Greens", loc: "Flo's V8 Cafe", desc: "Romaine and kale salad with beans, corn, and quinoa", holiday: false },
+      { name: "Tuned-Up Chicken Fenders", loc: "Flo's V8 Cafe", desc: "Crispy chicken tenders tossed in teriyaki or buffalo sauce", holiday: false },
+      { name: "Flo's Classic Shake", loc: "Flo's V8 Cafe", desc: "Vanilla, chocolate, or strawberry shake with \"road gravel\"", holiday: false },
+      { name: "Start Your Engine Cold Brew", loc: "Flo's V8 Cafe", desc: "Cold brew with caramel syrup, cream, and drizzle", holiday: false },
+      { name: "Stop Sign Cream Soda Pop", loc: "Flo's V8 Cafe", desc: "Sprite with housemade strawberry and coconut cream", holiday: false },
+      { name: "Brewery X Fender Bender IPA", loc: "Flo's V8 Cafe", desc: "Local craft IPA on tap", holiday: false },
+      { name: "Ka-Cheeseburger", loc: "Flo's V8 Cafe", desc: "Beef patty, American cheese, lettuce, tomato, and pickles", holiday: false },
+      { name: "Mack's Mac & Cheese (kids)", loc: "Flo's V8 Cafe", desc: "Kids' mac and cheese", holiday: false },
+      { name: "Micro Burger (kids)", loc: "Flo's V8 Cafe", desc: "Mini burger served with orange and carrots", holiday: false },
+      { name: "Bacon Mac & Cheese Cone", loc: "Cozy Cone Motel", desc: "Creamy mac and cheese with bacon in a bread cone", holiday: false },
+      { name: "Chili \"Cone\" Queso", loc: "Cozy Cone Motel", desc: "Beef chili and cheese in a bread cone", holiday: false },
+      { name: "Red's Apple Freeze", loc: "Cozy Cone Motel", desc: "Non-dairy apple slush with marshmallow and passionfruit-mango foam", holiday: false },
+      { name: "Flavored popcorn (dill pickle, buffalo ranch, white cheddar, etc.)", loc: "Cozy Cone Motel", desc: "Rotating savory popcorn flavors", holiday: false },
+      { name: "Mickey-Shaped Sourdough Bread", loc: "Pacific Wharf Café", desc: "Fresh-baked sourdough shaped like Mickey", holiday: false },
+      { name: "Beef Bulgogi Burrito", loc: "Lucky Fortune Cookery", desc: "Korean beef bulgogi wrapped in a warm tortilla", holiday: false },
+      { name: "San Fransokyo Noodle Stir-fry", loc: "Lucky Fortune Cookery", desc: "Wok-fried noodles, available with karaage-inspired crispy chicken or plant-based — replaced the former Yaki Udon in 2026", holiday: false },
+      { name: "Matcha-Raspberry Baymax Macaron", loc: "Lucky Fortune Cookery", desc: "Baymax-shaped macaron filled with raspberry gelée and matcha buttercream", holiday: false },
+      { name: "Magical Sundae", loc: "Ghirardelli Soda Fountain and Chocolate Shop", desc: "Vanilla ice cream, hot fudge, sprinkles, chocolate waffle ears", holiday: false },
+      { name: "Raspberry Smoothie", loc: "Ghirardelli Soda Fountain and Chocolate Shop", desc: "Raspberry sorbet, club soda, and strawberries", holiday: false },
+      { name: "Carthay Signature Fried Biscuits", loc: "Carthay Circle Restaurant", desc: "Fried biscuits stuffed with melted cheese", holiday: false },
+      { name: "Fire Cracker Duck Wings", loc: "Carthay Circle Restaurant", desc: "Spicy glazed duck wings", holiday: false },
+      { name: "Carthay Angus Bacon Burger", loc: "Carthay Circle Restaurant", desc: "Angus beef burger topped with bacon", holiday: false },
+      { name: "Carthay Manhattan", loc: "Carthay Circle Lounge", desc: "Classic Manhattan served over a large ice sphere", holiday: false },
+      { name: "Signature Thick-Cut Cider Pork Chop", loc: "Carthay Circle Restaurant", desc: "Braised cabbage, mint, cashew, and winter squash sauce", holiday: false },
+      { name: "Carthay Salad", loc: "Carthay Circle Restaurant", desc: "Pears, pecans, almonds, goat cheese, and winter citrus", holiday: false },
+      { name: "Braised Short Rib Raviolis", loc: "Carthay Circle Restaurant", desc: "Celery root, sundried tomato, mushrooms, and shallot confit", holiday: false },
+      { name: "Chocolate Chip Mickey Cookie", loc: "Trolley Treats", desc: "Giant Mickey-shaped chocolate chip cookie", holiday: false },
+      { name: "Cheddar Cheese Stick", loc: "Corn Dog Castle", desc: "Fried cheese stick, tastes like grilled cheese", holiday: false },
+      { name: "Jack-Jack Cookie Num Num", loc: "Adorable Snowman Frosted Treats", desc: "Cookie treat inspired by Incredibles' Jack-Jack", holiday: false },
+      { name: "Dill Popcorn", loc: "Cozy Cone Motel", desc: "Popcorn coated in tangy dill seasoning", holiday: false },
+      { name: "Not So Little Chicken Sandwich", loc: "Pym Test Kitchen", desc: "Fried chicken breast with teriyaki and red chili sauces, pickled cabbage slaw, on brioche, served with crispy potato bites", holiday: false },
+      { name: "Quantum-sized Pym-ini Sandwich", loc: "Pym Test Kitchen", desc: "Salami, rosemary ham, provolone, and sun-dried tomato spread on toasted focaccia with marinara dipping sauce and arugula salad — serves 6-8", holiday: false },
+      { name: "Humongous Taco Salad", loc: "Pym Test Kitchen", desc: "Giant taco shell loaded with romaine in chipotle ranch, chicken, corn, bell pepper, cotija, and avocado", holiday: false },
+      { name: "Impossible Quantum Garden Breakfast", loc: "Pym Test Kitchen", desc: "Plant-based folded omelet with Impossible breakfast sausage, crispy potato bites, and focaccia toast", holiday: false },
+      { name: "Proton Punch", loc: "Pym Test Kitchen", desc: "Lemonade, berry puree, cherry-flavored boba, and a grenadine-filled pipette (non-alcoholic)", holiday: false },
+      { name: "Chicken Parmesan", loc: "Wine Country Trattoria", desc: "Breaded and fried chicken breast with tomato sauce and mozzarella over spaghetti", holiday: false },
+      { name: "Fettuccine Shrimp Alfredo", loc: "Wine Country Trattoria", desc: "Creamy white wine sauce with parsley, garlic, chili flakes, and lemon oil", holiday: false },
+      { name: "Fried Calamari", loc: "Wine Country Trattoria", desc: "Lightly breaded calamari and haricot verts with pepperoncini aioli", holiday: false },
+      { name: "Wine Country Tiramisu", loc: "Wine Country Trattoria", desc: "Classic Italian tiramisu", holiday: false },
+      { name: "Street Tacos", loc: "Paradise Garden Grill", desc: "Current rotating menu item — Paradise Garden Grill's offerings change seasonally between Mediterranean, BBQ, and Mexican-style themes", holiday: false },
+      { name: "Al Pastor Torta", loc: "Paradise Garden Grill", desc: "Current rotating menu item — Paradise Garden Grill's offerings change seasonally between Mediterranean, BBQ, and Mexican-style themes", holiday: false },
+      { name: "Lobster Nachos", loc: "Lamplight Lounge", desc: "Warm lobster and house-made tortilla chips with black beans, pico de gallo, chipotle crema, and aged cheddar-Oaxaca cheese sauce — the restaurant's signature dish", holiday: false },
+      { name: "Potato Skins", loc: "Lamplight Lounge", desc: "Crispy Yukon Gold potatoes with brown butter-caper yogurt, smoked paprika aioli, and Manchego cheese", holiday: false },
+      { name: "Crispy Piggy Wings", loc: "Lamplight Lounge", desc: "Pork drumettes with chili-ginger glaze, toasted sesame seeds, cilantro, and slaw", holiday: false },
+      { name: "Kobe Beef Sliders", loc: "Lamplight Lounge", desc: "Beer and bacon cheese sauce, tomato-habanero chutney, lettuce, and pickled onions on toasted Amish buns", holiday: false },
+      { name: "Lamplight Old Fashioned", loc: "Lamplight Lounge", desc: "Maker's Mark Bourbon, Licor 43, maraschino liqueur, and Angostura bitters with a Luxardo cherry", holiday: false },
+      // Halloween
+      { name: "Halloween Mickey Ice Cream Bar", loc: "Clarabelle's Hand-Scooped Ice Cream", desc: "Dipped in white chocolate with Halloween sprinkles", holiday: true },
+      { name: "Oktoberfest Dog", loc: "Award Wieners", desc: "Pork cheddar sausage, sauerkraut, caraway seeds, and cheesy beer mustard on a pretzel bun", holiday: true },
+      { name: "Seaborn Sangria", loc: "Award Wieners", desc: "Sangria over ice with mixed fruit", holiday: true },
+      { name: "Route 30 Oktoberfest Lager", loc: "Award Wieners", desc: "Route 30 Brewing Co. seasonal lager", holiday: true },
+      { name: "Beef and Cheese Tamale a la Plancha", loc: "Hollywood Lounge", desc: "Salsa verde, lime crema, shredded lettuce, pico de gallo", holiday: true },
+      { name: "Spicy Oogie Boogie Burrito", loc: "Hollywood Lounge", desc: "Carne asada, fries, guacamole, pico de gallo, shredded cheese, crunchy hot cheese snacks, and spicy crema in a green tortilla", holiday: true },
+      { name: "Seaborn Prickly Pear Margarita", loc: "Hollywood Lounge", desc: "Seasonal specialty margarita", holiday: true },
+      { name: "Horchata Whiskey Cocktail", loc: "Hollywood Lounge", desc: "Horchata with RumChata and cinnamon whiskey", holiday: true },
+      { name: "Phantom Potion", loc: "Hollywood Lounge", desc: "Pineapple lemonade, blue curacao, apple pucker, and Sprite with grenadine, served with an Oogie Boogie Moon Glow Cube", holiday: true },
+      { name: "Calidad El Titán Dark Lager", loc: "Hollywood Lounge", desc: "Calidad Beer seasonal dark lager", holiday: true },
+      { name: "Beef and Cheese Tamale a la Plancha", loc: "Studio Catering Co.", desc: "Salsa verde, lime crema, shredded lettuce, pico de gallo", holiday: true },
+      { name: "Spicy Oogie Boogie Burrito", loc: "Studio Catering Co.", desc: "Carne asada, fries, guacamole, pico de gallo, shredded cheese, crunchy hot cheese snacks, and spicy crema in a green tortilla", holiday: true },
+      { name: "Matcha Mickey-shaped Waffles", loc: "Schmoozies!", desc: "Matcha waffles filled with banana custard", holiday: true },
+      { name: "Pumpkin Pie Mickey Shake", loc: "Schmoozies!", desc: "Pumpkin pie and vanilla milkshake with whipped topping and golden creme-filled cookies (non-alcoholic)", holiday: true },
+      { name: "Seaborn Pomegranate Margarita", loc: "Pym Tasting Lab", desc: "Seasonal specialty margarita", holiday: true },
+      { name: "BBQ Pork Muenster Grilled Cheese", loc: "Pym Test Kitchen", desc: "BBQ pork belly and Muenster on sourdough with crispy onions and jalapeno slaw, served with potato bites", holiday: true },
+      { name: "Strawberry Matcha Latte", loc: "Pym Test Kitchen", desc: "Matcha with strawberry cold foam, strawberry sugar wafers, and condensed milk drizzle (non-alcoholic)", holiday: true },
+      { name: "Strawberry Matcha Rum Cocktail", loc: "Pym Test Kitchen", desc: "Strawberry matcha latte build with white rum, served in a particle beaker", holiday: true },
+      { name: "Ube Cheesecake Churro", loc: "Terran Treats", desc: "Rolled in chocolate cookie sugar with ube cheesecake whipped topping and cookie crumble", holiday: true },
+      { name: "Vietnamese Coffee with Ube Sweet Cream Foam", loc: "Cozy Cone Motel 1", desc: "Iced Vietnamese coffee with ube sweet cream foam and black sprinkles (non-alcoholic)", holiday: true },
+      { name: "Cursed Ube Foam Iced Coffee", loc: "Cozy Cone Motel 1", desc: "Vietnamese coffee with ube sweet cream foam, with Baileys Irish Cream", holiday: true },
+      { name: "Ube Soft Serve", loc: "Cozy Cone Motel 2", desc: "Ube soft serve with black sprinkles, cup or cone", holiday: true },
+      { name: "Ube-Vanilla Twist Soft Serve", loc: "Cozy Cone Motel 2", desc: "Ube-vanilla twist soft serve with black sprinkles, cup or cone", holiday: true },
+      { name: "Slow Burnin' Mac & Cheese Cone", loc: "Cozy Cone Motel 3", desc: "Pasta in spicy red pepper cheese sauce", holiday: true },
+      { name: "Strawberry-Peach Margarita", loc: "Cozy Cone Motel 4", desc: "Tequila with spicy strawberry-peach chamoy lemonade and a peach ring", holiday: true },
+      { name: "Strawberry Michelada", loc: "Cozy Cone Motel 4", desc: "Modelo with strawberry-chamoy lemonade, a strawberry candy, and a chile-lime rim", holiday: true },
+      { name: "Cali Screamin' Pumpkin Vanilla Cream Ale", loc: "Cozy Cone Motel 4", desc: "Mother Earth Brewing Co. seasonal ale", holiday: true },
+      { name: "Poison Apple Seltzer", loc: "Cozy Cone Motel 4", desc: "Unsung Brewing Co. seasonal hard seltzer", holiday: true },
+      { name: "Pineapple-Cucumber Agua Fresca", loc: "Cozy Cone Motel 5", desc: "Diced cucumber and pineapple, chamoy, and chile-lime seasoning (non-alcoholic)", holiday: true },
+      { name: "Fantasma Agua Fresca Cocktail", loc: "Cozy Cone Motel 5", desc: "Pineapple-cucumber agua fresca with tequila", holiday: true },
+      { name: "Mango-Habanero Chicken Strips", loc: "Flo's V8 Cafe", desc: "Chicken strips with fries, green onions, and ranch", holiday: true },
+      { name: "Desert Pear Agave Wine Margarita", loc: "Flo's V8 Cafe", desc: "Agave wine with desert pear lemonade", holiday: true },
+      { name: "Chicken Pot Pie Soup", loc: "Aunt Cass Café", desc: "Chicken pot pie soup in a bread bowl", holiday: true },
+      { name: "Taro Bread Pudding", loc: "Aunt Cass Café", desc: "Warm taro and white chocolate bread pudding with whipped cream, tapioca spheres, and coconut-vanilla sauce", holiday: true },
+      { name: "Chocolate-Raspberry Cold Brew", loc: "Aunt Cass Café", desc: "Cold brew with raspberry foam (non-alcoholic)", holiday: true },
+      { name: "Vampire Mickey-shaped Sourdough Bread", loc: "Aunt Cass Café / Boudin Bread Cart", desc: "Vampire Mickey-shaped sourdough bread", holiday: true },
+      { name: "Mickey-shaped Waffle Macaron", loc: "Cappuccino Cart", desc: "Salted maple buttercream, maple syrup, and chocolate-coated waffle pieces", holiday: true },
+      { name: "Peanut Butter Mocha Cold Brew", loc: "Cappuccino Cart", desc: "Cold brew with peanut butter whip, peanut butter drizzle, and M&M's Peanut Butter candies (non-alcoholic)", holiday: true },
+      { name: "Peanut Butter Whiskey Cold Brew Cocktail", loc: "Cappuccino Cart", desc: "Peanut butter mocha cold brew with peanut butter whiskey", holiday: true },
+      { name: "Pumpkin Spice Hard Cider", loc: "Cappuccino Cart", desc: "Coronado Brewing Co. seasonal hard cider", holiday: true },
+      { name: "Ube Flan Cake", loc: "Cocina Cucamonga Mexican Grill", desc: "Ube flan cake", holiday: true },
+      { name: "Mango Agua Fresca", loc: "Cocina Cucamonga Mexican Grill", desc: "House-made mango agua fresca with chile-lime seasoning and chamoy (non-alcoholic)", holiday: true },
+      { name: "Mango Tequila Cocktail", loc: "Cocina Cucamonga Mexican Grill", desc: "Mango agua fresca with tequila", holiday: true },
+      { name: "Blood Orange Paloma Hard Seltzer", loc: "Cocina Cucamonga Mexican Grill", desc: "Bottle Logic Brewing seasonal hard seltzer", holiday: true },
+      { name: "Karlitos Mexican Lager", loc: "Port of San Fransokyo Cervecería", desc: "Karl Strauss seasonal lager (michelada option available)", holiday: true },
+      { name: "Karlitos Mexican Lager Flight", loc: "Port of San Fransokyo Cervecería", desc: "Karl Strauss lager flight", holiday: true },
+      { name: "Karl Strauss Oktoberfest", loc: "Port of San Fransokyo Cervecería", desc: "Karl Strauss seasonal Oktoberfest", holiday: true },
+      { name: "Seasonal Baymax Macaron", loc: "Lucky Fortune Cookery", desc: "Ube cream and salted caramel chocolate crunch pearls", holiday: true },
+      { name: "Three Milk Ube Tea", loc: "Lucky Fortune Cookery", desc: "Ube tea with brown sugar tapioca and coconut foam (non-alcoholic)", holiday: true },
+      { name: "Enegren Brewing Oktoberfest", loc: "Sonoma Terrace", desc: "Enegren Brewing seasonal Oktoberfest", holiday: true },
+      { name: "Steak Frites", loc: "Lamplight Lounge", desc: "New York steak, Manchego truffle fries, peppercorn sauce", holiday: true },
+      { name: "Arroz Con Leche Donut", loc: "Lamplight Lounge", desc: "Cinnamon sugar donut with arroz con leche, candied pecans, and spiced chocolate powder", holiday: true },
+      { name: "Halloween Cocktail", loc: "Lamplight Lounge", desc: "Bourbon, cinnamon whiskey, lemon juice, amaretto, apple juice", holiday: true },
+      { name: "Ommegang All Hallows Treat Stout", loc: "Lamplight Lounge", desc: "Imperial chocolate peanut butter stout", holiday: true },
+      { name: "2 Towns Spiced Cosmic Crisp Hard Cider", loc: "Lamplight Lounge", desc: "2 Towns Ciderhouse seasonal hard cider", holiday: true },
+      { name: "Santa Monica Pickle Lager", loc: "Bayside Brews", desc: "Santa Monica Brew Works seasonal lager (michelada option available)", holiday: true },
+      { name: "Anti Vampire Pizza", loc: "Boardwalk Pizza & Pasta", desc: "Roasted garlic-marinated chicken, creamy garlic sauce, mozzarella, bacon, tomato harissa drizzle, and green onions, by the slice or whole pie", holiday: true },
+      { name: "Caramel Apple Cheesecake", loc: "Boardwalk Pizza & Pasta", desc: "Caramel cheesecake with apple filling, vanilla chantilly, and salted caramel", holiday: true },
+      { name: "Caramel Cheesecake Churro", loc: "Churros near Goofy's Sky School", desc: "Caramel cheesecake icing with caramel and chocolate drizzle", holiday: true },
+      { name: "Fluffernutter Churro", loc: "Churros near Redwood Creek Challenge Trail", desc: "Peanut butter sauce, marshmallow sauce, and chocolate chips", holiday: true },
+      { name: "Villainous Wings", loc: "Smokejumpers Grill", desc: "Sweet and tangy gochujang sauce with ghost pepper ranch and chives", holiday: true },
+      { name: "Oogie Boogie Lemonade", loc: "Smokejumpers Grill", desc: "Lemonade with green apple syrup, cherry popping spheres, and raspberry sauce (non-alcoholic)", holiday: true },
+      { name: "Green Apple Lemonade Margarita", loc: "Smokejumpers Grill", desc: "Oogie Boogie Lemonade with tequila", holiday: true },
+      { name: "Bottle Logic Aurora Borealis Hard Seltzer", loc: "Smokejumpers Grill", desc: "Bottle Logic Brewing seasonal hard seltzer", holiday: true },
+      { name: "Honeydew Lime Seltzer", loc: "Smokejumpers Grill", desc: "Honeydew lime seltzer over ice", holiday: true },
+      { name: "Buffalo Chicken Ranch Pull-apart Bread", loc: "Outdoor Vending", desc: "Pull-apart bread with cream cheese, Parmesan ranch, and fried onions", holiday: true },
+      { name: "Oogie Boogie Cookie", loc: "Outdoor Vending", desc: "Seasonal specialty cookie", holiday: true },
+      { name: "Sour Apple Cotton Candy", loc: "Outdoor Vending", desc: "Green apple cotton candy", holiday: true },
+      { name: "Goo Goo Muck Hazy IPA", loc: "Outdoor Vending", desc: "Fall Brewing Company seasonal hazy IPA", holiday: true },
+      { name: "Seaborn Boo Raspberry Margarita", loc: "Outdoor Vending", desc: "Seasonal specialty margarita", holiday: true },
+      { name: "Chilaquiles Carnitas Torta", loc: "Paradise Garden Grill", desc: "Plaza de la Familia (Coco) menu through Nov 2 — red chilaquiles, refried beans, avocado spread, queso fresco, pickled red onions, and a fried egg, served with chips", holiday: true },
+      { name: "Nuez Gelatina Cake", loc: "Paradise Garden Grill", desc: "Plaza de la Familia (Coco) dessert through Nov 2 — cinnamon sponge cake, pecan gelatina, and whipped topping", holiday: true },
+      { name: "Marigold Margarita", loc: "Paradise Garden Grill", desc: "Plaza de la Familia (Coco) cocktail through Nov 2 — wine-based lime margarita with a marigold garnish and orange sugar rim", holiday: true },
+      { name: "Coco Lantern Sipper", loc: "Paradise Garden Grill", desc: "Collectible Coco lantern sipper featuring Miguel and Héctor — from Sept. 3 while supplies last, limit two per transaction", holiday: true },
+      { name: "Haunted Highway Cocktail", loc: "Cozy Cone Motel 4", desc: "Oogie Boogie Bash exclusive — tequila, pineapple lemonade with blue Curaçao, apple liqueur, and Sprite topped with grenadine and gummy worms", holiday: true },
+    ],
+    hotels: [
+      // Regular
+      { name: "American Wagyu N.Y.", loc: "Napa Rose — Grand Californian Hotel", desc: "Thinly sliced medium rare with grape mustardo — prix fixe course on the all-new menu since the Feb. 2026 reopening", holiday: false },
+      { name: "Sorpresine Pasta", loc: "Napa Rose — Grand Californian Hotel", desc: "House-made pasta in California crab broth with Pacific uni butter", holiday: false },
+      { name: "The Laughing Tiger", loc: "Napa Rose — Grand Californian Hotel", desc: "Bar & lounge small bite reimagining the former Smiling Tiger Salad — no reservation required", holiday: false },
+      { name: "Elevated Valrhona Chocolate Bar", loc: "Napa Rose — Grand Californian Hotel", desc: "Hazelnut praline dessert on the reopening menu", holiday: false },
+      { name: "Colorado Rack of Lamb", loc: "Napa Rose — Grand Californian Hotel", desc: "Lamb pot roast with dried fig-orange gremolata — signature entree at Disneyland Resort's flagship fine-dining restaurant", holiday: false },
+      { name: "Signature Mushroom Cappuccino", loc: "Napa Rose — Grand Californian Hotel", desc: "Warm, earthy mushroom soup amuse-bouche — a returning favorite kept through the 2026 renovation", holiday: false },
+      { name: "Character Breakfast or Dinner Buffet", loc: "Goofy's Kitchen — Disneyland Hotel", desc: "All-you-care-to-enjoy buffet with Goofy and friends, including the famous peanut butter and jelly pizza", holiday: false },
+      { name: "Mickey's Tales of Adventure Buffet", loc: "Storytellers Cafe — Grand Californian Hotel", desc: "Character breakfast/brunch buffet with Mickey, Minnie, Pluto, Chip, and Dale; the dinner counterpart, Donald's Tales of Adventure, added the mischievous bear Humphrey as of Feb. 2026", holiday: false },
+      { name: "Uh Oa!", loc: "Trader Sam's Enchanted Tiki Bar — Disneyland Hotel", desc: "Tiki classic served in a souvenir bowl for two that triggers a volcanic eruption effect in the bar", holiday: false },
+      { name: "Krakatoa Punch", loc: "Trader Sam's Enchanted Tiki Bar — Disneyland Hotel", desc: "Rum-based punch that triggers a rainstorm effect in the room", holiday: false },
+      { name: "Piranha Pool", loc: "Trader Sam's Enchanted Tiki Bar — Disneyland Hotel", desc: "Strawberry vodka, creme of coconut, strawberry puree, and pineapple juice", holiday: false },
+      { name: "Pan-fried Dumplings", loc: "Trader Sam's Enchanted Tiki Bar — Disneyland Hotel", desc: "Served with soy-sesame dipping sauce", holiday: false },
+      { name: "Avocado Toast", loc: "GCH Craftsman Grill — Grand Californian Hotel", desc: "Grilled sourdough with crushed avocado, burrata cheese, pomegranate seeds, and olive oil-pomegranate drizzle", holiday: false },
+      { name: "Bulgogi Beef Skewers", loc: "GCH Craftsman Grill — Grand Californian Hotel", desc: "With parsley-celery salad, toasted sesame seeds, and green onions", holiday: false },
+      { name: "Craftsman's Burger", loc: "GCH Craftsman Grill — Grand Californian Hotel", desc: "Cilantro-mint aioli, white onion, Grafton smoked cheddar, iceberg lettuce, pickles, and tomato on a brioche bun, served with fries", holiday: false },
+      { name: "Grand Candied Orange Coffee", loc: "GCH Craftsman Bar — Grand Californian Hotel", desc: "Hot coffee cocktail made with Grand Marnier, Kahlua, and brandy", holiday: false },
+      // Halloween
+      { name: "The Dark Heart", loc: "Broken Spell Lounge — Disneyland Hotel", desc: "Hennessy VS, Plymouth gin, creme de cacao, chocolate bitters, and lemon bitters", holiday: true },
+      { name: "Three Witches", loc: "Broken Spell Lounge — Disneyland Hotel", desc: "Casamigos Reposado, espresso, Licor 43, Mr. Black Cold Brew Coffee Liqueur, orgeat, and Fee Foam", holiday: true },
+      { name: "Green-eyed Sceptre", loc: "Broken Spell Lounge — Disneyland Hotel", desc: "Pernod Absinthe, Avissi Prosecco, St. George Spiced Pear, cinnamon syrup, lime juice, blackberry", holiday: true },
+      { name: "Mickey Bat Cookie", loc: "The Coffee House — Disneyland Hotel", desc: "Halloween-themed shortbread cookie", holiday: true },
+      { name: "Banana Bread Latte", loc: "The Coffee House — Disneyland Hotel", desc: "Hot or iced banana bread-flavored latte (non-alcoholic)", holiday: true },
+      { name: "Butter Pecan Latte", loc: "The Coffee House — Disneyland Hotel", desc: "Hot or iced butter pecan-flavored latte (non-alcoholic)", holiday: true },
+      { name: "Hot Caramel Apple Spice", loc: "The Coffee House — Disneyland Hotel", desc: "Warm spiced caramel apple drink (non-alcoholic)", holiday: true },
+      { name: "Maple Sea Salt Latte", loc: "The Coffee House — Disneyland Hotel", desc: "Hot or iced maple sea salt latte (non-alcoholic)", holiday: true },
+      { name: "Pumpkin Spice Latte", loc: "The Coffee House — Disneyland Hotel", desc: "Hot or iced pumpkin spice latte (non-alcoholic)", holiday: true },
+      { name: "This Chilling Challenge", loc: "Trader Sam's Enchanted Tiki Bar — Disneyland Hotel", desc: "Smith & Cross Rum, pineapple, lime, honey syrup, ginger syrup, bitters", holiday: true },
+      { name: "Cloaked Specter", loc: "Trader Sam's Enchanted Tiki Bar — Disneyland Hotel", desc: "Parrot Bay coconut rum, pineapple, lime, falernum, cinnamon, Angostura", holiday: true },
+      { name: "Scarecrow Old Fashioned", loc: "Trader Sam's Enchanted Tiki Bar — Disneyland Hotel", desc: "Buffalo Trace, St. Elizabeth Allspice Dram, falernum, Angostura", holiday: true },
+      { name: "Dole Whip Pineapple-Orange with Guava Juice", loc: "Trader Sam's Enchanted Tiki Bar — Disneyland Hotel", desc: "Served in a Nightmare Before Christmas Haunted Mansion Holiday cup (non-alcoholic)", holiday: true },
+      { name: "Dole Whip Tropical Float", loc: "Trader Sam's Enchanted Tiki Bar — Disneyland Hotel", desc: "Pineapple juice topped with pineapple-orange soft serve and guava juice, in a Haunted Mansion Holiday cup (non-alcoholic)", holiday: true },
+      { name: "Dole Whip Tropical Float with Rum", loc: "Trader Sam's Enchanted Tiki Bar — Disneyland Hotel", desc: "Tropical float with Captain Morgan Parrot Bay Coconut Rum, Haunted Mansion Holiday cup on the side", holiday: true },
+      { name: "Recuérdame Cocktail", loc: "GCH Craftsman Bar — Grand Californian Hotel", desc: "Casamigos Reposado, passion fruit, Greenbar Hibiscus Liqueur, lemon juice", holiday: true },
+      { name: "Candy Bar Donut", loc: "GCH Craftsman Grill — Grand Californian Hotel", desc: "Seasonal specialty donut", holiday: true },
+      { name: "Mickey Vampire Donut", loc: "GCH Craftsman Grill — Grand Californian Hotel", desc: "Mickey-shaped vampire-themed donut", holiday: true },
+      { name: "Minnie Halloween Cupcake", loc: "GCH Craftsman Grill — Grand Californian Hotel", desc: "Minnie-themed seasonal cupcake", holiday: true },
+      { name: "Pumpkin Muffin", loc: "GCH Craftsman Grill — Grand Californian Hotel", desc: "Seasonal pumpkin muffin", holiday: true },
+      { name: "The Mayor Chocolate Cake Pop", loc: "Grand Californian Great Hall Cart", desc: "Hand-dipped in white chocolate with sprinkles", holiday: true },
+      { name: "Sally Pumpkin Spiced Cupcake", loc: "Grand Californian Great Hall Cart", desc: "Devil's food chocolate chip cake filled with coffee fudge, pumpkin spice buttercream on top", holiday: true },
+      { name: "Scary Wreath Macaron", loc: "Grand Californian Great Hall Cart", desc: "Pumpkin cheesecake macaron with a chocolate fudge center", holiday: true },
+      { name: "Pecan Caramel Crunch Cookie", loc: "Grand Californian Great Hall Cart", desc: "Giant house-made cookie with caramel bits, toasted pecans, and toffee", holiday: true },
+      { name: "Buttery Pumpkin Bread", loc: "Grand Californian Great Hall Cart", desc: "Pumpkin bread with sprinkles and pumpkin spiced icing", holiday: true },
+      { name: "Oogie Boogie Crisped Rice Treat", loc: "Grand Californian Great Hall Cart", desc: "Oogie Boogie-themed rice cereal treat", holiday: true },
+      { name: "Jack Skellington Linzer Cookie", loc: "Grand Californian Great Hall Cart", desc: "Nightmare Before Christmas-themed linzer cookie", holiday: true },
+      { name: "Gingerbread Skeleton Cookie", loc: "Grand Californian Great Hall Cart", desc: "Skeleton-shaped gingerbread cookie", holiday: true },
+      { name: "Chocolate Chip Cookie Cup with Milk", loc: "Grand Californian Great Hall Cart", desc: "Warm cookie cup served with milk (non-alcoholic)", holiday: true },
+      { name: "Chocolate Chip Cookie Shot with Liqueur", loc: "Grand Californian Great Hall Cart", desc: "Cookie shot glass filled with liqueur", holiday: true },
+      { name: "Recuérdame Cocktail", loc: "Hearthstone Lounge & Storytellers Cafe — Grand Californian Hotel", desc: "Casamigos Reposado, passion fruit, Greenbar Hibiscus Liqueur, lemon juice", holiday: true },
+      { name: "Caramel Apple Overnight Oats", loc: "The Sketch Pad Cafe — Pixar Place Hotel", desc: "Overnight oats with caramel apple flavors", holiday: true },
+      { name: "Tiramisu Latte", loc: "The Sketch Pad Cafe — Pixar Place Hotel", desc: "Tiramisu-flavored latte (non-alcoholic)", holiday: true },
+      { name: "Dulce de Leche Linzer Cookie", loc: "The Sketch Pad Cafe — Pixar Place Hotel", desc: "Linzer cookie filled with dulce de leche", holiday: true },
+      { name: "Nutella Linzer Cookie", loc: "The Sketch Pad Cafe — Pixar Place Hotel", desc: "Linzer cookie filled with Nutella", holiday: true },
+      { name: "Pumpkin Spice Latte", loc: "The Sketch Pad Cafe — Pixar Place Hotel", desc: "Pumpkin spice latte (non-alcoholic)", holiday: true },
+    ],
+    downtown: [
+      // Regular
+      { name: "Greg Norman Burger", loc: "Black Tap Craft Burgers & Shakes", desc: "Half-pound wagyu beef with buttermilk-dill, blue cheese, and arugula — an award-winning signature burger", holiday: false },
+      { name: "Mexico City Burger", loc: "Black Tap Craft Burgers & Shakes", desc: "Pepper jack, pickled jalapenos, crispy onion ring, chipotle mayo, lettuce, tomato, and pickle", holiday: false },
+      { name: "Cotton Candy CrazyShake", loc: "Black Tap Craft Burgers & Shakes", desc: "Over-the-top milkshake piled with cotton candy and toppings", holiday: false },
+      { name: "Classic Milkshake", loc: "Black Tap Craft Burgers & Shakes", desc: "Chocolate, vanilla, strawberry, Nutella, peanut butter, coffee, or Oreo cookies and cream", holiday: false },
+      { name: "Earl's Pastrami", loc: "Earl of Sandwich", desc: "Slow-cooked pastrami, Swiss cheese, sauerkraut, Dijonnaise, and Thousand Island on marbled rye — carved fresh at The Carvery", holiday: false },
+      { name: "The Original 1762", loc: "Earl of Sandwich", desc: "The hot roast beef sandwich that started it all", holiday: false },
+      { name: "The Full Montagu", loc: "Earl of Sandwich", desc: "Stuffed with turkey and roast beef", holiday: false },
+      { name: "Margherita Pizza", loc: "Naples Ristorante e Bar", desc: "San Marzano tomatoes, fresh mozzarella, and basil on a wood-fired, thin crust", holiday: false },
+      { name: "Spaghetti Carbonara", loc: "Naples Ristorante e Bar", desc: "Pancetta and Parmigiano-Reggiano", holiday: false },
+      { name: "Caprese Salad", loc: "Naples Ristorante e Bar", desc: "Fresh mozzarella, heirloom tomatoes, and basil", holiday: false },
+      { name: "Xiao Long Bao (Soup Dumplings)", loc: "Din Tai Fung", desc: "Hand-folded 18 times to precisely 21 grams — the restaurant's signature dish, choice of pork, crab and pork, or chicken", holiday: false },
+      { name: "Spicy Wontons", loc: "Din Tai Fung", desc: "Wontons in Din Tai Fung's signature spicy house sauce", holiday: false },
+      { name: "String Beans with Garlic", loc: "Din Tai Fung", desc: "Wok-fried green beans with garlic", holiday: false },
+      { name: "Chocolate Mochi Dumplings", loc: "Din Tai Fung", desc: "Warm chocolate dumplings with a salted foam", holiday: false },
+      { name: "Chili-Mezcal Cocktail", loc: "Din Tai Fung", desc: "Chili oil-infused Ilegal Mezcal, lime, pineapple, and agave with a sesame Tajín rim — exclusive to the Downtown Disney location", holiday: false },
+      { name: "Gumbo Ya-Ya", loc: "Jazz Kitchen Coastal Grill & Patio", desc: "New Orleans-style gumbo — a Jazz Kitchen signature since its 2026 relaunch from Ralph Brennan's Jazz Kitchen", holiday: false },
+      { name: "Grilled Lobster BLT Po'Boy", loc: "Jazz Kitchen Coastal Grill & Patio", desc: "New Orleans-style po'boy with grilled lobster, bacon, lettuce, and tomato", holiday: false },
+      { name: "Big Crab Cakes", loc: "Jazz Kitchen Coastal Grill & Patio", desc: "Served over creamy risotto", holiday: false },
+      { name: "Classic Beignets", loc: "Beignets Expressed", desc: "New Orleans-style fried dough dusted with powdered sugar — quick-service counter attached to Jazz Kitchen Coastal Grill & Patio", holiday: false },
+      { name: "Giant Chicken Knuckle Sandwich", loc: "Splitsville Luxury Lanes", desc: "Crispy buttermilk-fried chicken in buffalo sauce with fresh slaw on a soft brioche bun", holiday: false },
+      { name: "Cookies & Cream Sundae", loc: "Splitsville Luxury Lanes", desc: "Cookies and cream ice cream loaded with hot fudge, Oreo cookies, whipped cream, and a cherry", holiday: false },
+      { name: "Tableside Root Beer Float", loc: "Splitsville Luxury Lanes", desc: "IBC Root Beer poured over vanilla ice cream in a super-sized schooner glass", holiday: false },
+      { name: "Ballast Point Burger", loc: "Ballast Point Brewing Co.", desc: "Half-pound patty, shredded lettuce, tomato, BP special sauce, and American cheese on a toasted brioche bun", holiday: false },
+      { name: "Buffalo Ranch Chicken Sandwich", loc: "Ballast Point Brewing Co.", desc: "Crispy pickle-brined chicken breast, BP buffalo sauce, house ranch, and black garlic truffle power slaw", holiday: false },
+      { name: "Pastrami Burger", loc: "Ballast Point Brewing Co.", desc: "Angus beef patty topped with smoky pastrami, white cheddar, pepperoncini, crispy fried onions, and spicy mustard spread", holiday: false },
+      { name: "Blueberry Sour Wench Crumb Cake", loc: "Ballast Point Brewing Co.", desc: "House-made blueberry crumb cake with Sour Wench blueberry compote and Meyer lemon creme anglaise", holiday: false },
+      { name: "Guacamole", loc: "Céntrico", desc: "Creamy avocado, tomato, cilantro, onion, lime, and serrano, served with tortilla chips and salsa", holiday: false },
+      { name: "Oaxaca Tostada", loc: "Céntrico", desc: "Black bean puree, avocado mousse, cecina, chorizo, pork belly, salsa macha, and cheese blend — serves 2-4", holiday: false },
+      { name: "Aguachile de Camarón", loc: "Céntrico", desc: "Lime juice-cured shrimp, cucumber, cilantro, red onion, chiles toreados, and avocado", holiday: false },
+      { name: "Burrito Norteño", loc: "Céntrico", desc: "Braised short rib burrito — a guest favorite", holiday: false },
+      { name: "Paseo Waffles", loc: "Paseo", desc: "Brunch specialty with duck leg carnitas and chipotle tamarind glaze", holiday: false },
+      { name: "Huarache de Asada", loc: "Paseo", desc: "Grilled flank steak with goat cheese fondue over a masa huarache", holiday: false },
+      { name: "Wetzel's Original Pretzel", loc: "Wetzel's Pretzels", desc: "The classic hand-rolled soft pretzel", holiday: false },
+      { name: "Jalapeño Cheese Melt Pretzel", loc: "Wetzel's Pretzels", desc: "Baked cheese pretzel with jalapeño", holiday: false },
+      { name: "Wetzel Dog", loc: "Wetzel's Pretzels", desc: "All-beef hot dog wrapped in pretzel dough", holiday: false },
+      { name: "Tacos Al Pastor", loc: "Tiendita", desc: "Pork marinated in chilies and Mexican spices, roasted and caramelized with pineapple juice", holiday: false },
+      { name: "Esquite", loc: "Tiendita", desc: "Corn kernels cooked in broth, seasoned with lime, chili powder, mayonnaise, and cheese", holiday: false },
+      { name: "Chicken Quesadilla", loc: "Tiendita", desc: "Chicken barbacoa and white cheese in a flour tortilla, with a choice of Mexican rice or beans", holiday: false },
+      { name: "Paletas", loc: "Tiendita", desc: "Frozen Mexican ice pops in flavors like Mango Chili and Fresas con Crema", holiday: false },
+      { name: "Beef Wellington", loc: "Gordon Ramsay at The Carnaby", desc: "Signature dish at the new 1960s-London gastropub — served with potato purée and a fresh herb salad", holiday: false },
+      { name: "Fish & Chips", loc: "Gordon Ramsay at The Carnaby", desc: "British pub classic with tartar sauce and mushy peas", holiday: false },
+      { name: "Bangers & Mash", loc: "Gordon Ramsay at The Carnaby", desc: "Cumberland sausage with mashed potatoes and onion jus", holiday: false },
+      { name: "Cottage Pie", loc: "Gordon Ramsay at The Carnaby", desc: "Beef short rib under a potato crust", holiday: false },
+      { name: "Tableside Prime Rib Cart", loc: "Gordon Ramsay at The Carnaby", desc: "Hand-carved prime rib with Yorkshire pudding, roasted vegetables, and au jus", holiday: false },
+      { name: "Sticky Toffee Pudding", loc: "Gordon Ramsay at The Carnaby", desc: "Classic British dessert — a signature of the new restaurant", holiday: false },
+      { name: "Peach & Basil Old Fashioned", loc: "Gordon Ramsay at The Carnaby", desc: "Old fashioned with basil sugar and peach cotton candy", holiday: false },
+      { name: "Passionfruit Royale", loc: "Gordon Ramsay at The Carnaby", desc: "Prosecco cocktail with a passion fruit bubble", holiday: false },
+      { name: "Italian Water Ice", loc: "Happy Ice", desc: "New Italian ice shop in the Downtown Disney District", holiday: false },
+      // Halloween
+      { name: "Graveyard Dirt Pudding", loc: "GG's Chicken Shop", desc: "Chocolate pudding, Oreo crumble, Mickey sprinkles, gummy worms, and a Milano cookie tombstone", holiday: true },
+      { name: "Little Monster Brownie", loc: "Parkside Market Coffee", desc: "Vanilla frosting and a monster face", holiday: true },
+      { name: "Pumpkin Pie Cinnamon Roll", loc: "Parkside Market Coffee", desc: "Pumpkin spice cream cheese frosting dusted with cookie crunch", holiday: true },
+      { name: "Tombstone Chocolate Trifle", loc: "Parkside Market Coffee", desc: "Coffee-soaked chocolate cake layered with tiramisu cream, heavy cream, and dark chocolate shavings", holiday: true },
+      { name: "The Mystic Cauldron Latte", loc: "Parkside Market Coffee", desc: "Blackberry under purple cold foam with chocolate cookie crumbles (non-alcoholic)", holiday: true },
+      { name: "The Pumpkin Slice Latte", loc: "Parkside Market Coffee", desc: "Pumpkin pie syrup, house-made pumpkin cold foam, fall spice dust (non-alcoholic)", holiday: true },
+      { name: "The Harvest Chai Latte", loc: "Parkside Market Coffee", desc: "Chai spices and caramel apple butter with cinnamon (non-alcoholic)", holiday: true },
+      { name: "The Sleeping Curse", loc: "Parkside Market Coffee", desc: "Hot apple cider and brown sugar syrup (non-alcoholic)", holiday: true },
+      { name: "Spooky Seoul Berry Bubble Lemonade", loc: "Seoul Sister", desc: "Cherry lemonade with blueberry popping boba (non-alcoholic)", holiday: true },
+      { name: "Campfire Cream Soda", loc: "Vista Parkside Market", desc: "Coca-Cola, vanilla cream, marshmallow syrup (non-alcoholic)", holiday: true },
+      { name: "Candy Corn Cream Soda", loc: "Vista Parkside Market", desc: "Orange soda, vanilla cream, marshmallow syrup (non-alcoholic)", holiday: true },
+      { name: "Horned Shadow Elixir", loc: "Vista Parkside Market", desc: "Tequila, blood orange, honey, lime", holiday: true },
+      { name: "All Hallow's Eve", loc: "Vista Parkside Market", desc: "Mango-cherry whiskey, bourbon, Thai tea cacao vermouth, bitters", holiday: true },
+      { name: "Sleepy Hollow", loc: "Vista Parkside Market", desc: "Dark rum, amaretto, chai simple syrup, lemon, vanilla, bitters", holiday: true },
+      { name: "The Raven's Revenge", loc: "Vista Parkside Market", desc: "Chili cacao vodka, espresso, vanilla, coffee liqueur", holiday: true },
+      { name: "Ube Matcha and Creme", loc: "California Churro", desc: "Churro rolled in matcha sugar with whipped cream and ube condensed milk", holiday: true },
+      { name: "Caramel Apple Beignet", loc: "Beignets Expressed", desc: "Candied apple icing, caramel drizzle, and spooky sprinkles — available Oct. 1–31 only", holiday: true },
+      { name: "Midnight Roll", loc: "Splitsville Luxury Lanes", desc: "Avocado, salmon, and cream cheese in black rice with masago, pickled onion, micro cilantro, and chipotle mayo", holiday: true },
+      { name: "Black Spider", loc: "Splitsville Luxury Lanes", desc: "Blackberry liqueur, vodka or gin, cranberry, fresh lime, sugar rim", holiday: true },
+      { name: "Witches' Brew", loc: "Splitsville Luxury Lanes", desc: "Melon liqueur, vodka, and blue curacao topped with ginger soda, sugar rim", holiday: true },
+      { name: "Pumpkin Flan", loc: "Céntrico", desc: "Traditional flan with pumpkin and spices", holiday: true },
+      { name: "La Calavera Roja", loc: "Céntrico", desc: "Tequila reposado, lime, cranberry, spiced apple syrup", holiday: true },
+      { name: "Pumpkin Dulce", loc: "Paseo", desc: "Spiced sponge cake, maple syrup ganache, walnut crumble, pumpkin mousse, gruyere, and rosemary ice cream", holiday: true },
+      { name: "La Calavera Roja", loc: "Paseo", desc: "Tequila reposado, lime, cranberry, spiced apple syrup", holiday: true },
+      { name: "Kit Kat Shake", loc: "Black Tap Craft Burgers & Shakes", desc: "Chocolate frosted rim rolled in crushed chocolate wafers, whipped cream, chocolate drizzle (non-alcoholic) — Oct. 20–Nov. 2 only", holiday: true },
+      { name: "Skittles Shake", loc: "Black Tap Craft Burgers & Shakes", desc: "Vanilla frosted rim rolled in Skittles Littles and gummy clusters, whipped cream, strawberry drizzle, cherry (non-alcoholic) — Oct. 20–Nov. 2 only", holiday: true },
+      { name: "Sweet and Salty Shake", loc: "Black Tap Craft Burgers & Shakes", desc: "Peanut butter shake with a chocolate-peanut butter rim rolled in M&M's, pretzel rods, peanut butter cups, caramel and chocolate sauce (non-alcoholic) — Oct. 20–Nov. 2 only", holiday: true },
+      { name: "Ghostly Glazed Pork Belly", loc: "Ballast Point Brewing Co.", desc: "Crispy pork belly in ghost pepper-pomegranate glaze with miso butter acorn squash and roasted garlic \"crawling critters\"", holiday: true },
+      { name: "Haunted Harvest Quesadilla", loc: "Ballast Point Brewing Co.", desc: "Spinach tortilla with huitlacoche ricotta, Oaxaca cheese, and salsa macha, grilled crisp", holiday: true },
+      { name: "Spooky Tiramisu", loc: "Ballast Point Brewing Co.", desc: "Espresso martini-soaked ladyfingers, mascarpone cream, cocoa powder, raspberry coulis", holiday: true },
+      { name: "The Cursed Apple", loc: "Ballast Point Brewing Co.", desc: "Frozen apple cider slush with cinnamon whiskey, garnished with a caramel apple lollipop and dehydrated apple slice", holiday: true },
+      { name: "Oreo Bitz", loc: "Wetzel's Pretzels", desc: "Original Bitz under a layer of creme with crunchy cookie pieces", holiday: true },
+      { name: "Pumpkin Blooderscotch Cannolis", loc: "Naples Ristorante e Bar", desc: "Pumpkin and butterscotch cream, whipped cream, red caramel drizzle, and a sugar knife", holiday: true },
+      { name: "Pumpkin Mule", loc: "Naples Ristorante e Bar", desc: "Pumpkin butter, spiced rum, lemon juice, ginger beer", holiday: true },
+      { name: "Marshmallow Mummy Macaron", loc: "Kayla's Cake", desc: "House-made marshmallow and dark chocolate ganache with sugar candy eyeballs", holiday: true },
+    ],
+  };
+
+  const doneKeys = new Set();
+  const deletedKeys = new Set();
+  const flaggedKeys = new Set();
+  const dates = {};
+  // Pre-accounts save lived under this single key. Kept around so a first
+  // sign-in on this device can pull in already-tracked progress instead of
+  // starting the new account empty.
+  const LEGACY_STORAGE_KEY = 'disneyland-merged-checklist-state';
+  function storageKeyFor(uid) { return LEGACY_STORAGE_KEY + '-' + uid; }
+  let currentUser = null;
+  let storageWorks = true;
+  let holidayMode = false;
+  let searchQuery = '';
+  let flaggedOnly = false;
+  const activeAreas = new Set(['dl', 'dca', 'hotels', 'downtown']);
+
+  function itemKey(park, item) {
+    return `${park}::${item.holiday ? 'h' : 'r'}::${item.loc}::${item.name}`;
+  }
+
+  // Escapes text before it's inserted via innerHTML, so item names/descriptions
+  // can never be interpreted as HTML markup.
+  function escapeHtml(str) {
+    if (str == null) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  function showStorageBanner() {
+    const banner = document.getElementById('storage-banner');
+    banner.textContent = "Heads up: auto-save isn't working in this view, so your taps won't be remembered next time you open this file. Use \"Export progress\" below before you close it, and \"Import progress\" to restore it later.";
+    banner.style.display = 'block';
+    const statusEl = document.getElementById('save-status');
+    if (statusEl) statusEl.style.display = 'none';
+  }
+
+  // Runs once at page load, independent of which account (if any) signs in,
+  // to check whether local caching works at all on this device/browser.
+  async function probeLocalStorage() {
+    if (storageBackend === null) {
+      storageWorks = false;
+      showStorageBanner();
+      return;
+    }
+    try {
+      const testKey = LEGACY_STORAGE_KEY + '-probe';
+      await storageSet(testKey, '1');
+      const probeValue = await storageGet(testKey);
+      if (probeValue !== '1') {
+        storageWorks = false;
+        showStorageBanner();
+      }
+    } catch (err) {
+      storageWorks = false;
+      showStorageBanner();
+    }
+  }
+
+  // Loads the signed-in user's checklist. Cloud (Firestore) is the source of
+  // truth across devices; if it's unreachable or empty we fall back to a
+  // local cache for this account, and finally to any pre-account save on
+  // this device so a first sign-in doesn't wipe out existing progress.
+  async function loadStateForUser(user) {
+    doneKeys.clear();
+    deletedKeys.clear();
+    flaggedKeys.clear();
+    Object.keys(dates).forEach(k => delete dates[k]);
+
+    let payload = null;
+    if (window.firebaseLoadUserState) {
+      payload = await window.firebaseLoadUserState(user.uid);
+    }
+
+    if (!payload && storageWorks) {
+      let raw = null;
+      try { raw = await storageGet(storageKeyFor(user.uid)); } catch (err) {}
+      if (!raw) {
+        try { raw = await storageGet(LEGACY_STORAGE_KEY); } catch (err) {}
+      }
+      if (raw) {
+        try { payload = JSON.parse(raw); } catch (err) {}
+      }
+    }
+
+    if (payload) {
+      (payload.done || []).forEach(k => doneKeys.add(k));
+      (payload.deleted || []).forEach(k => deletedKeys.add(k));
+      (payload.flagged || []).forEach(k => flaggedKeys.add(k));
+      Object.assign(dates, payload.dates || {});
+      if (typeof payload.holidayMode === 'boolean') holidayMode = payload.holidayMode;
+    }
+
+    // Reconcile everywhere (cloud + this device's cache) so they all agree,
+    // whichever source the data actually came from.
+    await saveState();
+  }
+
+  async function saveState() {
+    if (!currentUser) return;
+    const statusEl = document.getElementById('save-status');
+    const statusText = document.getElementById('save-status-text');
+    statusEl.classList.add('saving');
+    statusText.textContent = 'Saving…';
+
+    const payload = buildStatePayload();
+
+    let localOk = false;
+    if (storageWorks) {
+      try {
+        await storageSet(storageKeyFor(currentUser.uid), JSON.stringify(payload));
+        localOk = true;
+      } catch (err) {
+        console.error('Local save failed', err);
+      }
+    }
+
+    let cloudOk = false;
+    if (window.firebaseSaveUserState) {
+      cloudOk = await window.firebaseSaveUserState(currentUser.uid, payload);
+    }
+
+    statusEl.classList.remove('saving');
+    if (cloudOk) {
+      statusText.textContent = 'All changes saved automatically';
+    } else if (localOk) {
+      statusText.textContent = 'Saved on this device — will sync when back online';
+    } else {
+      statusText.textContent = 'Save failed — use Export progress as a backup';
+    }
+  }
+
+  const sections = [
+    { key: 'dl', containerId: 'dl-list', emptyId: 'dl-empty' },
+    { key: 'dca', containerId: 'dca-list', emptyId: 'dca-empty' },
+    { key: 'hotels', containerId: 'hotels-list', emptyId: 'hotels-empty' },
+    { key: 'downtown', containerId: 'downtown-list', emptyId: 'downtown-empty' },
+  ];
+
+  function matchesSearch(item) {
+    if (!searchQuery) return true;
+    const q = searchQuery.toLowerCase();
+    return item.name.toLowerCase().includes(q) ||
+      item.loc.toLowerCase().includes(q) ||
+      (item.desc && item.desc.toLowerCase().includes(q));
+  }
+
+  function applyModeUI() {
+    const title = document.getElementById('page-title');
+    const subtitle = document.getElementById('page-subtitle');
+    const toggleRegular = document.getElementById('toggle-regular');
+    const toggleHolidayBtn = document.getElementById('toggle-holiday');
+    const fill = document.getElementById('progress-fill');
+
+    toggleRegular.classList.toggle('active', !holidayMode);
+    toggleHolidayBtn.classList.toggle('active', holidayMode);
+
+    if (holidayMode) {
+      title.textContent = '🎃 Halloween Time Food & Drink List';
+      subtitle.textContent = 'Halloween Time 2026 — most items through Nov 12';
+      fill.style.background = 'var(--halloween)';
+    } else {
+      title.textContent = '🎢 Disneyland Resort Food & Drink List';
+      subtitle.textContent = 'New items to try — updated Oct 2026';
+      fill.style.background = 'linear-gradient(90deg, var(--dl-gold), var(--dca-teal))';
+    }
+  }
+
+  function renderAll() {
+    applyModeUI();
+    sections.forEach(s => renderList(s.containerId, data[s.key], s.key, s.emptyId));
+    renderDeleted();
+    updateProgress();
+  }
+
+  function groupByLoc(items) {
+    const groups = [];
+    const map = new Map();
+    items.forEach((item) => {
+      if (!map.has(item.loc)) {
+        const g = { loc: item.loc, entries: [] };
+        map.set(item.loc, g);
+        groups.push(g);
+      }
+      map.get(item.loc).entries.push({ item });
+    });
+    return groups;
+  }
+
+  function renderList(containerId, items, keyPrefix, emptyId) {
+    const container = document.getElementById(containerId);
+    const emptyNote = emptyId ? document.getElementById(emptyId) : null;
+
+    const visibleItems = items.filter(item =>
+      item.holiday === holidayMode &&
+      !deletedKeys.has(itemKey(keyPrefix, item)) &&
+      matchesSearch(item) &&
+      (!flaggedOnly || flaggedKeys.has(itemKey(keyPrefix, item)))
+    );
+    if (emptyNote) {
+      emptyNote.style.display = visibleItems.length ? 'none' : 'block';
+      emptyNote.textContent = searchQuery
+        ? 'No matches'
+        : (flaggedOnly ? 'No items flagged for next trip' : 'No items yet');
+    }
+    container.innerHTML = '';
+
+    const groups = groupByLoc(visibleItems);
+    groups.forEach(group => {
+      const groupEl = document.createElement('div');
+      groupEl.className = 'restaurant-group';
+      const heading = document.createElement('div');
+      heading.className = 'restaurant-name';
+      heading.textContent = group.loc;
+      groupEl.appendChild(heading);
+
+      group.entries.forEach(({ item }) => {
+        const key = itemKey(keyPrefix, item);
+        const isDone = doneKeys.has(key);
+        const isFlagged = flaggedKeys.has(key);
+
+        const el = document.createElement('div');
+        el.className = 'item';
+        el.dataset.key = key;
+        if (isDone) el.classList.add('done');
+        if (isFlagged) el.classList.add('flagged');
+        el.innerHTML = `
+          <div class="checkbox">✓</div>
+          <div class="item-text">
+            <div class="item-name">${escapeHtml(item.name)}</div>
+            ${item.desc ? `<div class="item-desc">${escapeHtml(item.desc)}</div>` : ''}
+          </div>
+          <button class="flag-btn ${isFlagged ? 'flagged' : ''}" aria-label="Flag for next trip">${isFlagged ? '🚩' : '🏳️'}</button>
+          <button class="delete-btn" aria-label="Delete item">✕</button>
+        `;
+        el.querySelector('.item-name').addEventListener('click', () => toggleItem(key, el));
+        el.querySelector('.checkbox').addEventListener('click', () => toggleItem(key, el));
+        if (item.desc) {
+          el.querySelector('.item-desc').addEventListener('click', () => toggleItem(key, el));
+        }
+        el.querySelector('.flag-btn').addEventListener('click', (e) => {
+          e.stopPropagation();
+          toggleFlag(key, keyPrefix);
+        });
+        el.querySelector('.delete-btn').addEventListener('click', (e) => {
+          e.stopPropagation();
+          deleteItem(keyPrefix, item, key);
+        });
+        groupEl.appendChild(el);
+      });
+
+      container.appendChild(groupEl);
+    });
+  }
+
+  function renderDeleted() {
+    const container = document.getElementById('deleted-list');
+    const emptyNote = document.getElementById('deleted-empty');
+
+    const deletedEntries = [];
+    sections.forEach(s => {
+      data[s.key].forEach(item => {
+        if (item.holiday !== holidayMode) return;
+        const key = itemKey(s.key, item);
+        if (deletedKeys.has(key)) deletedEntries.push({ park: s.key, item, key });
+      });
+    });
+
+    if (emptyNote) emptyNote.style.display = deletedEntries.length ? 'none' : 'block';
+    container.innerHTML = '';
+
+    const groups = [];
+    const map = new Map();
+    deletedEntries.forEach(d => {
+      if (!map.has(d.item.loc)) {
+        const g = { loc: d.item.loc, entries: [] };
+        map.set(d.item.loc, g);
+        groups.push(g);
+      }
+      map.get(d.item.loc).entries.push(d);
+    });
+
+    groups.forEach(group => {
+      const groupEl = document.createElement('div');
+      groupEl.className = 'restaurant-group';
+      const heading = document.createElement('div');
+      heading.className = 'restaurant-name';
+      heading.textContent = group.loc;
+      groupEl.appendChild(heading);
+
+      group.entries.forEach(d => {
+        const el = document.createElement('div');
+        el.className = 'item deleted';
+        el.innerHTML = `
+          <div class="item-text">
+            <div class="item-name">${escapeHtml(d.item.name)}</div>
+            ${d.item.desc ? `<div class="item-desc">${escapeHtml(d.item.desc)}</div>` : ''}
+          </div>
+          <button class="restore-btn" aria-label="Restore item">Restore</button>
+        `;
+        el.querySelector('.restore-btn').addEventListener('click', (e) => {
+          e.stopPropagation();
+          restoreItem(d.key);
+        });
+        groupEl.appendChild(el);
+      });
+
+      container.appendChild(groupEl);
+    });
+  }
+
+  function toggleItem(key, el) {
+    if (doneKeys.has(key)) {
+      doneKeys.delete(key);
+    } else {
+      doneKeys.add(key);
+    }
+    el.classList.toggle('done', doneKeys.has(key));
+    updateProgress();
+    saveState();
+  }
+
+  function toggleFlag(key) {
+    if (flaggedKeys.has(key)) {
+      flaggedKeys.delete(key);
+    } else {
+      flaggedKeys.add(key);
+    }
+    if (flaggedOnly) {
+      renderAll();
+    } else {
+      const el = document.querySelector(`.item[data-key="${CSS.escape(key)}"]`);
+      if (el) {
+        const isFlagged = flaggedKeys.has(key);
+        el.classList.toggle('flagged', isFlagged);
+        const btn = el.querySelector('.flag-btn');
+        if (btn) {
+          btn.classList.toggle('flagged', isFlagged);
+          btn.textContent = isFlagged ? '🚩' : '🏳️';
+        }
+      }
+    }
+    saveState();
+  }
+
+  function deleteItem(keyPrefix, item, key) {
+    deletedKeys.add(key);
+    doneKeys.delete(key);
+    flaggedKeys.delete(key);
+    renderAll();
+    saveState();
+  }
+
+  function restoreItem(key) {
+    deletedKeys.delete(key);
+    renderAll();
+    saveState();
+  }
+
+  function updateProgress() {
+    let total = 0;
+    let done = 0;
+    sections.forEach(s => {
+      data[s.key].forEach(item => {
+        if (item.holiday !== holidayMode) return;
+        const key = itemKey(s.key, item);
+        if (deletedKeys.has(key)) return;
+        total++;
+        if (doneKeys.has(key)) done++;
+      });
+    });
+    const pct = total ? Math.round((done / total) * 100) : 0;
+    document.getElementById('progress-text').textContent = `${done} of ${total} tried`;
+    document.getElementById('progress-pct').textContent = `${pct}%`;
+    document.getElementById('progress-fill').style.width = pct + '%';
+  }
+
+  // Safety-net autosave: catches anything a click handler might have missed,
+  // and makes sure the latest state is flushed before the tab closes or backgrounds.
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') saveState();
+  });
+  window.addEventListener('pagehide', () => { saveState(); });
+  window.addEventListener('beforeunload', () => { saveState(); });
+  setInterval(() => { saveState(); }, 20000);
+
+  function renderUserBadge(user) {
+    const badge = document.getElementById('user-badge');
+    const avatar = document.getElementById('user-avatar');
+    const name = document.getElementById('user-name');
+    if (user.photoURL) {
+      avatar.src = user.photoURL;
+      avatar.style.display = '';
+    } else {
+      avatar.style.display = 'none';
+    }
+    name.textContent = user.displayName || user.email || 'Signed in';
+    badge.style.display = 'flex';
+  }
+
+  // Kicks off once at page load, independent of auth state.
+  const storageInitPromise = (async function initStorage() {
+    await detectStorageBackend();
+    await probeLocalStorage();
+  })();
+
+  // Called by the Firebase module bridge whenever the signed-in Google
+  // account changes (sign-in, sign-out, or a restored session on load).
+  window.__onFirebaseAuthChange = async function(user) {
+    await storageInitPromise;
+    const gate = document.getElementById('auth-gate');
+    const appRoot = document.getElementById('app-root');
+    if (user) {
+      currentUser = user;
+      gate.style.display = 'none';
+      appRoot.style.display = '';
+      renderUserBadge(user);
+      await loadStateForUser(user);
+      renderAll();
+    } else {
+      currentUser = null;
+      gate.style.display = 'flex';
+      appRoot.style.display = 'none';
+    }
+  };
+
+  document.getElementById('google-signin-btn').addEventListener('click', (e) => {
+    const btn = e.currentTarget;
+    const statusEl = document.getElementById('auth-gate-status');
+    statusEl.textContent = '';
+    btn.disabled = true;
+    Promise.resolve(window.firebaseSignIn && window.firebaseSignIn())
+      .finally(() => { btn.disabled = false; });
+  });
+
+  document.getElementById('signout-btn').addEventListener('click', () => {
+    if (window.firebaseSignOut) window.firebaseSignOut();
+  });
+
+  document.getElementById('reset-btn').addEventListener('click', () => {
+    doneKeys.clear();
+    renderAll();
+    saveState();
+  });
+
+
+  document.getElementById('toggle-regular').addEventListener('click', () => {
+    if (!holidayMode) return;
+    holidayMode = false;
+    renderAll();
+    saveState();
+  });
+  document.getElementById('toggle-holiday').addEventListener('click', () => {
+    if (holidayMode) return;
+    holidayMode = true;
+    renderAll();
+    saveState();
+  });
+
+  const searchInput = document.getElementById('search-input');
+  const searchClear = document.getElementById('search-clear');
+  searchInput.addEventListener('input', (e) => {
+    searchQuery = e.target.value.trim();
+    searchClear.classList.toggle('visible', !!searchQuery);
+    sections.forEach(s => renderList(s.containerId, data[s.key], s.key, s.emptyId));
+  });
+  searchClear.addEventListener('click', () => {
+    searchQuery = '';
+    searchInput.value = '';
+    searchClear.classList.remove('visible');
+    sections.forEach(s => renderList(s.containerId, data[s.key], s.key, s.emptyId));
+    searchInput.focus();
+  });
+
+  const flagFilterBtn = document.getElementById('flag-filter-btn');
+  flagFilterBtn.addEventListener('click', () => {
+    flaggedOnly = !flaggedOnly;
+    flagFilterBtn.classList.toggle('active', flaggedOnly);
+    sections.forEach(s => renderList(s.containerId, data[s.key], s.key, s.emptyId));
+  });
+
+  // Area filter — lets you show/hide Disneyland Park, DCA, Hotels, and
+  // Downtown Disney independently, on top of the Regular/Halloween toggle.
+  document.querySelectorAll('.area-filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const area = btn.dataset.area;
+      if (activeAreas.has(area)) {
+        activeAreas.delete(area);
+      } else {
+        activeAreas.add(area);
+      }
+      btn.classList.toggle('active', activeAreas.has(area));
+      const wrapper = document.getElementById(`section-${area}`);
+      if (wrapper) wrapper.style.display = activeAreas.has(area) ? '' : 'none';
+    });
+  });
+
+  const backupPanel = document.getElementById('backup-panel');
+  const backupTextarea = document.getElementById('backup-textarea');
+  const backupActionBtn = document.getElementById('backup-action-btn');
+  let backupMode = null;
+
+  function buildStatePayload() {
+    return {
+      done: Array.from(doneKeys),
+      deleted: Array.from(deletedKeys),
+      flagged: Array.from(flaggedKeys),
+      dates: dates,
+      holidayMode: holidayMode,
+    };
+  }
+
+  function applyStatePayload(parsed) {
+    doneKeys.clear();
+    deletedKeys.clear();
+    flaggedKeys.clear();
+    Object.keys(dates).forEach(k => delete dates[k]);
+    (parsed.done || []).forEach(k => doneKeys.add(k));
+    (parsed.deleted || []).forEach(k => deletedKeys.add(k));
+    (parsed.flagged || []).forEach(k => flaggedKeys.add(k));
+    Object.assign(dates, parsed.dates || {});
+    if (typeof parsed.holidayMode === 'boolean') holidayMode = parsed.holidayMode;
+    renderAll();
+    saveState();
+  }
+
+  // ---- Save/Load as an actual .json file on disk ----
+  document.getElementById('save-file-btn').addEventListener('click', () => {
+    const payload = JSON.stringify(buildStatePayload(), null, 2);
+    const blob = new Blob([payload], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'disneyland-checklist-save.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+
+  const loadFileInput = document.getElementById('load-file-input');
+  // The label's native for/id association opens the file picker — no JS click()
+  // needed (and JS-triggered clicks on hidden file inputs can get blocked in
+  // some sandboxed embed contexts). We just reset the value before each open
+  // so re-selecting the same file still fires 'change'.
+  loadFileInput.addEventListener('click', () => {
+    loadFileInput.value = '';
+  });
+
+  loadFileInput.addEventListener('change', () => {
+    const file = loadFileInput.files && loadFileInput.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const parsed = JSON.parse(reader.result);
+        applyStatePayload(parsed);
+      } catch (err) {
+        alert('That file could not be read — make sure it\'s a save file exported from this checklist.');
+      }
+    };
+    reader.onerror = () => {
+      alert('That file could not be read.');
+    };
+    reader.readAsText(file);
+  });
+
+  document.getElementById('export-btn').addEventListener('click', () => {
+    const payload = JSON.stringify(buildStatePayload());
+    backupTextarea.value = payload;
+    backupTextarea.placeholder = '';
+    backupActionBtn.textContent = 'Copy';
+    backupMode = 'export';
+    backupPanel.classList.add('visible');
+    backupTextarea.focus();
+    backupTextarea.select();
+  });
+
+  document.getElementById('import-btn').addEventListener('click', () => {
+    backupTextarea.value = '';
+    backupTextarea.placeholder = 'Paste your saved progress here to restore it...';
+    backupActionBtn.textContent = 'Load';
+    backupMode = 'import';
+    backupPanel.classList.add('visible');
+    backupTextarea.focus();
+  });
+
+  backupActionBtn.addEventListener('click', async () => {
+    if (backupMode === 'export') {
+      try {
+        await navigator.clipboard.writeText(backupTextarea.value);
+        backupActionBtn.textContent = 'Copied!';
+        setTimeout(() => { backupActionBtn.textContent = 'Copy'; }, 1500);
+      } catch (err) {
+        backupTextarea.select();
+      }
+    } else if (backupMode === 'import') {
+      try {
+        const parsed = JSON.parse(backupTextarea.value);
+        applyStatePayload(parsed);
+        backupActionBtn.textContent = 'Loaded!';
+        setTimeout(() => { backupPanel.classList.remove('visible'); backupActionBtn.textContent = 'Copy'; }, 1000);
+      } catch (err) {
+        backupActionBtn.textContent = 'Invalid — try again';
+        setTimeout(() => { backupActionBtn.textContent = 'Load'; }, 1500);
+      }
+    }
+  });
+</script>
+
+<script type="module">
+  // ---- FIREBASE BRIDGE ----
+  // Loaded as an ES module (auto-deferred, so this always runs after the
+  // classic script above has finished defining window.__onFirebaseAuthChange).
+  // Exposes a small set of functions on window so the classic script never
+  // has to deal with modules or imports directly.
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+  import {
+    getAuth, GoogleAuthProvider, signInWithRedirect, getRedirectResult, signOut, onAuthStateChanged,
+  } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+  import {
+    getFirestore, doc, getDoc, setDoc, serverTimestamp,
+  } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+  // signInWithRedirect only works reliably when authDomain is the same origin
+  // the page is served from — otherwise browsers that block third-party
+  // storage (Safari, Firefox, Chrome) silently drop the redirect result and
+  // the user lands back on the sign-in gate. Firebase Hosting serves the
+  // /__/auth/handler endpoint on every hosted domain, so use the current one.
+  const FIREBASE_HOSTING_DOMAIN = /\.(web\.app|firebaseapp\.com)$/;
+  const firebaseConfig = {
+    apiKey: "AIzaSyC1GOv3zRdr-6KXi0rMwku6lGcU_sC63-I",
+    authDomain: FIREBASE_HOSTING_DOMAIN.test(location.hostname)
+      ? location.host
+      : "disneyland-food-web-app.firebaseapp.com",
+    projectId: "disneyland-food-web-app",
+    storageBucket: "disneyland-food-web-app.firebasestorage.app",
+    messagingSenderId: "684283232564",
+    appId: "1:684283232564:web:c006b289c58734e900e561",
+  };
+
+  const fbApp = initializeApp(firebaseConfig);
+  const auth = getAuth(fbApp);
+  const db = getFirestore(fbApp);
+  const provider = new GoogleAuthProvider();
+
+  window.firebaseSignIn = async function() {
+    const statusEl = document.getElementById('auth-gate-status');
+    if (statusEl) statusEl.textContent = '';
+    try {
+      // Redirects the whole page to Google's sign-in and back, rather than
+      // opening a popup window — this avoids a known Firebase/IndexedDB
+      // conflict that popups can trigger on some mobile browsers.
+      await signInWithRedirect(auth, provider);
+    } catch (err) {
+      console.error('Sign-in failed', err);
+      if (statusEl) {
+        statusEl.textContent = "Sign-in didn't go through — please try again.";
+      }
+    }
+  };
+
+  // Picks up the result after the redirect above brings the user back.
+  getRedirectResult(auth).catch((err) => {
+    console.error('Redirect sign-in failed', err);
+    const statusEl = document.getElementById('auth-gate-status');
+    if (statusEl) {
+      statusEl.textContent = "Sign-in didn't go through — please try again.";
+    }
+  });
+
+  window.firebaseSignOut = function() {
+    signOut(auth).catch(err => console.error('Sign-out failed', err));
+  };
+
+  window.firebaseSaveUserState = async function(uid, payload) {
+    try {
+      await setDoc(
+        doc(db, 'users', uid),
+        Object.assign({}, payload, { updatedAt: serverTimestamp() }),
+        { merge: true }
+      );
+      return true;
+    } catch (err) {
+      console.error('Firestore save failed', err);
+      return false;
+    }
+  };
+
+  window.firebaseLoadUserState = async function(uid) {
+    try {
+      const snap = await getDoc(doc(db, 'users', uid));
+      return snap.exists() ? snap.data() : null;
+    } catch (err) {
+      console.error('Firestore load failed', err);
+      return null;
+    }
+  };
+
+  onAuthStateChanged(auth, (user) => {
+    if (typeof window.__onFirebaseAuthChange === 'function') {
+      window.__onFirebaseAuthChange(user);
+    }
+  });
+</script>
+
+</body>
+</html>
