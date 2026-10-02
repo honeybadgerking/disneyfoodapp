@@ -1,0 +1,109 @@
+{
+  "issue": 1,
+  "weekOf": "Oct 2 – Oct 8, 2026",
+  "updated": "2026-10-02",
+  "headline": "Halloween Time Hits the Home Stretch",
+  "tagline": "Four weeks left of ghoulish fun — and the holidays are only six weeks away.",
+  "lead": {
+    "title": "Oogie Boogie Bash: Last Chance to Crash the Party",
+    "dates": "Select nights through Oct 31",
+    "area": "dca",
+    "badge": "Ticketed",
+    "body": "The after-hours Halloween party at Disney California Adventure is in its final weeks, with a record 33 dates this year. The big debut is \"Madame Leota's Swinging Wake – A Haunted Mansion Street Party,\" plus new villain appearances including Yzma. Expect treat trails, character meet-ups and shorter attraction waits. Check the official calendar for remaining dates before you go.",
+    "url": "https://disneyexperiences.com/disneyland-press/release/disneyland-resort-2026-halloween/"
+  },
+  "sections": [
+    {
+      "title": "Halloween Time",
+      "emoji": "🎃",
+      "events": [
+        {
+          "title": "Halloween Time at the Disneyland Resort",
+          "dates": "Through Oct 31",
+          "area": "both",
+          "badge": "Ends soon",
+          "body": "Both parks are decked out, with the \"Mickey's Trick and Treat\" daytime show and the \"Halloween Screams\" nighttime spectacle on select evenings.",
+          "url": "https://disneyexperiences.com/disneyland-press/release/disneyland-resort-2026-halloween/"
+        },
+        {
+          "title": "Haunted Mansion Holiday",
+          "dates": "Through Jan 6, 2027",
+          "area": "dl",
+          "badge": "Long run",
+          "body": "Jack Skellington's Nightmare Before Christmas takeover of the Haunted Mansion runs all the way into the new year.",
+          "url": "https://attractionsmagazine.com/disneyland-holidays-2026-dates-schedule-rides-entertainment/"
+        },
+        {
+          "title": "Plaza de la Familia",
+          "dates": "Through Nov 2",
+          "area": "dca",
+          "badge": "Ends soon",
+          "body": "A Día de los Muertos celebration with the street show \"The Storytellers of the Plaza de la Familia Celebrate the Musical World of Coco!\", live mariachi and a memory wall.",
+          "url": "https://disneyexperiences.com/disneyland-press/release/disneyland-resort-2026-halloween/"
+        },
+        {
+          "title": "Cars Land Overlays",
+          "dates": "Through Oct 31",
+          "area": "dca",
+          "badge": "Seasonal",
+          "body": "Luigi's Honkin' Haul-O-Ween and Mater's Graveyard JamBOOree, plus Guardians of the Galaxy – Monsters After Dark at Avengers Campus.",
+          "url": "https://disneyexperiences.com/disneyland-press/release/disneyland-resort-2026-halloween/"
+        }
+      ]
+    },
+    {
+      "title": "Shows & Entertainment",
+      "emoji": "🎭",
+      "events": [
+        {
+          "title": "World of Color – One",
+          "dates": "Through Halloween",
+          "area": "dca",
+          "badge": "Limited run",
+          "body": "The fan-favorite World of Color show is back for a limited run before the holiday show takes over.",
+          "url": "https://www.disneytouristblog.com/new-next-disneyland-california-adventure/"
+        },
+        {
+          "title": "Bluey's Best Day Ever!",
+          "dates": "Daily, Fantasyland Theatre",
+          "area": "dl",
+          "badge": "New in 2026",
+          "body": "A live stage show starring Bluey and Bingo, debuted in March. Showtimes vary, so check the Disneyland app.",
+          "url": "https://www.wdwinfo.com/disneylandcalifornia/live-bluey-show-more-coming-to-disneyland-in-2026/"
+        }
+      ]
+    },
+    {
+      "title": "Coming Soon",
+      "emoji": "🎄",
+      "events": [
+        {
+          "title": "Holidays at the Disneyland Resort",
+          "dates": "Nov 13, 2026 – Jan 6, 2027",
+          "area": "both",
+          "badge": "Nov 13",
+          "body": "\"Believe … in Holiday Magic\" fireworks, \"A Christmas Fantasy Parade,\" it's a small world Holiday, Wintertime Enchantment at the Castle and Festival of Holidays marketplaces at DCA.",
+          "url": "https://attractionsmagazine.com/disneyland-holidays-2026-dates-schedule-rides-entertainment/"
+        },
+        {
+          "title": "World of Color – Season of Light",
+          "dates": "Returns with the holidays",
+          "area": "dca",
+          "badge": "Schedule TBA",
+          "body": "The holiday edition of World of Color returns; performance schedule had not been announced as of this issue.",
+          "url": "https://attractionsmagazine.com/disneyland-holidays-2026-dates-schedule-rides-entertainment/"
+        },
+        {
+          "title": "Chip and Dale's Ornament Trail",
+          "dates": "Holiday season",
+          "area": "downtown",
+          "badge": "Seasonal",
+          "body": "The collectible ornament hunt returns to Downtown Disney District for the holidays.",
+          "url": "https://attractionsmagazine.com/disneyland-holidays-2026-dates-schedule-rides-entertainment/"
+        }
+      ]
+    }
+  ],
+  "tip": "Most Halloween and holiday entertainment is included with park admission. Oogie Boogie Bash needs its own ticket.",
+  "caveats": "Dates come from Disney press releases and fan sites as of Oct 2, 2026. Always confirm in the Disneyland app."
+}

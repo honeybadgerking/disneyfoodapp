@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Disneyland Dispatch — Weekly Events Newsletter</title>
+<style>
+  :root {
+    --dl-navy: #1b2a4a;
+    --dl-gold: #c9a24b;
+    --dca-teal: #0f6b6b;
+    --downtown: #a63d40;
+    --halloween: #b5651d;
+    --bg: #faf7f1;
+    --paper: #fffdf8;
+    --card: #ffffff;
+    --text: #23272f;
+    --muted: #6b7280;
+    --rule: #e2ddd0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    padding: 20px 16px 60px;
+  }
+  .paper {
+    max-width: 760px;
+    margin: 0 auto;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    box-shadow: 0 6px 24px rgba(27,42,74,0.10);
+    overflow: hidden;
+  }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 12px 16px;
+    background: var(--dl-navy);
+  }
+  .nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 7px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.35);
+  }
+  .nav a.current { background: var(--dl-gold); border-color: var(--dl-gold); color: var(--dl-navy); }
+  .masthead {
+    text-align: center;
+    padding: 26px 16px 14px;
+    background: radial-gradient(circle at 20% 0%, #fff3d1 0, transparent 45%), radial-gradient(circle at 85% 10%, #ece4ff 0, transparent 40%);
+  }
+  .masthead .kicker {
+    font-size: 0.7rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--dl-gold);
+    font-weight: 700;
+  }
+  .masthead h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2rem, 8vw, 3.2rem);
+    line-height: 1.05;
+    margin: 6px 0 4px;
+    color: var(--dl-navy);
+    letter-spacing: -0.01em;
+  }
+  .masthead .star { color: var(--dl-gold); }
+  .dateline {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+    margin: 14px 16px 0;
+    padding: 8px 0;
+    border-top: 3px double var(--dl-navy);
+    border-bottom: 1px solid var(--dl-navy);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dl-navy);
+    font-weight: 600;
+  }
+  .headline-wrap { padding: 22px 20px 6px; text-align: center; }
+  .headline-wrap h2 {
+    font-family: Georgia, serif;
+    font-size: clamp(1.4rem, 5vw, 2rem);
+    margin: 0 0 6px;
+    color: var(--dl-navy);
+  }
+  .headline-wrap p { margin: 0; color: var(--muted); font-style: italic; font-family: Georgia, serif; }
+  .lead {
+    margin: 18px 16px 8px;
+    border-radius: 14px;
+    overflow: hidden;
+    color: #fff;
+    background: linear-gradient(135deg, #1b2a4a 0%, #4a2a6b 55%, #b5651d 100%);
+    position: relative;
+  }
+  .lead::after {
+    content: "✦ ✧ ✦";
+    position: absolute;
+    top: 12px; right: 18px;
+    letter-spacing: 0.4em;
+    color: rgba(255,255,255,0.45);
+    font-size: 0.8rem;
+  }
+  .lead-inner { padding: 24px 22px 22px; }
+  .lead .label {
+    display: inline-block;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: var(--dl-navy);
+    background: var(--dl-gold);
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+  .lead h3 {
+    font-family: Georgia, serif;
+    font-size: clamp(1.4rem, 5.5vw, 1.9rem);
+    margin: 12px 0 6px;
+    line-height: 1.15;
+  }
+  .lead .when { font-size: 0.85rem; color: #fff; opacity: 0.92; font-weight: 600; margin-bottom: 10px; }
+  .lead p { margin: 0 0 14px; line-height: 1.55; font-size: 0.95rem; }
+  .lead a.cta {
+    display: inline-block;
+    background: #fff;
+    color: var(--dl-navy);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 9px 18px;
+    border-radius: 999px;
+  }
+  .section { padding: 14px 16px 4px; }
+  .section h2 {
+    font-family: Georgia, serif;
+    font-size: 1.25rem;
+    color: var(--dl-navy);
+    margin: 18px 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section h2::after { content: ""; flex: 1; height: 1px; background: var(--dl-navy); opacity: 0.35; }
+  .grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  @media (min-width: 620px) { .grid { grid-template-columns: 1fr 1fr; } }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-left: 5px solid var(--dl-navy);
+    border-radius: 10px;
+    padding: 14px 14px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .card.dl { border-left-color: var(--dl-navy); }
+  .card.dca { border-left-color: var(--dca-teal); }
+  .card.downtown { border-left-color: var(--downtown); }
+  .card.both { border-left-color: var(--dl-gold); }
+  .card h3 { margin: 0; font-size: 1rem; color: var(--dl-navy); line-height: 1.25; }
+  .meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 0.72rem; }
+  .pill {
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: #f1ece0;
+    color: #6a5a2c;
+  }
+  .pill.area-dl { background: #e3e8f4; color: var(--dl-navy); }
+  .pill.area-dca { background: #dcf0ef; color: var(--dca-teal); }
+  .pill.area-downtown { background: #f6e0e1; color: var(--downtown); }
+  .pill.area-both { background: #f8eccb; color: #7a5a12; }
+  .pill.hot { background: var(--halloween); color: #fff; }
+  .when { color: var(--muted); font-weight: 600; font-size: 0.78rem; }
+  .card p { margin: 0; font-size: 0.86rem; line-height: 1.5; color: #3b414d; flex: 1; }
+  .card a.more { font-size: 0.78rem; font-weight: 700; color: var(--dca-teal); text-decoration: none; }
+  .card a.more:hover { text-decoration: underline; }
+  .tip {
+    margin: 20px 16px 6px;
+    padding: 14px 16px;
+    background: #fff4e0;
+    border: 1px dashed #e0b868;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: #7a5a12;
+  }
+  .tip strong { text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.72rem; display: block; margin-bottom: 4px; }
+  .footer {
+    margin-top: 18px;
+    padding: 16px 20px 22px;
+    border-top: 3px double var(--dl-navy);
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .footer a { color: var(--dl-navy); font-weight: 700; text-decoration: none; }
+  .status { text-align: center; padding: 40px 16px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="paper">
+  <div class="nav">
+    <a href="/">🍔 Food Checklist</a>
+    <a href="/events.html" class="current">📰 Events Newsletter</a>
+  </div>
+
+  <div class="masthead">
+    <div class="kicker">The Weekly Guide to the Happiest Place</div>
+    <h1><span class="star">✦</span> The Disneyland Dispatch <span class="star">✦</span></h1>
+  </div>
+  <div class="dateline">
+    <span id="issue">Issue No. —</span>
+    <span id="week">&nbsp;</span>
+    <span>Anaheim, California</span>
+  </div>
+
+  <div id="content"><div class="status">Loading this week's issue…</div></div>
+
+  <div class="footer">
+    <div id="caveats"></div>
+    <p>Hungry, too? <a href="/">Open the Food &amp; Drink Checklist →</a></p>
+  </div>
+</div>
+
+<script>
+  const AREA = { dl: 'Disneyland Park', dca: 'California Adventure', downtown: 'Downtown Disney', both: 'Both Parks' };
+  const HOT = ['Ends soon', 'Ticketed'];
+
+  function el(tag, cls, text) {
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+  function safeUrl(u) { return /^https:\/\//.test(u || '') ? u : null; }
+
+  function card(ev) {
+    const c = el('div', 'card ' + (ev.area || ''));
+    c.appendChild(el('h3', null, ev.title));
+    const meta = el('div', 'meta');
+    meta.appendChild(el('span', 'pill area-' + ev.area, AREA[ev.area] || ''));
+    if (ev.badge) meta.appendChild(el('span', 'pill' + (HOT.includes(ev.badge) ? ' hot' : ''), ev.badge));
+    c.appendChild(meta);
+    c.appendChild(el('div', 'when', '📅 ' + ev.dates));
+    c.appendChild(el('p', null, ev.body));
+    const u = safeUrl(ev.url);
+    if (u) {
+      const a = el('a', 'more', 'Read more →');
+      a.href = u; a.target = '_blank'; a.rel = 'noopener';
+      c.appendChild(a);
+    }
+    return c;
+  }
+
+  function render(d) {
+    document.getElementById('issue').textContent = 'Issue No. ' + d.issue;
+    document.getElementById('week').textContent = 'Week of ' + d.weekOf;
+    const root = document.getElementById('content');
+    root.textContent = '';
+
+    const hw = el('div', 'headline-wrap');
+    hw.appendChild(el('h2', null, d.headline));
+    hw.appendChild(el('p', null, d.tagline));
+    root.appendChild(hw);
+
+    const L = d.lead;
+    const lead = el('div', 'lead');
+    const inner = el('div', 'lead-inner');
+    inner.appendChild(el('span', 'label', 'Top Story · ' + (L.badge || '')));
+    inner.appendChild(el('h3', null, L.title));
+    inner.appendChild(el('div', 'when', '📅 ' + L.dates + ' · ' + (AREA[L.area] || '')));
+    inner.appendChild(el('p', null, L.body));
+    const lu = safeUrl(L.url);
+    if (lu) {
+      const a = el('a', 'cta', 'Get the details →');
+      a.href = lu; a.target = '_blank'; a.rel = 'noopener';
+      inner.appendChild(a);
+    }
+    lead.appendChild(inner);
+    root.appendChild(lead);
+
+    d.sections.forEach(s => {
+      const sec = el('div', 'section');
+      sec.appendChild(el('h2', null, s.emoji + ' ' + s.title));
+      const g = el('div', 'grid');
+      s.events.forEach(ev => g.appendChild(card(ev)));
+      sec.appendChild(g);
+      root.appendChild(sec);
+    });
+
+    if (d.tip) {
+      const t = el('div', 'tip');
+      t.appendChild(el('strong', null, 'Insider tip'));
+      t.appendChild(document.createTextNode(d.tip));
+      root.appendChild(t);
+    }
+    document.getElementById('caveats').textContent = d.caveats || '';
+  }
+
+  fetch('/events.json', { cache: 'no-cache' })
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(render)
+    .catch(() => {
+      document.getElementById('content').innerHTML =
+        '<div class="status">Couldn\'t load this week\'s issue. Please try again shortly.</div>';
+    });
+</script>
+</body>
+</html>
