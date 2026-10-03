@@ -41,6 +41,63 @@
     color: var(--muted);
     font-size: 0.9rem;
   }
+  .hours-card {
+    max-width: 480px;
+    margin: 0 auto 16px;
+    background: var(--card);
+    border-radius: 14px;
+    padding: 12px 14px 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    font-size: 0.8rem;
+  }
+  .hours-card-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-weight: 700;
+    color: var(--dl-navy);
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+  }
+  .hours-card-title a {
+    font-weight: 500;
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+  .hours-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .hours-table th {
+    text-align: left;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--muted);
+    padding: 2px 4px 4px;
+  }
+  .hours-table th.dl { color: var(--dl-navy); }
+  .hours-table th.dca { color: var(--dca-teal); }
+  .hours-table td {
+    padding: 4px;
+    border-top: 1px solid #f0ebe0;
+    vertical-align: top;
+    white-space: nowrap;
+  }
+  .hours-table tr.today td {
+    background: #fbf5e6;
+    font-weight: 600;
+  }
+  .hours-table .hours-day { color: var(--muted); }
+  .hours-table .hours-event {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: var(--halloween);
+  }
+  .hours-card-status {
+    color: var(--muted);
+    font-size: 0.75rem;
+  }
   .storage-banner {
     max-width: 480px;
     margin: 0 auto 16px;
@@ -536,6 +593,14 @@
 <div class="header">
   <h1 id="page-title">🎢 Disneyland Resort Food &amp; Drink List</h1>
   <p id="page-subtitle">New items to try — updated Oct 2026</p>
+</div>
+
+<div class="hours-card" id="hours-card">
+  <div class="hours-card-title">
+    <span>🕗 Park Hours This Week</span>
+    <a href="https://disneyland.disney.go.com/calendars/" target="_blank" rel="noopener">Official calendar ↗</a>
+  </div>
+  <div id="hours-body"><span class="hours-card-status">Loading hours…</span></div>
 </div>
 
 <div class="storage-banner" id="storage-banner" style="display:none"></div>
@@ -1658,6 +1723,107 @@
       }
     }
   });
+</script>
+
+<script>
+  // ---- PARK HOURS ----
+  // Pulls the next 7 days of hours from the free ThemeParks.wiki API and caches
+  // them for a few hours so every page load doesn't hit the API.
+  (function() {
+    const PARKS = [
+      { key: 'dl',  id: '7340550b-c14d-4def-80bb-acdb51d49a66' },
+      { key: 'dca', id: '832fcd51-ea19-4e77-85c7-75d5843b127c' },
+    ];
+    const TZ = 'America/Los_Angeles';
+    const CACHE_KEY = 'parkHoursCache_v1';
+    const CACHE_MS = 6 * 60 * 60 * 1000;
+    const DAYS = 7;
+    const body = document.getElementById('hours-body');
+
+    // YYYY-MM-DD for a Date, as seen in Anaheim.
+    const ymd = (d) => new Intl.DateTimeFormat('en-CA', { timeZone: TZ }).format(d);
+
+    // "8a", "11p", "8:30a"
+    function shortTime(iso) {
+      const parts = new Intl.DateTimeFormat('en-US', {
+        timeZone: TZ, hour: 'numeric', minute: '2-digit', hour12: true,
+      }).formatToParts(new Date(iso));
+      const get = (t) => (parts.find(p => p.type === t) || {}).value;
+      const min = get('minute');
+      return get('hour') + (min === '00' ? '' : ':' + min) + get('dayPeriod').charAt(0).toLowerCase();
+    }
+
+    function readCache() {
+      try {
+        const c = JSON.parse(localStorage.getItem(CACHE_KEY));
+        if (c && Date.now() - c.at < CACHE_MS && c.today === ymd(new Date())) return c.data;
+      } catch (err) { /* storage unavailable */ }
+      return null;
+    }
+
+    function writeCache(data) {
+      try {
+        localStorage.setItem(CACHE_KEY, JSON.stringify({ at: Date.now(), today: ymd(new Date()), data }));
+      } catch (err) { /* storage unavailable */ }
+    }
+
+    async function fetchHours() {
+      const out = {};
+      await Promise.all(PARKS.map(async (p) => {
+        const res = await fetch('https://api.themeparks.wiki/v1/entity/' + p.id + '/schedule');
+        if (!res.ok) throw new Error('Hours request failed: ' + res.status);
+        out[p.key] = (await res.json()).schedule || [];
+      }));
+      return out;
+    }
+
+    function cellFor(schedule, date) {
+      const entries = schedule.filter(s => s.date === date);
+      const op = entries.find(s => s.type === 'OPERATING');
+      const events = entries.filter(s => s.type === 'TICKETED_EVENT');
+      if (!op && !events.length) return '<span class="hours-day">—</span>';
+      let html = op ? shortTime(op.openingTime) + '–' + shortTime(op.closingTime) : 'Closed';
+      events.forEach(ev => {
+        html += '<span class="hours-event">🎟️ Ticketed event ' +
+          shortTime(ev.openingTime) + '–' + shortTime(ev.closingTime) + '</span>';
+      });
+      return html;
+    }
+
+    function render(data) {
+      // Anchor on noon UTC of today's Anaheim date so stepping by 24h never
+      // skips or repeats a day across a daylight-saving change.
+      const base = new Date(ymd(new Date()) + 'T12:00:00Z');
+      let rows = '';
+      for (let i = 0; i < DAYS; i++) {
+        const d = new Date(base.getTime() + i * 86400000);
+        const date = ymd(d);
+        const label = i === 0 ? 'Today' : new Intl.DateTimeFormat('en-US', {
+          timeZone: TZ, weekday: 'short', month: 'numeric', day: 'numeric',
+        }).format(d);
+        rows += '<tr' + (i === 0 ? ' class="today"' : '') + '>' +
+          '<td class="hours-day">' + label + '</td>' +
+          '<td>' + cellFor(data.dl, date) + '</td>' +
+          '<td>' + cellFor(data.dca, date) + '</td></tr>';
+      }
+      body.innerHTML =
+        '<table class="hours-table"><thead><tr><th></th>' +
+        '<th class="dl">🏰 Disneyland</th><th class="dca">🎡 California Adv.</th>' +
+        '</tr></thead><tbody>' + rows + '</tbody></table>';
+    }
+
+    const cached = readCache();
+    if (cached) {
+      render(cached);
+    } else {
+      fetchHours()
+        .then(data => { writeCache(data); render(data); })
+        .catch(err => {
+          console.error('Park hours failed', err);
+          body.innerHTML = '<span class="hours-card-status">Hours unavailable right now — check the official calendar.</span>';
+        });
+    }
+  })();
 </script>
 
 <script type="module">
