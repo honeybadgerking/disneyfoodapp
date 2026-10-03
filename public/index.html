@@ -1433,11 +1433,7 @@
         landEl.textContent = ' · ' + land;
         heading.appendChild(landEl);
       }
-      const mapLink = window.mapLinkFor && window.mapLinkFor(group.loc, {
-        coords: window.MAP_COORDS,
-        // iPadOS reports itself as "Macintosh"; Macs have Apple Maps too.
-        apple: /iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent),
-      });
+      const mapLink = window.mapLinkFor && window.mapLinkFor(group.loc, { coords: window.MAP_COORDS });
       if (mapLink) {
         const a = document.createElement('a');
         a.className = 'restaurant-map';
