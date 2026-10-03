@@ -123,6 +123,14 @@
   }
   .type-filter-btn.active { background: var(--dl-gold); border-color: var(--dl-gold); color: white; }
   .restaurant-land { font-weight: 500; opacity: 0.75; text-transform: none; letter-spacing: 0; }
+  .restaurant-map {
+    margin-left: 4px;
+    padding: 2px 4px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    border-radius: 6px;
+  }
+  .restaurant-map:hover, .restaurant-map:focus-visible { background: #efe9dc; }
   .item-star { margin-right: 3px; }
   .item-type { font-size: 0.8rem; margin-right: 4px; }
   .progress-wrap {
@@ -665,6 +673,8 @@
 
 </div><!-- /app-root -->
 
+<script src="/js/map-coords.js"></script>
+<script src="/js/map-links.js"></script>
 <script>
   // ---- STORAGE LAYER ----
   // Prefers window.storage (available when this file runs as a Claude artifact).
@@ -1422,6 +1432,22 @@
         landEl.className = 'restaurant-land';
         landEl.textContent = ' · ' + land;
         heading.appendChild(landEl);
+      }
+      const mapLink = window.mapLinkFor && window.mapLinkFor(group.loc, {
+        coords: window.MAP_COORDS,
+        // iPadOS reports itself as "Macintosh"; Macs have Apple Maps too.
+        apple: /iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent),
+      });
+      if (mapLink) {
+        const a = document.createElement('a');
+        a.className = 'restaurant-map';
+        a.href = mapLink.href;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.textContent = '📍';
+        a.title = mapLink.exact ? 'Open in Maps' : 'Search in Maps';
+        a.setAttribute('aria-label', (mapLink.exact ? 'Open ' : 'Search for ') + group.loc + ' in Maps');
+        heading.appendChild(a);
       }
       groupEl.appendChild(heading);
 
