@@ -209,6 +209,60 @@
   }
   .footer a { color: var(--dl-navy); font-weight: 700; text-decoration: none; }
   .status { text-align: center; padding: 40px 16px; color: var(--muted); }
+  .hours { padding: 6px 16px 0; }
+  .hours h2 {
+    font-family: Georgia, serif;
+    font-size: 1.25rem;
+    color: var(--dl-navy);
+    margin: 18px 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .hours h2::after { content: ""; flex: 1; height: 1px; background: var(--dl-navy); opacity: 0.35; }
+  .hours h2 a {
+    order: 2;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--dca-teal);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .hours-box {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 4px 8px;
+    overflow-x: auto;
+  }
+  .hours-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  .hours-table th {
+    text-align: left;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--muted);
+    padding: 6px 6px 4px;
+  }
+  .hours-table th.dl { color: var(--dl-navy); }
+  .hours-table th.dca { color: var(--dca-teal); }
+  .hours-table td {
+    padding: 6px 4px;
+    border-top: 1px solid #f0ebe0;
+    vertical-align: top;
+    white-space: nowrap;
+  }
+  .hours-table tr.today td { background: #fbf5e6; font-weight: 700; }
+  .hours-table .day { color: var(--muted); }
+  .hours-table .ev {
+    display: block;
+    white-space: normal;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--halloween);
+  }
+  .hours-table .ev .t { white-space: nowrap; }
+  .hours-status { color: var(--muted); font-size: 0.82rem; padding: 8px 0; }
 </style>
 </head>
 <body>
@@ -227,6 +281,11 @@
     <span id="issue">Issue No. —</span>
     <span id="week">&nbsp;</span>
     <span>Anaheim, California</span>
+  </div>
+
+  <div class="hours">
+    <h2>🕗 Park Hours This Week <a href="https://disneyland.disney.go.com/calendars/" target="_blank" rel="noopener">Official calendar ↗</a></h2>
+    <div class="hours-box" id="hours-body"><div class="hours-status">Loading hours…</div></div>
   </div>
 
   <div id="content"><div class="status">Loading this week's issue…</div></div>
@@ -319,6 +378,107 @@
       document.getElementById('content').innerHTML =
         '<div class="status">Couldn\'t load this week\'s issue. Please try again shortly.</div>';
     });
+</script>
+
+<script>
+  // ---- PARK HOURS ----
+  // Pulls the next 7 days of hours from the free ThemeParks.wiki API and caches
+  // them for a few hours so every page load doesn't hit the API.
+  (function() {
+    const PARKS = [
+      { key: 'dl',  id: '7340550b-c14d-4def-80bb-acdb51d49a66' },
+      { key: 'dca', id: '832fcd51-ea19-4e77-85c7-75d5843b127c' },
+    ];
+    const TZ = 'America/Los_Angeles';
+    const CACHE_KEY = 'parkHoursCache_v1';
+    const CACHE_MS = 6 * 60 * 60 * 1000;
+    const DAYS = 7;
+    const body = document.getElementById('hours-body');
+
+    // YYYY-MM-DD for a Date, as seen in Anaheim.
+    const ymd = (d) => new Intl.DateTimeFormat('en-CA', { timeZone: TZ }).format(d);
+
+    // "8a", "11p", "8:30a"
+    function shortTime(iso) {
+      const parts = new Intl.DateTimeFormat('en-US', {
+        timeZone: TZ, hour: 'numeric', minute: '2-digit', hour12: true,
+      }).formatToParts(new Date(iso));
+      const get = (t) => (parts.find(p => p.type === t) || {}).value;
+      const min = get('minute');
+      return get('hour') + (min === '00' ? '' : ':' + min) + get('dayPeriod').charAt(0).toLowerCase();
+    }
+
+    function readCache() {
+      try {
+        const c = JSON.parse(localStorage.getItem(CACHE_KEY));
+        if (c && Date.now() - c.at < CACHE_MS && c.today === ymd(new Date())) return c.data;
+      } catch (err) { /* storage unavailable */ }
+      return null;
+    }
+
+    function writeCache(data) {
+      try {
+        localStorage.setItem(CACHE_KEY, JSON.stringify({ at: Date.now(), today: ymd(new Date()), data }));
+      } catch (err) { /* storage unavailable */ }
+    }
+
+    async function fetchHours() {
+      const out = {};
+      await Promise.all(PARKS.map(async (p) => {
+        const res = await fetch('https://api.themeparks.wiki/v1/entity/' + p.id + '/schedule');
+        if (!res.ok) throw new Error('Hours request failed: ' + res.status);
+        out[p.key] = (await res.json()).schedule || [];
+      }));
+      return out;
+    }
+
+    function cellFor(schedule, date) {
+      const entries = schedule.filter(s => s.date === date);
+      const op = entries.find(s => s.type === 'OPERATING');
+      const events = entries.filter(s => s.type === 'TICKETED_EVENT');
+      if (!op && !events.length) return '<span class="day">—</span>';
+      let html = op ? shortTime(op.openingTime) + '–' + shortTime(op.closingTime) : 'Closed';
+      events.forEach(ev => {
+        html += '<span class="ev">🎟️ Ticketed event <span class="t">' +
+          shortTime(ev.openingTime) + '–' + shortTime(ev.closingTime) + '</span></span>';
+      });
+      return html;
+    }
+
+    function render(data) {
+      // Anchor on noon UTC of today's Anaheim date so stepping by 24h never
+      // skips or repeats a day across a daylight-saving change.
+      const base = new Date(ymd(new Date()) + 'T12:00:00Z');
+      let rows = '';
+      for (let i = 0; i < DAYS; i++) {
+        const d = new Date(base.getTime() + i * 86400000);
+        const date = ymd(d);
+        const label = i === 0 ? 'Today' : new Intl.DateTimeFormat('en-US', {
+          timeZone: TZ, weekday: 'short', month: 'numeric', day: 'numeric',
+        }).format(d);
+        rows += '<tr' + (i === 0 ? ' class="today"' : '') + '>' +
+          '<td class="day">' + label + '</td>' +
+          '<td>' + cellFor(data.dl, date) + '</td>' +
+          '<td>' + cellFor(data.dca, date) + '</td></tr>';
+      }
+      body.innerHTML =
+        '<table class="hours-table"><thead><tr><th></th>' +
+        '<th class="dl">🏰 Disneyland</th><th class="dca">🎡 California Adv.</th>' +
+        '</tr></thead><tbody>' + rows + '</tbody></table>';
+    }
+
+    const cached = readCache();
+    if (cached) {
+      render(cached);
+    } else {
+      fetchHours()
+        .then(data => { writeCache(data); render(data); })
+        .catch(err => {
+          console.error('Park hours failed', err);
+          body.innerHTML = '<div class="hours-status">Hours unavailable right now — check the official calendar.</div>';
+        });
+    }
+  })();
 </script>
 </body>
 </html>
