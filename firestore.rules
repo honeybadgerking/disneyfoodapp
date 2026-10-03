@@ -1,0 +1,33 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // One checklist document per signed-in user, at users/{uid}.
+    // Only that user can read or write it. Everything else is closed.
+    match /users/{userId} {
+      allow read, delete: if isOwner(userId);
+      allow create: if isOwner(userId) && validChecklist(request.resource.data.keys());
+      // Only the fields being changed are checked, so a document that picked
+      // up a leftover field from an older version of the app still saves.
+      allow update: if isOwner(userId)
+        && validChecklist(request.resource.data.diff(resource.data).affectedKeys());
+    }
+
+    function isOwner(userId) {
+      return request.auth != null && request.auth.uid == userId;
+    }
+
+    // Must match what buildStatePayload() + firebaseSaveUserState() in
+    // public/index.html write.
+    function validChecklist(changed) {
+      let d = request.resource.data;
+      return changed.hasOnly(['done', 'deleted', 'flagged', 'dates', 'holidayMode', 'updatedAt'])
+        && (!changed.hasAny(['done']) || (d.done is list && d.done.size() <= 5000))
+        && (!changed.hasAny(['deleted']) || (d.deleted is list && d.deleted.size() <= 5000))
+        && (!changed.hasAny(['flagged']) || (d.flagged is list && d.flagged.size() <= 5000))
+        && (!changed.hasAny(['dates']) || (d.dates is map && d.dates.size() <= 5000))
+        && (!changed.hasAny(['holidayMode']) || d.holidayMode is bool)
+        && (!changed.hasAny(['updatedAt']) || d.updatedAt == request.time);
+    }
+  }
+}
