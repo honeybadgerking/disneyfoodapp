@@ -1,0 +1,431 @@
+{
+ "updated": "October 2026",
+ "caveats": "Height rules from published Disneyland Resort guidance as of Oct 2026. Popularity rank is an editorial estimate of typical demand and wait times, not live data. Always check the Disneyland app or the ride entrance, since Disney can change requirements and closures.",
+ "parks": [
+  {
+   "id": "dl",
+   "name": "Disneyland Park",
+   "rides": [
+    {
+     "name": "Star Wars: Rise of the Resistance",
+     "land": "Galaxy's Edge",
+     "min": 40,
+     "note": "",
+     "rank": 1
+    },
+    {
+     "name": "Space Mountain",
+     "land": "Tomorrowland",
+     "min": 40,
+     "note": "",
+     "rank": 2
+    },
+    {
+     "name": "Tiana's Bayou Adventure",
+     "land": "Critter Country",
+     "min": 40,
+     "note": "",
+     "rank": 3
+    },
+    {
+     "name": "Indiana Jones Adventure",
+     "land": "Adventureland",
+     "min": 46,
+     "note": "",
+     "rank": 4
+    },
+    {
+     "name": "Big Thunder Mountain Railroad",
+     "land": "Frontierland",
+     "min": 40,
+     "note": "",
+     "rank": 5
+    },
+    {
+     "name": "Matterhorn Bobsleds",
+     "land": "Fantasyland",
+     "min": 42,
+     "note": "",
+     "rank": 6
+    },
+    {
+     "name": "Millennium Falcon: Smugglers Run",
+     "land": "Galaxy's Edge",
+     "min": 38,
+     "note": "Pilots, gunners and engineers all need 38\".",
+     "rank": 7
+    },
+    {
+     "name": "Haunted Mansion",
+     "land": "New Orleans Square",
+     "min": null,
+     "note": "",
+     "rank": 8
+    },
+    {
+     "name": "Pirates of the Caribbean",
+     "land": "New Orleans Square",
+     "min": null,
+     "note": "",
+     "rank": 9
+    },
+    {
+     "name": "Peter Pan's Flight",
+     "land": "Fantasyland",
+     "min": null,
+     "note": "",
+     "rank": 10
+    },
+    {
+     "name": "Mickey & Minnie's Runaway Railway",
+     "land": "Mickey's Toontown",
+     "min": null,
+     "note": "",
+     "rank": 11
+    },
+    {
+     "name": "Star Tours – The Adventures Continue",
+     "land": "Tomorrowland",
+     "min": 40,
+     "note": "",
+     "rank": 12
+    },
+    {
+     "name": "Jungle Cruise",
+     "land": "Adventureland",
+     "min": null,
+     "note": "",
+     "rank": 13
+    },
+    {
+     "name": "Roger Rabbit's Car Toon Spin",
+     "land": "Mickey's Toontown",
+     "min": null,
+     "note": "",
+     "rank": 14
+    },
+    {
+     "name": "Chip 'n' Dale's GADGETcoaster",
+     "land": "Mickey's Toontown",
+     "min": 35,
+     "note": "",
+     "rank": 15
+    },
+    {
+     "name": "Buzz Lightyear Astro Blasters",
+     "land": "Tomorrowland",
+     "min": null,
+     "note": "",
+     "rank": 16
+    },
+    {
+     "name": "Alice in Wonderland",
+     "land": "Fantasyland",
+     "min": null,
+     "note": "",
+     "rank": 17
+    },
+    {
+     "name": "Snow White's Enchanted Wish",
+     "land": "Fantasyland",
+     "min": null,
+     "note": "",
+     "rank": 18
+    },
+    {
+     "name": "Mr. Toad's Wild Ride",
+     "land": "Fantasyland",
+     "min": null,
+     "note": "",
+     "rank": 19
+    },
+    {
+     "name": "Pinocchio's Daring Journey",
+     "land": "Fantasyland",
+     "min": null,
+     "note": "",
+     "rank": 20
+    },
+    {
+     "name": "it's a small world",
+     "land": "Fantasyland",
+     "min": null,
+     "note": "",
+     "rank": 21
+    },
+    {
+     "name": "Autopia",
+     "land": "Tomorrowland",
+     "min": 32,
+     "note": "Riders 32\"–53\" must ride with someone 54\"+ ; 54\"+ may drive alone.",
+     "rank": 22
+    },
+    {
+     "name": "Dumbo the Flying Elephant",
+     "land": "Fantasyland",
+     "min": null,
+     "note": "",
+     "rank": 23
+    },
+    {
+     "name": "Mad Tea Party",
+     "land": "Fantasyland",
+     "min": null,
+     "note": "",
+     "rank": 24
+    },
+    {
+     "name": "King Arthur Carrousel",
+     "land": "Fantasyland",
+     "min": null,
+     "note": "",
+     "rank": 25
+    },
+    {
+     "name": "Disneyland Railroad",
+     "land": "Main Street / Tomorrowland / Toontown / New Orleans Sq.",
+     "min": null,
+     "note": "",
+     "rank": 26
+    },
+    {
+     "name": "Astro Orbitor",
+     "land": "Tomorrowland",
+     "min": null,
+     "note": "",
+     "rank": 27
+    },
+    {
+     "name": "Finding Nemo Submarine Voyage",
+     "land": "Tomorrowland",
+     "min": null,
+     "note": "",
+     "rank": 28
+    },
+    {
+     "name": "Storybook Land Canal Boats",
+     "land": "Fantasyland",
+     "min": null,
+     "note": "",
+     "rank": 29
+    },
+    {
+     "name": "Casey Jr. Circus Train",
+     "land": "Fantasyland",
+     "min": null,
+     "note": "",
+     "rank": 30
+    },
+    {
+     "name": "Disneyland Monorail",
+     "land": "Tomorrowland",
+     "min": null,
+     "note": "",
+     "rank": 31
+    },
+    {
+     "name": "Mark Twain Riverboat",
+     "land": "Frontierland",
+     "min": null,
+     "note": "",
+     "rank": 32
+    },
+    {
+     "name": "Sailing Ship Columbia",
+     "land": "Frontierland",
+     "min": null,
+     "note": "",
+     "rank": 33
+    },
+    {
+     "name": "Pirate's Lair on Tom Sawyer Island",
+     "land": "Frontierland",
+     "min": null,
+     "note": "Raft ride to the island; occasionally closed.",
+     "rank": 34
+    },
+    {
+     "name": "Davy Crockett's Explorer Canoes",
+     "land": "Critter Country",
+     "min": null,
+     "note": "Seasonal; guests help paddle.",
+     "rank": 35
+    },
+    {
+     "name": "Main Street Vehicles",
+     "land": "Main Street, U.S.A.",
+     "min": null,
+     "note": "",
+     "rank": 36
+    }
+   ]
+  },
+  {
+   "id": "dca",
+   "name": "Disney California Adventure",
+   "rides": [
+    {
+     "name": "Radiator Springs Racers",
+     "land": "Cars Land",
+     "min": 40,
+     "note": "",
+     "rank": 1
+    },
+    {
+     "name": "Incredicoaster",
+     "land": "Pixar Pier",
+     "min": 48,
+     "note": "",
+     "rank": 2
+    },
+    {
+     "name": "Guardians of the Galaxy – Mission: BREAKOUT!",
+     "land": "Avengers Campus",
+     "min": 40,
+     "note": "",
+     "rank": 3
+    },
+    {
+     "name": "Soarin' Around the World",
+     "land": "Grizzly Peak",
+     "min": 40,
+     "note": "",
+     "rank": 4
+    },
+    {
+     "name": "Toy Story Midway Mania!",
+     "land": "Pixar Pier",
+     "min": null,
+     "note": "",
+     "rank": 5
+    },
+    {
+     "name": "WEB SLINGERS: A Spider-Man Adventure",
+     "land": "Avengers Campus",
+     "min": null,
+     "note": "",
+     "rank": 6
+    },
+    {
+     "name": "Grizzly River Run",
+     "land": "Grizzly Peak",
+     "min": 42,
+     "note": "",
+     "rank": 7
+    },
+    {
+     "name": "Luigi's Rollickin' Roadsters",
+     "land": "Cars Land",
+     "min": 32,
+     "note": "",
+     "rank": 8
+    },
+    {
+     "name": "Mater's Junkyard Jamboree",
+     "land": "Cars Land",
+     "min": 32,
+     "note": "",
+     "rank": 9
+    },
+    {
+     "name": "Pixar Pal-A-Round",
+     "land": "Pixar Pier",
+     "min": null,
+     "note": "",
+     "rank": 10
+    },
+    {
+     "name": "Inside Out Emotional Whirlwind",
+     "land": "Pixar Pier",
+     "min": null,
+     "note": "",
+     "rank": 11
+    },
+    {
+     "name": "Monsters, Inc. Mike & Sulley to the Rescue!",
+     "land": "Hollywood Land",
+     "min": null,
+     "note": "",
+     "rank": 12
+    },
+    {
+     "name": "The Little Mermaid ~ Ariel's Undersea Adventure",
+     "land": "Paradise Gardens Park",
+     "min": null,
+     "note": "",
+     "rank": 13
+    },
+    {
+     "name": "Goofy's Sky School",
+     "land": "Paradise Gardens Park",
+     "min": 42,
+     "note": "",
+     "rank": 14
+    },
+    {
+     "name": "Jumpin' Jellyfish",
+     "land": "Paradise Gardens Park",
+     "min": 40,
+     "note": "",
+     "rank": 15
+    },
+    {
+     "name": "Silly Symphony Swings",
+     "land": "Pixar Pier",
+     "min": 40,
+     "note": "Tandem swings 40\"+; single swings 48\"+.",
+     "rank": 16
+    },
+    {
+     "name": "Golden Zephyr",
+     "land": "Paradise Gardens Park",
+     "min": null,
+     "note": "",
+     "rank": 17
+    },
+    {
+     "name": "Jessie's Critter Carousel",
+     "land": "Pixar Pier",
+     "min": null,
+     "note": "",
+     "rank": 18
+    },
+    {
+     "name": "Redwood Creek Challenge Trail",
+     "land": "Grizzly Peak",
+     "min": 42,
+     "note": "Zip lines, rock wall and rope bridges; some elements have limits.",
+     "rank": 19
+    },
+    {
+     "name": "Francis' Ladybug Boogie",
+     "land": "A Bug's Land",
+     "min": null,
+     "note": "",
+     "rank": 20
+    },
+    {
+     "name": "Flik's Flyers",
+     "land": "A Bug's Land",
+     "min": null,
+     "note": "",
+     "rank": 21
+    },
+    {
+     "name": "Heimlich's Chew Chew Train",
+     "land": "A Bug's Land",
+     "min": null,
+     "note": "",
+     "rank": 22
+    },
+    {
+     "name": "Tuck and Roll's Drive 'Em Buggies",
+     "land": "A Bug's Land",
+     "min": null,
+     "note": "",
+     "rank": 23
+    }
+   ]
+  }
+ ]
+}
