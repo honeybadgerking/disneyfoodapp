@@ -6,47 +6,68 @@
 <title>Disneyland Resort Ride Height Requirements</title>
 <style>
   :root {
-    --dl-navy: #1b2a4a;
-    --dl-gold: #c9a24b;
-    --dca-teal: #0f6b6b;
-    --bg: #faf7f1;
-    --paper: #fffdf8;
-    --card: #ffffff;
-    --text: #23272f;
-    --muted: #6b7280;
-    --rule: #e2ddd0;
+    --navy: #1b2a4a; --navy2: #2d4373; --gold: #c9a24b; --teal: #0f6b6b; --teal2: #1aa3a3;
+    --bg: #f4efe4; --paper: #fffdf8; --card: #ffffff; --text: #23272f; --muted: #6b7280; --rule: #e6dfcf;
+    --accent: var(--navy); --accent2: var(--navy2);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0e1424; --paper: #151c30; --card: #1c2540; --text: #eef0f6; --muted: #98a1b8; --rule: #2b3556; }
   }
   * { box-sizing: border-box; }
-  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); padding: 20px 16px 60px; }
-  .paper { max-width: 760px; margin: 0 auto; background: var(--paper); border: 1px solid var(--rule); border-radius: 14px; box-shadow: 0 6px 24px rgba(27,42,74,0.10); overflow: hidden; }
-  .nav { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 12px 16px; background: var(--dl-navy); }
-  .nav a { color: #fff; text-decoration: none; font-size: 0.8rem; font-weight: 600; padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.35); }
-  .nav a.current { background: var(--dl-gold); border-color: var(--dl-gold); color: var(--dl-navy); }
-  .masthead { text-align: center; padding: 26px 16px 8px; }
-  .masthead h1 { margin: 0; font-size: 1.7rem; color: var(--dl-navy); }
-  .masthead p { margin: 6px 0 0; color: var(--muted); font-size: 0.9rem; }
-  .filter { margin: 14px 16px 0; padding: 12px 14px; background: #fff7e0; border: 1px solid var(--dl-gold); border-radius: 10px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; font-size: 0.9rem; }
-  .filter select { font-size: 1rem; padding: 6px 8px; border-radius: 8px; border: 1px solid var(--rule); }
-  .filter .legend { width: 100%; color: var(--muted); font-size: 0.78rem; }
-  #content { padding: 4px 16px 8px; }
-  .section h2 { color: var(--dl-navy); font-size: 1.2rem; margin: 22px 0 10px; display: flex; align-items: center; gap: 10px; }
-  .section h2::after { content: ""; flex: 1; height: 1px; background: var(--dl-navy); opacity: 0.35; }
-  .ride { display: flex; gap: 12px; align-items: center; background: var(--card); border: 1px solid var(--rule); border-left: 5px solid var(--dl-navy); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; }
-  .section.dca .ride { border-left-color: var(--dca-teal); }
-  .rank { flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--dl-navy); color: #fff; font-weight: 700; font-size: 0.8rem; display: flex; align-items: center; justify-content: center; }
-  .section.dca .rank { background: var(--dca-teal); }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); padding: 20px 16px 60px;
+    background-image: radial-gradient(circle at 10% 0%, rgba(201,162,75,.18), transparent 40%), radial-gradient(circle at 95% 8%, rgba(26,163,163,.16), transparent 38%); background-attachment: fixed; }
+  .paper { max-width: 780px; margin: 0 auto; background: var(--paper); border: 1px solid var(--rule); border-radius: 20px; box-shadow: 0 14px 44px rgba(27,42,74,.18); overflow: clip; }
+  .nav { display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 16px; background: linear-gradient(90deg, var(--navy), var(--navy2)); }
+  .nav a { color: #fff; text-decoration: none; font-size: .8rem; font-weight: 600; padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,.35); transition: transform .15s, background .15s; }
+  .nav a:hover { transform: translateY(-2px); background: rgba(255,255,255,.15); }
+  .nav a.current { background: var(--gold); border-color: var(--gold); color: var(--navy); }
+  .hero { position: relative; text-align: center; padding: 38px 18px 26px; color: #fff; background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 55%, var(--teal) 130%); overflow: hidden; }
+  .hero::before, .hero::after { content: "✦"; position: absolute; color: var(--gold); opacity: .55; font-size: 2.2rem; animation: twinkle 3.2s ease-in-out infinite; }
+  .hero::before { left: 8%; top: 18%; } .hero::after { right: 9%; bottom: 16%; animation-delay: 1.4s; font-size: 1.6rem; }
+  @keyframes twinkle { 0%,100% { opacity: .2; transform: scale(.8) rotate(0); } 50% { opacity: .8; transform: scale(1.15) rotate(20deg); } }
+  .hero h1 { margin: 0; font-size: clamp(1.6rem, 6vw, 2.3rem); letter-spacing: .01em; text-shadow: 0 2px 12px rgba(0,0,0,.35); }
+  .hero p { margin: 8px 0 0; opacity: .9; font-size: .95rem; }
+  .stats { display: flex; justify-content: center; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
+  .stat { background: rgba(255,255,255,.13); border: 1px solid rgba(255,255,255,.28); border-radius: 14px; padding: 8px 16px; backdrop-filter: blur(4px); }
+  .stat b { display: block; font-size: 1.4rem; color: var(--gold); line-height: 1.1; }
+  .stat span { font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; opacity: .85; }
+  .controls { position: sticky; top: 0; z-index: 5; padding: 12px 16px; background: color-mix(in srgb, var(--paper) 92%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--rule); display: grid; gap: 10px; }
+  .tabs { display: flex; gap: 8px; }
+  .tab { flex: 1; cursor: pointer; font: inherit; font-weight: 700; font-size: .88rem; padding: 10px 8px; border-radius: 12px; border: 2px solid var(--rule); background: var(--card); color: var(--text); transition: all .2s; }
+  .tab.on { color: #fff; border-color: transparent; box-shadow: 0 4px 14px rgba(0,0,0,.2); }
+  .tab[data-park="dl"].on { background: linear-gradient(135deg, var(--navy), var(--navy2)); }
+  .tab[data-park="dca"].on { background: linear-gradient(135deg, var(--teal), var(--teal2)); }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .row input, .row select { flex: 1; min-width: 140px; font: inherit; font-size: .92rem; padding: 9px 12px; border-radius: 12px; border: 1px solid var(--rule); background: var(--card); color: var(--text); }
+  .hint { font-size: .74rem; color: var(--muted); }
+  #content { padding: 6px 16px 8px; }
+  .park-title { margin: 20px 0 12px; font-size: 1.25rem; color: var(--accent); display: flex; align-items: baseline; gap: 10px; }
+  .park-title small { font-size: .78rem; color: var(--muted); font-weight: 500; }
+  .park.dca { --accent: var(--teal); --accent2: var(--teal2); }
+  .ride { position: relative; display: flex; gap: 12px; align-items: center; background: var(--card); border: 1px solid var(--rule); border-radius: 14px; padding: 12px; margin-bottom: 10px; overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0,0,0,.05); transition: transform .2s, box-shadow .2s; animation: rise .45s both; animation-delay: calc(var(--i) * 25ms); }
+  .ride::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: linear-gradient(180deg, var(--accent), var(--accent2)); }
+  .ride:hover { transform: translateY(-3px); box-shadow: 0 10px 22px rgba(27,42,74,.16); }
+  @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  .rank { flex: none; width: 36px; height: 36px; margin-left: 4px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; font-weight: 800; font-size: .85rem; display: flex; align-items: center; justify-content: center; }
+  .rank.top { background: linear-gradient(135deg, #e8c25f, #b8861f); color: #3a2a00; box-shadow: 0 0 0 3px rgba(201,162,75,.3); }
   .info { flex: 1; min-width: 0; }
-  .info h3 { margin: 0; font-size: 0.98rem; color: var(--dl-navy); line-height: 1.25; }
-  .land { font-size: 0.74rem; color: var(--muted); margin-top: 2px; }
-  .note { font-size: 0.78rem; margin-top: 4px; }
-  .height { flex: none; text-align: center; font-weight: 700; font-size: 0.8rem; padding: 6px 10px; border-radius: 10px; background: #e3e8f4; color: var(--dl-navy); min-width: 74px; }
-  .height small { display: block; font-weight: 500; font-size: 0.68rem; opacity: 0.8; }
-  .height.any { background: #e4f3e6; color: #1e6b2e; }
-  .ride.blocked { opacity: 0.4; }
-  .ride.blocked .height { background: #f6dede; color: #9b2c2c; }
-  .footer { padding: 14px 20px 22px; border-top: 3px double var(--dl-navy); text-align: center; font-size: 0.78rem; color: var(--muted); }
-  .footer a { color: var(--dl-navy); font-weight: 700; text-decoration: none; }
+  .info h3 { margin: 0; font-size: 1rem; color: var(--text); line-height: 1.25; }
+  .land { font-size: .74rem; color: var(--muted); margin-top: 2px; }
+  .note { font-size: .78rem; margin-top: 5px; padding: 5px 8px; border-radius: 8px; background: rgba(201,162,75,.15); }
+  .bar { height: 4px; border-radius: 4px; background: var(--rule); margin-top: 8px; overflow: hidden; }
+  .bar i { display: block; height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--gold), #e8553d); }
+  .height { flex: none; text-align: center; font-weight: 800; font-size: .95rem; padding: 7px 10px; border-radius: 12px; background: rgba(45,67,115,.14); color: var(--accent); min-width: 78px; }
+  .height small { display: block; font-weight: 500; font-size: .68rem; opacity: .85; }
+  .height.any { background: rgba(46,160,67,.16); color: #2a8a3e; font-size: .8rem; }
+  .ride.blocked { opacity: .38; filter: grayscale(.7); }
+  .ride.blocked .height { background: rgba(200,50,50,.18); color: #c0392b; }
+  .empty { text-align: center; padding: 30px; color: var(--muted); }
+  .footer { padding: 16px 20px 24px; border-top: 3px double var(--navy); text-align: center; font-size: .78rem; color: var(--muted); }
+  .footer a { color: var(--accent); font-weight: 700; text-decoration: none; }
   .status { padding: 30px; text-align: center; color: var(--muted); }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 </style>
 </head>
 <body>
@@ -56,14 +77,25 @@
     <a href="/rides.html" class="current">🎢 Ride Heights</a>
     <a href="/events.html">📰 Events Newsletter</a>
   </div>
-  <div class="masthead">
+  <div class="hero">
     <h1>🎢 Ride Height Requirements</h1>
     <p>Every ride at Disneyland &amp; California Adventure, most popular first</p>
+    <div class="stats">
+      <div class="stat"><b id="n-total">–</b><span>Rides</span></div>
+      <div class="stat"><b id="n-any">–</b><span>No minimum</span></div>
+      <div class="stat"><b id="n-thrill">–</b><span>42"+ thrills</span></div>
+    </div>
   </div>
-  <div class="filter">
-    <label for="kid"><strong>Rider height:</strong></label>
-    <select id="kid"><option value="">Show all rides</option></select>
-    <div class="legend">Pick a height to grey out the rides that rider can't go on yet.</div>
+  <div class="controls">
+    <div class="tabs">
+      <button class="tab on" data-park="dl" type="button">🏰 Disneyland Park</button>
+      <button class="tab" data-park="dca" type="button">🌅 California Adventure</button>
+    </div>
+    <div class="row">
+      <input id="q" type="search" placeholder="Search rides or lands…" aria-label="Search rides">
+      <select id="kid" aria-label="Rider height"><option value="">Rider height: show all</option></select>
+    </div>
+    <div class="hint">Pick a rider height to grey out rides they can't go on yet. #1 = most popular.</div>
   </div>
   <div id="content"><div class="status">Loading rides…</div></div>
   <div class="footer">
@@ -80,14 +112,21 @@
   }
   const cm = n => Math.round(n * 2.54);
   let data = null;
+  let park = 'dl';
 
-  function rideCard(r, kid) {
+  function rideCard(r, kid, i, total) {
     const c = el('div', 'ride' + (kid && r.min && kid < r.min ? ' blocked' : ''));
-    c.appendChild(el('div', 'rank', r.rank));
+    c.style.setProperty('--i', Math.min(i, 20));
+    c.appendChild(el('div', 'rank' + (r.rank <= 3 ? ' top' : ''), r.rank));
     const info = el('div', 'info');
     info.appendChild(el('h3', null, r.name));
     info.appendChild(el('div', 'land', r.land));
     if (r.note) info.appendChild(el('div', 'note', r.note));
+    const bar = el('div', 'bar');
+    const fill = document.createElement('i');
+    fill.style.width = Math.max(8, Math.round(100 * (total - r.rank + 1) / total)) + '%';
+    bar.appendChild(fill);
+    info.appendChild(bar);
     c.appendChild(info);
     const h = el('div', 'height' + (r.min ? '' : ' any'));
     if (r.min) {
@@ -102,20 +141,29 @@
 
   function render() {
     const kid = Number(document.getElementById('kid').value) || 0;
+    const q = document.getElementById('q').value.trim().toLowerCase();
     const root = document.getElementById('content');
     root.textContent = '';
-    data.parks.forEach(p => {
-      const sec = el('div', 'section ' + p.id);
-      sec.appendChild(el('h2', null, p.name + ' (' + p.rides.length + ' rides)'));
-      p.rides.slice().sort((a, b) => a.rank - b.rank).forEach(r => sec.appendChild(rideCard(r, kid)));
-      root.appendChild(sec);
-    });
+    const p = data.parks.find(x => x.id === park);
+    const wrap = el('div', 'park ' + p.id);
+    const list = p.rides.slice().sort((a, b) => a.rank - b.rank)
+      .filter(r => !q || (r.name + ' ' + r.land).toLowerCase().includes(q));
+    const title = el('div', 'park-title', p.name);
+    title.appendChild(el('small', null, list.length + ' of ' + p.rides.length + ' rides'));
+    wrap.appendChild(title);
+    if (!list.length) wrap.appendChild(el('div', 'empty', 'No rides match that search.'));
+    list.forEach((r, i) => wrap.appendChild(rideCard(r, kid, i, p.rides.length)));
+    root.appendChild(wrap);
   }
 
   fetch('/rides.json', { cache: 'no-cache' })
     .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(d => {
       data = d;
+      const all = d.parks.flatMap(p => p.rides);
+      document.getElementById('n-total').textContent = all.length;
+      document.getElementById('n-any').textContent = all.filter(r => !r.min).length;
+      document.getElementById('n-thrill').textContent = all.filter(r => r.min >= 42).length;
       const sel = document.getElementById('kid');
       for (let i = 30; i <= 54; i += 2) {
         const o = el('option', null, i + '" (' + cm(i) + ' cm)');
@@ -123,6 +171,12 @@
         sel.appendChild(o);
       }
       sel.addEventListener('change', render);
+      document.getElementById('q').addEventListener('input', render);
+      document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+        park = t.dataset.park;
+        document.querySelectorAll('.tab').forEach(x => x.classList.toggle('on', x === t));
+        render();
+      }));
       document.getElementById('caveats').textContent = d.caveats + ' Updated ' + d.updated + '.';
       render();
     })
