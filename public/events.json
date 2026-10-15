@@ -1,16 +1,16 @@
 {
-  "issue": 1,
-  "weekOf": "Oct 2 – Oct 8, 2026",
-  "updated": "2026-10-02",
-  "headline": "Halloween Time Hits the Home Stretch",
-  "tagline": "Four weeks left of ghoulish fun — and the holidays are only six weeks away.",
+  "issue": 2,
+  "weekOf": "Oct 15 – Oct 21, 2026",
+  "updated": "2026-10-15",
+  "headline": "Snow Hits the Castle as Halloween Winds Down",
+  "tagline": "Two weeks of spooky fun left, a Magic Key perk lands, and the holidays kick off Nov 13.",
   "lead": {
-    "title": "Oogie Boogie Bash: Last Chance to Crash the Party",
-    "dates": "Select nights through Oct 31",
-    "area": "dca",
-    "badge": "Ticketed",
-    "body": "The after-hours Halloween party at Disney California Adventure is in its final weeks, with a record 33 dates this year. The big debut is \"Madame Leota's Swinging Wake – A Haunted Mansion Street Party,\" plus new villain appearances including Yzma. Expect treat trails, character meet-ups and shorter attraction waits. Check the official calendar for remaining dates before you go.",
-    "url": "https://disneyexperiences.com/disneyland-press/release/disneyland-resort-2026-halloween/"
+    "title": "Magic Key Holders Get More Flexibility",
+    "dates": "Effective Oct 7, 2026",
+    "area": "both",
+    "badge": "New",
+    "body": "Disneyland Resort is dropping the Magic Key no-show penalty, and holders can now modify or cancel park reservations until 11:59 p.m. PT on the day of the visit. Reservations are still required.",
+    "url": "https://disneyblog.com/news/disneyland-enhances-magic-key-flexibility-ends-no-show-penalty/"
   },
   "sections": [
     {
@@ -18,11 +18,27 @@
       "emoji": "🎃",
       "events": [
         {
+          "title": "Oogie Boogie Bash",
+          "dates": "Select nights through Oct 31",
+          "area": "dca",
+          "badge": "Ticketed",
+          "body": "The after-hours Halloween party at Disney California Adventure debuts \"Madame Leota's Swinging Wake – A Haunted Mansion Street Party.\" Many dates have sold out; check the official calendar for what's left.",
+          "url": "https://www.wdwmagic.com/wdwmagic-plus/disneyland-resort/news/02jun2026-oogie-boogie-bash-2026-ticket-dates-new-street-party-and-what-to-expect.htm"
+        },
+        {
           "title": "Halloween Time at the Disneyland Resort",
           "dates": "Through Oct 31",
           "area": "both",
           "badge": "Ends soon",
-          "body": "Both parks are decked out, with the \"Mickey's Trick and Treat\" daytime show and the \"Halloween Screams\" nighttime spectacle on select evenings.",
+          "body": "Both parks are decked out for the season, including the \"Mickey's Trick and Treat\" daytime show.",
+          "url": "https://disneyexperiences.com/disneyland-press/release/disneyland-resort-2026-halloween/"
+        },
+        {
+          "title": "Plaza de la Familia",
+          "dates": "Through Nov 2",
+          "area": "dca",
+          "badge": "Ends soon",
+          "body": "A Día de los Muertos celebration featuring a Coco-themed street show, live mariachi and a memory wall.",
           "url": "https://disneyexperiences.com/disneyland-press/release/disneyland-resort-2026-halloween/"
         },
         {
@@ -30,24 +46,16 @@
           "dates": "Through Jan 6, 2027",
           "area": "dl",
           "badge": "Long run",
-          "body": "Jack Skellington's Nightmare Before Christmas takeover of the Haunted Mansion runs all the way into the new year.",
+          "body": "Jack Skellington's Nightmare Before Christmas takeover of the Haunted Mansion runs into the new year.",
           "url": "https://attractionsmagazine.com/disneyland-holidays-2026-dates-schedule-rides-entertainment/"
         },
         {
-          "title": "Plaza de la Familia",
-          "dates": "Through Nov 2",
-          "area": "dca",
-          "badge": "Ends soon",
-          "body": "A Día de los Muertos celebration with the street show \"The Storytellers of the Plaza de la Familia Celebrate the Musical World of Coco!\", live mariachi and a memory wall.",
-          "url": "https://disneyexperiences.com/disneyland-press/release/disneyland-resort-2026-halloween/"
-        },
-        {
-          "title": "Cars Land Overlays",
-          "dates": "Through Oct 31",
-          "area": "dca",
+          "title": "Castle Snow Arrives",
+          "dates": "Now",
+          "area": "dl",
           "badge": "Seasonal",
-          "body": "Luigi's Honkin' Haul-O-Ween and Mater's Graveyard JamBOOree, plus Guardians of the Galaxy – Monsters After Dark at Avengers Campus.",
-          "url": "https://disneyexperiences.com/disneyland-press/release/disneyland-resort-2026-halloween/"
+          "body": "The first snow has appeared on Sleeping Beauty Castle, with the seasonal display nearly complete.",
+          "url": "https://www.wdwinfo.com/news-stories/disneyland-news/first-snow-appears-on-disneyland-castle-for-2026/"
         }
       ]
     },
@@ -59,8 +67,8 @@
           "title": "World of Color – One",
           "dates": "Through Halloween",
           "area": "dca",
-          "badge": "Limited run",
-          "body": "The fan-favorite World of Color show is back for a limited run before the holiday show takes over.",
+          "badge": "Ends soon",
+          "body": "The fan-favorite World of Color show wraps its limited run before the holiday show takes over.",
           "url": "https://www.disneytouristblog.com/new-next-disneyland-california-adventure/"
         },
         {
@@ -68,13 +76,21 @@
           "dates": "Daily, Fantasyland Theatre",
           "area": "dl",
           "badge": "New in 2026",
-          "body": "A live stage show starring Bluey and Bingo, debuted in March. Showtimes vary, so check the Disneyland app.",
+          "body": "A live stage show starring Bluey and Bingo. Showtimes vary, so check the Disneyland app.",
           "url": "https://www.wdwinfo.com/disneylandcalifornia/live-bluey-show-more-coming-to-disneyland-in-2026/"
+        },
+        {
+          "title": "Disney Lorcana: Hyperia City Release",
+          "dates": "Fri, Oct 16",
+          "area": "downtown",
+          "badge": "Virtual queue",
+          "body": "The new set launches at Disney's Pin Traders in Downtown Disney District; join the virtual queue in the Disneyland app starting at 5 a.m.",
+          "url": "https://wdwnt.com/2026/10/disneyland-resort-using-virtual-queue-for-disney-lorcana-hyperia-city-release/"
         }
       ]
     },
     {
-      "title": "Coming Soon",
+      "title": "Coming Soon: Holidays",
       "emoji": "🎄",
       "events": [
         {
@@ -82,28 +98,28 @@
           "dates": "Nov 13, 2026 – Jan 6, 2027",
           "area": "both",
           "badge": "Nov 13",
-          "body": "\"Believe … in Holiday Magic\" fireworks, \"A Christmas Fantasy Parade,\" it's a small world Holiday, Wintertime Enchantment at the Castle and Festival of Holidays marketplaces at DCA.",
-          "url": "https://attractionsmagazine.com/disneyland-holidays-2026-dates-schedule-rides-entertainment/"
+          "body": "Returning favorites include \"Believe … in Holiday Magic\" fireworks, \"A Christmas Fantasy Parade\" and it's a small world Holiday, plus a new Santa spot at Mickey's Toontown Trolley Barn and Festival of Holidays at DCA.",
+          "url": "https://disneyexperiences.com/disneyland-press/release/holidays-at-the-disneyland-resort-returns-with-festival-favorites-and-classic-traditions-nov-13-2026-jan-6-2027/"
         },
         {
           "title": "World of Color – Season of Light",
-          "dates": "Returns with the holidays",
+          "dates": "Nov 13, 2026 – Jan 6, 2027",
           "area": "dca",
-          "badge": "Schedule TBA",
-          "body": "The holiday edition of World of Color returns; performance schedule had not been announced as of this issue.",
-          "url": "https://attractionsmagazine.com/disneyland-holidays-2026-dates-schedule-rides-entertainment/"
+          "badge": "Nov 13",
+          "body": "The holiday edition of World of Color returns to Paradise Bay.",
+          "url": "https://www.wdwmagic.com/wdwmagic-plus/disneyland-resort/news/26aug2026-disneyland-resort-announces-2026-holiday-season-dates-and-details.htm"
         },
         {
           "title": "Chip and Dale's Ornament Trail",
-          "dates": "Holiday season",
+          "dates": "Holiday season; start date unconfirmed",
           "area": "downtown",
           "badge": "Seasonal",
-          "body": "The collectible ornament hunt returns to Downtown Disney District for the holidays.",
-          "url": "https://attractionsmagazine.com/disneyland-holidays-2026-dates-schedule-rides-entertainment/"
+          "body": "Hunt for hidden ornaments around Downtown Disney District and redeem your map for a keepsake. Start date unconfirmed, so check Disneyland.com.",
+          "url": "https://disneyexperiences.com/disneyland-press/release/holidays-at-the-disneyland-resort-returns-with-festival-favorites-and-classic-traditions-nov-13-2026-jan-6-2027/"
         }
       ]
     }
   ],
-  "tip": "Most Halloween and holiday entertainment is included with park admission. Oogie Boogie Bash needs its own ticket.",
-  "caveats": "Dates come from Disney press releases and fan sites as of Oct 2, 2026. Always confirm in the Disneyland app."
+  "tip": "Most Halloween and holiday entertainment is included with park admission. Oogie Boogie Bash needs its own ticket, and Magic Key holders can now cancel reservations same-day.",
+  "caveats": "Dates come from Disney press releases and fan sites as of Oct 15, 2026. Always confirm in the Disneyland app."
 }
