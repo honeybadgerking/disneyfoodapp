@@ -263,6 +263,17 @@
   }
   .hours-table .ev .t { white-space: nowrap; }
   .hours-status { color: var(--muted); font-size: 0.82rem; padding: 8px 0; }
+  /* style refresh */
+  body { background-image: radial-gradient(circle at 10% 0%, rgba(201,162,75,.18), transparent 40%), radial-gradient(circle at 95% 8%, rgba(15,107,107,.14), transparent 38%); background-attachment: fixed; }
+  .paper { border-radius: 20px; box-shadow: 0 14px 44px rgba(27,42,74,.18); }
+  .nav { flex-wrap: wrap; background: linear-gradient(90deg, #1b2a4a, #2d4373); }
+  .nav a { transition: transform .15s, background .15s; }
+  .nav a:hover { transform: translateY(-2px); background: rgba(255,255,255,.15); }
+  .nav a.current:hover { background: var(--dl-gold); }
+  .card { border-radius: 14px; transition: transform .2s, box-shadow .2s; animation: rise .45s both; }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 10px 22px rgba(27,42,74,.16); }
+  @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 </style>
 </head>
 <body>
