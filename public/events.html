@@ -6,274 +6,129 @@
 <title>The Disneyland Dispatch — Weekly Events Newsletter</title>
 <style>
   :root {
-    --dl-navy: #1b2a4a;
-    --dl-gold: #c9a24b;
-    --dca-teal: #0f6b6b;
-    --downtown: #a63d40;
-    --halloween: #b5651d;
-    --bg: #faf7f1;
-    --paper: #fffdf8;
-    --card: #ffffff;
-    --text: #23272f;
-    --muted: #6b7280;
-    --rule: #e2ddd0;
+    --navy: #1b2a4a; --navy2: #2d4373; --gold: #c9a24b; --teal: #0f6b6b; --teal2: #1aa3a3;
+    --red: #a63d40; --orange: #b5651d;
+    --bg: #f4efe4; --paper: #fffdf8; --card: #ffffff; --text: #23272f; --muted: #6b7280; --rule: #e6dfcf;
+    --soft: #f1ece0; --tipbg: #fff4e0; --tipborder: #e0b868; --tiptext: #7a5a12; --link: #0f6b6b;
+    --pill-dl: #e3e8f4; --pill-dca: #dcf0ef; --pill-down: #f6e0e1; --pill-both: #f8eccb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0e1424; --paper: #151c30; --card: #1c2540; --text: #eef0f6; --muted: #98a1b8; --rule: #2b3556;
+      --soft: #26304f; --tipbg: #2a2414; --tipborder: #6b5a2a; --tiptext: #e8cf94; --link: #4fd1d1;
+      --pill-dl: #26335c; --pill-dca: #123c3e; --pill-down: #4a2327; --pill-both: #43380f;
+    }
   }
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
-    margin: 0;
+    margin: 0; padding: 20px 16px 60px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    padding: 20px 16px 60px;
+    background: var(--bg); color: var(--text);
+    background-image: radial-gradient(circle at 10% 0%, rgba(201,162,75,.18), transparent 40%), radial-gradient(circle at 95% 8%, rgba(26,163,163,.16), transparent 38%);
+    background-attachment: fixed;
   }
-  .paper {
-    max-width: 760px;
-    margin: 0 auto;
-    background: var(--paper);
-    border: 1px solid var(--rule);
-    border-radius: 14px;
-    box-shadow: 0 6px 24px rgba(27,42,74,0.10);
-    overflow: hidden;
-  }
-  .nav {
-    display: flex;
-    justify-content: space-between;
-    gap: 8px;
-    padding: 12px 16px;
-    background: var(--dl-navy);
-  }
-  .nav a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 0.8rem;
-    font-weight: 600;
-    padding: 7px 14px;
-    border-radius: 999px;
-    border: 1px solid rgba(255,255,255,0.35);
-  }
-  .nav a.current { background: var(--dl-gold); border-color: var(--dl-gold); color: var(--dl-navy); }
-  .masthead {
-    text-align: center;
-    padding: 26px 16px 14px;
-    background: radial-gradient(circle at 20% 0%, #fff3d1 0, transparent 45%), radial-gradient(circle at 85% 10%, #ece4ff 0, transparent 40%);
-  }
-  .masthead .kicker {
-    font-size: 0.7rem;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--dl-gold);
-    font-weight: 700;
-  }
-  .masthead h1 {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(2rem, 8vw, 3.2rem);
-    line-height: 1.05;
-    margin: 6px 0 4px;
-    color: var(--dl-navy);
-    letter-spacing: -0.01em;
-  }
-  .masthead .star { color: var(--dl-gold); }
-  .dateline {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 4px 12px;
-    margin: 14px 16px 0;
-    padding: 8px 0;
-    border-top: 3px double var(--dl-navy);
-    border-bottom: 1px solid var(--dl-navy);
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--dl-navy);
-    font-weight: 600;
-  }
-  .headline-wrap { padding: 22px 20px 6px; text-align: center; }
-  .headline-wrap h2 {
-    font-family: Georgia, serif;
-    font-size: clamp(1.4rem, 5vw, 2rem);
-    margin: 0 0 6px;
-    color: var(--dl-navy);
-  }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+  .paper { max-width: 780px; margin: 0 auto; background: var(--paper); border: 1px solid var(--rule); border-radius: 20px; box-shadow: 0 14px 44px rgba(27,42,74,.18); overflow: clip; }
+  .nav { display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 16px; background: linear-gradient(90deg, var(--navy), var(--navy2)); }
+  .nav a { color: #fff; text-decoration: none; font-size: .8rem; font-weight: 600; padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,.35); transition: transform .15s, background .15s; }
+  .nav a:hover { transform: translateY(-2px); background: rgba(255,255,255,.15); }
+  .nav a.current, .nav a.current:hover { background: var(--gold); border-color: var(--gold); color: var(--navy); }
+
+  /* masthead */
+  .hero { position: relative; text-align: center; padding: 34px 18px 22px; color: #fff; overflow: hidden;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 55%, #4a2a6b 130%); }
+  .hero::before, .hero::after { content: "✦"; position: absolute; color: var(--gold); opacity: .55; font-size: 2.2rem; animation: twinkle 3.2s ease-in-out infinite; }
+  .hero::before { left: 8%; top: 18%; } .hero::after { right: 9%; bottom: 16%; animation-delay: 1.4s; font-size: 1.6rem; }
+  @keyframes twinkle { 0%,100% { opacity: .2; transform: scale(.8) rotate(0); } 50% { opacity: .8; transform: scale(1.15) rotate(20deg); } }
+  .kicker { font-size: .7rem; letter-spacing: .28em; text-transform: uppercase; color: var(--gold); font-weight: 700; }
+  .hero h1 { font-family: Georgia, "Times New Roman", serif; font-size: clamp(2rem, 8vw, 3.1rem); line-height: 1.05; margin: 8px 0 0; letter-spacing: -.01em; text-shadow: 0 2px 12px rgba(0,0,0,.35); }
+  .stats { display: flex; justify-content: center; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
+  .stat { background: rgba(255,255,255,.13); border: 1px solid rgba(255,255,255,.28); border-radius: 14px; padding: 8px 16px; backdrop-filter: blur(4px); }
+  .stat b { display: block; font-size: 1.15rem; color: var(--gold); line-height: 1.2; }
+  .stat span { font-size: .68rem; text-transform: uppercase; letter-spacing: .08em; opacity: .85; }
+
+  .headline-wrap { padding: 24px 20px 4px; text-align: center; }
+  .headline-wrap h2 { font-family: Georgia, serif; font-size: clamp(1.4rem, 5vw, 2rem); margin: 0 0 6px; line-height: 1.2; }
   .headline-wrap p { margin: 0; color: var(--muted); font-style: italic; font-family: Georgia, serif; }
-  .lead {
-    margin: 18px 16px 8px;
-    border-radius: 14px;
-    overflow: hidden;
-    color: #fff;
-    background: linear-gradient(135deg, #1b2a4a 0%, #4a2a6b 55%, #b5651d 100%);
-    position: relative;
-  }
-  .lead::after {
-    content: "✦ ✧ ✦";
-    position: absolute;
-    top: 12px; right: 18px;
-    letter-spacing: 0.4em;
-    color: rgba(255,255,255,0.45);
-    font-size: 0.8rem;
-  }
+
+  /* lead story */
+  .lead { margin: 18px 16px 8px; border-radius: 16px; color: #fff; position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #1b2a4a 0%, #4a2a6b 55%, #b5651d 100%); box-shadow: 0 8px 22px rgba(27,42,74,.25); }
+  .lead::after { content: "✦ ✧ ✦"; position: absolute; top: 12px; right: 18px; letter-spacing: .4em; color: rgba(255,255,255,.45); font-size: .8rem; }
   .lead-inner { padding: 24px 22px 22px; }
-  .lead .label {
-    display: inline-block;
-    font-size: 0.68rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    font-weight: 800;
-    color: var(--dl-navy);
-    background: var(--dl-gold);
-    padding: 4px 10px;
-    border-radius: 4px;
-  }
-  .lead h3 {
-    font-family: Georgia, serif;
-    font-size: clamp(1.4rem, 5.5vw, 1.9rem);
-    margin: 12px 0 6px;
-    line-height: 1.15;
-  }
-  .lead .when { font-size: 0.85rem; color: #fff; opacity: 0.92; font-weight: 600; margin-bottom: 10px; }
-  .lead p { margin: 0 0 14px; line-height: 1.55; font-size: 0.95rem; }
-  .lead a.cta {
-    display: inline-block;
-    background: #fff;
-    color: var(--dl-navy);
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.85rem;
-    padding: 9px 18px;
-    border-radius: 999px;
-  }
-  .section { padding: 14px 16px 4px; }
-  .section h2 {
-    font-family: Georgia, serif;
-    font-size: 1.25rem;
-    color: var(--dl-navy);
-    margin: 18px 0 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .section h2::after { content: ""; flex: 1; height: 1px; background: var(--dl-navy); opacity: 0.35; }
+  .lead .label { display: inline-block; font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; font-weight: 800; color: var(--navy); background: var(--gold); padding: 4px 10px; border-radius: 4px; }
+  .lead h3 { font-family: Georgia, serif; font-size: clamp(1.4rem, 5.5vw, 1.9rem); margin: 12px 0 6px; line-height: 1.15; }
+  .lead .lead-when { font-size: .85rem; opacity: .92; font-weight: 600; margin-bottom: 10px; }
+  .lead p { margin: 0 0 14px; line-height: 1.55; font-size: .95rem; }
+  .lead a.cta { display: inline-block; background: #fff; color: var(--navy); text-decoration: none; font-weight: 700; font-size: .85rem; padding: 9px 18px; border-radius: 999px; transition: transform .15s; }
+  .lead a.cta:hover { transform: translateY(-2px); }
+
+  /* sticky filter bar */
+  .controls { position: sticky; top: 0; z-index: 5; margin-top: 14px; padding: 10px 16px; background: color-mix(in srgb, var(--paper) 92%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--rule); display: grid; gap: 8px; }
+  .chips { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+  .chips::-webkit-scrollbar { display: none; }
+  .chip { flex: none; cursor: pointer; font: inherit; font-weight: 700; font-size: .78rem; padding: 7px 13px; border-radius: 999px; border: 2px solid var(--rule); background: var(--card); color: var(--text); transition: all .2s; }
+  .chip[aria-pressed="true"] { color: #fff; border-color: transparent; background: linear-gradient(135deg, var(--navy), var(--navy2)); box-shadow: 0 3px 10px rgba(0,0,0,.2); }
+  .chip[data-area="dca"][aria-pressed="true"] { background: linear-gradient(135deg, var(--teal), var(--teal2)); }
+  .chip[data-area="downtown"][aria-pressed="true"] { background: linear-gradient(135deg, var(--red), #c9585b); }
+  .chip[data-area="both"][aria-pressed="true"] { background: linear-gradient(135deg, #8a6a1c, var(--gold)); }
+  .jump { display: flex; gap: 14px; flex-wrap: wrap; font-size: .75rem; }
+  .jump a { color: var(--link); font-weight: 700; text-decoration: none; }
+  .jump a:hover { text-decoration: underline; }
+
+  /* sections + cards */
+  .section { padding: 10px 16px 4px; scroll-margin-top: 90px; }
+  .section h2, .hours h2 { font-family: Georgia, serif; font-size: 1.25rem; margin: 18px 0 12px; display: flex; align-items: center; gap: 10px; }
+  .section h2::after, .hours h2::after { content: ""; flex: 1; height: 1px; background: var(--muted); opacity: .35; }
+  .section h2 .count { order: 2; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: .7rem; font-weight: 700; color: var(--muted); }
   .grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
   @media (min-width: 620px) { .grid { grid-template-columns: 1fr 1fr; } }
-  .card {
-    background: var(--card);
-    border: 1px solid var(--rule);
-    border-left: 5px solid var(--dl-navy);
-    border-radius: 10px;
-    padding: 14px 14px 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-  .card.dl { border-left-color: var(--dl-navy); }
-  .card.dca { border-left-color: var(--dca-teal); }
-  .card.downtown { border-left-color: var(--downtown); }
-  .card.both { border-left-color: var(--dl-gold); }
-  .card h3 { margin: 0; font-size: 1rem; color: var(--dl-navy); line-height: 1.25; }
-  .meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 0.72rem; }
-  .pill {
-    font-weight: 700;
-    padding: 3px 9px;
-    border-radius: 999px;
-    background: #f1ece0;
-    color: #6a5a2c;
-  }
-  .pill.area-dl { background: #e3e8f4; color: var(--dl-navy); }
-  .pill.area-dca { background: #dcf0ef; color: var(--dca-teal); }
-  .pill.area-downtown { background: #f6e0e1; color: var(--downtown); }
-  .pill.area-both { background: #f8eccb; color: #7a5a12; }
-  .pill.hot { background: var(--halloween); color: #fff; }
-  .when { color: var(--muted); font-weight: 600; font-size: 0.78rem; }
-  .card p { margin: 0; font-size: 0.86rem; line-height: 1.5; color: #3b414d; flex: 1; }
-  .card a.more { font-size: 0.78rem; font-weight: 700; color: var(--dca-teal); text-decoration: none; }
-  .card a.more:hover { text-decoration: underline; }
-  .tip {
-    margin: 20px 16px 6px;
-    padding: 14px 16px;
-    background: #fff4e0;
-    border: 1px dashed #e0b868;
-    border-radius: 10px;
-    font-size: 0.88rem;
-    line-height: 1.5;
-    color: #7a5a12;
-  }
-  .tip strong { text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.72rem; display: block; margin-bottom: 4px; }
-  .footer {
-    margin-top: 18px;
-    padding: 16px 20px 22px;
-    border-top: 3px double var(--dl-navy);
-    text-align: center;
-    font-size: 0.75rem;
-    color: var(--muted);
-    line-height: 1.5;
-  }
-  .footer a { color: var(--dl-navy); font-weight: 700; text-decoration: none; }
-  .status { text-align: center; padding: 40px 16px; color: var(--muted); }
-  .hours { padding: 6px 16px 0; }
-  .hours h2 {
-    font-family: Georgia, serif;
-    font-size: 1.25rem;
-    color: var(--dl-navy);
-    margin: 18px 0 10px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .hours h2::after { content: ""; flex: 1; height: 1px; background: var(--dl-navy); opacity: 0.35; }
-  .hours h2 a {
-    order: 2;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: var(--dca-teal);
-    text-decoration: none;
-    white-space: nowrap;
-  }
-  .hours-box {
-    background: var(--card);
-    border: 1px solid var(--rule);
-    border-radius: 10px;
-    padding: 4px 8px;
-    overflow-x: auto;
-  }
-  .hours-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
-  .hours-table th {
-    text-align: left;
-    font-size: 0.7rem;
-    font-weight: 700;
-    color: var(--muted);
-    padding: 6px 6px 4px;
-  }
-  .hours-table th.dl { color: var(--dl-navy); }
-  .hours-table th.dca { color: var(--dca-teal); }
-  .hours-table td {
-    padding: 6px 4px;
-    border-top: 1px solid #f0ebe0;
-    vertical-align: top;
-    white-space: nowrap;
-  }
-  .hours-table tr.today td { background: #fbf5e6; font-weight: 700; }
-  .hours-table .day { color: var(--muted); }
-  .hours-table .ev {
-    display: block;
-    white-space: normal;
-    font-size: 0.7rem;
-    font-weight: 600;
-    color: var(--halloween);
-  }
-  .hours-table .ev .t { white-space: nowrap; }
-  .hours-status { color: var(--muted); font-size: 0.82rem; padding: 8px 0; }
-  /* style refresh */
-  body { background-image: radial-gradient(circle at 10% 0%, rgba(201,162,75,.18), transparent 40%), radial-gradient(circle at 95% 8%, rgba(15,107,107,.14), transparent 38%); background-attachment: fixed; }
-  .paper { border-radius: 20px; box-shadow: 0 14px 44px rgba(27,42,74,.18); }
-  .nav { flex-wrap: wrap; background: linear-gradient(90deg, #1b2a4a, #2d4373); }
-  .nav a { transition: transform .15s, background .15s; }
-  .nav a:hover { transform: translateY(-2px); background: rgba(255,255,255,.15); }
-  .nav a.current:hover { background: var(--dl-gold); }
-  .card { border-radius: 14px; transition: transform .2s, box-shadow .2s; animation: rise .45s both; }
+  .card { background: var(--card); border: 1px solid var(--rule); border-left: 5px solid var(--navy); border-radius: 14px; padding: 14px 14px 12px;
+    display: flex; flex-direction: column; gap: 7px; transition: transform .2s, box-shadow .2s; animation: rise .45s both; animation-delay: calc(var(--i, 0) * 45ms); }
   .card:hover { transform: translateY(-3px); box-shadow: 0 10px 22px rgba(27,42,74,.16); }
+  .card.dca { border-left-color: var(--teal); } .card.downtown { border-left-color: var(--red); } .card.both { border-left-color: var(--gold); }
+  .card.urgent { box-shadow: 0 0 0 1px var(--orange) inset; }
+  .card h3 { margin: 0; font-size: 1rem; line-height: 1.25; }
+  .meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: .72rem; }
+  .pill { font-weight: 700; padding: 3px 9px; border-radius: 999px; background: var(--soft); color: #6a5a2c; }
+  .pill.area-dl { background: var(--pill-dl); color: var(--navy); } .pill.area-dca { background: var(--pill-dca); color: var(--teal); }
+  .pill.area-downtown { background: var(--pill-down); color: var(--red); } .pill.area-both { background: var(--pill-both); color: #7a5a12; }
+  .pill.hot { background: var(--orange); color: #fff; }
+  .when { color: var(--muted); font-weight: 600; font-size: .78rem; }
+  .card p { margin: 0; font-size: .86rem; line-height: 1.5; flex: 1; opacity: .92; }
+  .card a.more { font-size: .78rem; font-weight: 700; color: var(--link); text-decoration: none; }
+  .card a.more:hover { text-decoration: underline; }
+  .empty { padding: 24px 16px; text-align: center; color: var(--muted); font-size: .9rem; }
   @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
-  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+  .tip { margin: 20px 16px 6px; padding: 14px 16px; background: var(--tipbg); border: 1px dashed var(--tipborder); border-radius: 12px; font-size: .88rem; line-height: 1.5; color: var(--tiptext); }
+  .tip strong { text-transform: uppercase; letter-spacing: .12em; font-size: .72rem; display: block; margin-bottom: 4px; }
+  .footer { margin-top: 18px; padding: 16px 20px 22px; border-top: 3px double var(--muted); text-align: center; font-size: .75rem; color: var(--muted); line-height: 1.5; }
+  .footer a { color: var(--link); font-weight: 700; text-decoration: none; }
+  .status { text-align: center; padding: 40px 16px; color: var(--muted); }
+
+  /* park hours */
+  .hours { padding: 6px 16px 0; }
+  .hours h2 a { order: 2; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: .72rem; font-weight: 700; color: var(--link); text-decoration: none; white-space: nowrap; }
+  .hours-box { background: var(--card); border: 1px solid var(--rule); border-radius: 14px; padding: 4px 8px; overflow-x: auto; }
+  .hours-table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+  .hours-table th { text-align: left; font-size: .7rem; font-weight: 700; color: var(--muted); padding: 6px 6px 4px; }
+  .hours-table th.dl { color: var(--link); filter: none; } .hours-table th.dca { color: var(--link); }
+  .hours-table td { padding: 6px 4px; border-top: 1px solid var(--rule); vertical-align: top; white-space: nowrap; }
+  .hours-table tr.today td { background: var(--soft); font-weight: 700; }
+  .hours-table .day { color: var(--muted); }
+  .hours-table .ev { display: block; white-space: normal; font-size: .7rem; font-weight: 600; color: var(--orange); }
+  .hours-table .ev .t { white-space: nowrap; }
+  .hours-status { color: var(--muted); font-size: .82rem; padding: 8px 0; }
+
+  @media (prefers-color-scheme: dark) {
+    .pill.area-dl { color: #b9c8ff; } .pill.area-dca { color: #7fe0e0; }
+    .pill.area-downtown { color: #ffb3b6; } .pill.area-both { color: #f2d98a; }
+    .pill:not([class*="area-"]):not(.hot) { color: #d8d2bd; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+  @media print { body { background: #fff; padding: 0; } .nav, .controls, .hours { display: none; } .paper { box-shadow: none; border: 0; } .card { break-inside: avoid; animation: none; } }
 </style>
 </head>
 <body>
@@ -282,18 +137,18 @@
   <div class="nav">
     <a href="/">🍔 Food Checklist</a>
     <a href="/rides.html">🎢 Ride Heights</a>
-    <a href="/events.html" class="current">📰 Events Newsletter</a>
+    <a href="/events.html" class="current" aria-current="page">📰 Events Newsletter</a>
   </div>
 
-  <div class="masthead">
+  <header class="hero">
     <div class="kicker">The Weekly Guide to the Happiest Place</div>
-    <h1><span class="star">✦</span> The Disneyland Dispatch <span class="star">✦</span></h1>
-  </div>
-  <div class="dateline">
-    <span id="issue">Issue No. —</span>
-    <span id="week">&nbsp;</span>
-    <span>Anaheim, California</span>
-  </div>
+    <h1>The Disneyland Dispatch</h1>
+    <div class="stats">
+      <div class="stat"><b id="issue">—</b><span>Issue</span></div>
+      <div class="stat"><b id="week">—</b><span>Week of</span></div>
+      <div class="stat"><b id="count">—</b><span>Events</span></div>
+    </div>
+  </header>
 
   <div class="hours">
     <h2>🕗 Park Hours This Week <a href="https://disneyland.disney.go.com/calendars/" target="_blank" rel="noopener">Official calendar ↗</a></h2>
@@ -302,15 +157,18 @@
 
   <div id="content"><div class="status">Loading this week's issue…</div></div>
 
-  <div class="footer">
+  <footer class="footer">
     <div id="caveats"></div>
     <p>Hungry, too? <a href="/">Open the Food &amp; Drink Checklist →</a></p>
-  </div>
+  </footer>
 </div>
 
 <script>
   const AREA = { dl: 'Disneyland Park', dca: 'California Adventure', downtown: 'Downtown Disney', both: 'Both Parks' };
+  const CHIPS = [['all', 'All'], ['dl', '🏰 Disneyland'], ['dca', '🎡 DCA'], ['downtown', '🛍️ Downtown'], ['both', '✨ Both parks']];
   const HOT = ['Ends soon', 'Ticketed'];
+  let issue = null;
+  let filter = 'all';
 
   function el(tag, cls, text) {
     const e = document.createElement(tag);
@@ -319,9 +177,11 @@
     return e;
   }
   function safeUrl(u) { return /^https:\/\//.test(u || '') ? u : null; }
+  function matches(ev) { return filter === 'all' || ev.area === filter || ev.area === 'both'; }
 
-  function card(ev) {
-    const c = el('div', 'card ' + (ev.area || ''));
+  function card(ev, i) {
+    const c = el('article', 'card ' + (ev.area || '') + (ev.badge === 'Ends soon' ? ' urgent' : ''));
+    c.style.setProperty('--i', i);
     c.appendChild(el('h3', null, ev.title));
     const meta = el('div', 'meta');
     meta.appendChild(el('span', 'pill area-' + ev.area, AREA[ev.area] || ''));
@@ -338,9 +198,33 @@
     return c;
   }
 
+  function renderSections() {
+    const root = document.getElementById('sections');
+    root.textContent = '';
+    let shown = 0;
+    issue.sections.forEach((s, si) => {
+      const evs = s.events.filter(matches);
+      if (!evs.length) return;
+      shown += evs.length;
+      const sec = el('section', 'section');
+      sec.id = 'sec-' + si;
+      const h = el('h2', null, s.emoji + ' ' + s.title);
+      h.appendChild(el('span', 'count', evs.length + (evs.length === 1 ? ' event' : ' events')));
+      sec.appendChild(h);
+      const g = el('div', 'grid');
+      evs.forEach((ev, i) => g.appendChild(card(ev, i)));
+      sec.appendChild(g);
+      root.appendChild(sec);
+    });
+    if (!shown) root.appendChild(el('div', 'empty', 'Nothing listed for this area this week.'));
+  }
+
   function render(d) {
-    document.getElementById('issue').textContent = 'Issue No. ' + d.issue;
-    document.getElementById('week').textContent = 'Week of ' + d.weekOf;
+    issue = d;
+    const total = d.sections.reduce((n, s) => n + s.events.length, 0) + 1;
+    document.getElementById('issue').textContent = '№ ' + d.issue;
+    document.getElementById('week').textContent = d.weekOf;
+    document.getElementById('count').textContent = total;
     const root = document.getElementById('content');
     root.textContent = '';
 
@@ -352,9 +236,9 @@
     const L = d.lead;
     const lead = el('div', 'lead');
     const inner = el('div', 'lead-inner');
-    inner.appendChild(el('span', 'label', 'Top Story · ' + (L.badge || '')));
+    inner.appendChild(el('span', 'label', 'Top Story' + (L.badge ? ' · ' + L.badge : '')));
     inner.appendChild(el('h3', null, L.title));
-    inner.appendChild(el('div', 'when', '📅 ' + L.dates + ' · ' + (AREA[L.area] || '')));
+    inner.appendChild(el('div', 'lead-when', '📅 ' + L.dates + ' · ' + (AREA[L.area] || '')));
     inner.appendChild(el('p', null, L.body));
     const lu = safeUrl(L.url);
     if (lu) {
@@ -365,14 +249,35 @@
     lead.appendChild(inner);
     root.appendChild(lead);
 
-    d.sections.forEach(s => {
-      const sec = el('div', 'section');
-      sec.appendChild(el('h2', null, s.emoji + ' ' + s.title));
-      const g = el('div', 'grid');
-      s.events.forEach(ev => g.appendChild(card(ev)));
-      sec.appendChild(g);
-      root.appendChild(sec);
+    const controls = el('div', 'controls');
+    const chips = el('div', 'chips');
+    chips.setAttribute('role', 'group');
+    chips.setAttribute('aria-label', 'Filter events by park');
+    CHIPS.forEach(([key, label]) => {
+      const b = el('button', 'chip', label);
+      b.type = 'button';
+      b.dataset.area = key;
+      b.setAttribute('aria-pressed', String(key === filter));
+      b.addEventListener('click', () => {
+        filter = key;
+        chips.querySelectorAll('.chip').forEach(x => x.setAttribute('aria-pressed', String(x.dataset.area === filter)));
+        renderSections();
+      });
+      chips.appendChild(b);
     });
+    controls.appendChild(chips);
+    const jump = el('nav', 'jump');
+    jump.setAttribute('aria-label', 'Jump to section');
+    d.sections.forEach((s, si) => {
+      const a = el('a', null, s.emoji + ' ' + s.title);
+      a.href = '#sec-' + si;
+      jump.appendChild(a);
+    });
+    controls.appendChild(jump);
+    root.appendChild(controls);
+
+    root.appendChild(el('div', null)).id = 'sections';
+    renderSections();
 
     if (d.tip) {
       const t = el('div', 'tip');
