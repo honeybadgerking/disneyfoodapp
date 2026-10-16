@@ -554,6 +554,95 @@
     padding: 8px 16px;
     border-radius: 999px;
   }
+
+  /* ---- mobile-first compact layer ---- */
+  :root { --paper: #fffdf8; --rule: #e6dfcf; --soft: #f1ece0; --chip: #ffffff; --chip-border: #e2ddd0; --item-border: #eee; --navy2: #2d4373; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0e1424; --paper: #151c30; --card: #1c2540; --text: #eef0f6; --muted: #98a1b8; --rule: #2b3556; --soft: #26304f;
+      --chip: #1c2540; --chip-border: #2b3556; --item-border: #2b3556; --done-bg: #17301f; --done-border: #4c9a62; --dl-navy: #b9c8ff; --dca-teal: #5fd0d0; --hotels: #c4a1f2; --downtown: #ff9da0; }
+    .storage-banner { background: #2a2414; border-color: #6b5a2a; color: #e8cf94; }
+    .area-filter-btn, .type-filter-btn, .flag-filter-btn, .restore-btn, .google-signin-btn, .reset-btn, .backup-btn { background: var(--chip); border-color: var(--chip-border); color: var(--muted); }
+    .search-input { border-color: var(--chip-border); }
+    .progress-bar { background: var(--soft); }
+    .item.deleted { background: var(--soft); }
+    .checkbox { background: var(--card); border-color: #4a5578; }
+    .backup-textarea { background: var(--card); color: var(--text); border-color: var(--chip-border); }
+    .restaurant-map:hover, .restaurant-map:focus-visible { background: var(--soft); }
+    .area-filter-btn.active[data-area="dl"] { background: #2d4373; border-color: #2d4373; color: #fff; }
+    .area-filter-btn.active[data-area="dca"], .toggle-option.active.regular { background: #0f6b6b; border-color: #0f6b6b; color: #fff; }
+    .area-filter-btn.active[data-area="hotels"] { background: #6b3fa0; border-color: #6b3fa0; color: #fff; }
+    .area-filter-btn.active[data-area="downtown"] { background: #a63d40; border-color: #a63d40; color: #fff; }
+    .page-nav a { color: #fff; }
+  }
+  html { scroll-behavior: smooth; }
+  body { padding: 0 0 72px; background-image: radial-gradient(circle at 10% 0%, rgba(201,162,75,.16), transparent 40%), radial-gradient(circle at 95% 8%, rgba(26,163,163,.14), transparent 38%); background-attachment: fixed; }
+  a:focus-visible, button:focus-visible, summary:focus-visible, .section-title:focus-visible, .restaurant-name:focus-visible { outline: 3px solid var(--dl-gold); outline-offset: 2px; }
+  .wrap { max-width: 520px; margin: 0 auto; padding: 0 12px; }
+  .hero { text-align: center; color: #fff; padding: 10px 16px 9px; background: linear-gradient(135deg, #1b2a4a 0%, #2d4373 55%, #0f6b6b 130%); }
+  .hero h1 { margin: 0; font-size: 1.02rem; color: #fff; line-height: 1.2; }
+  .hero p { margin: 2px 0 0; font-size: .7rem; opacity: .85; color: #fff; }
+  .page-nav { display: flex; gap: 6px; justify-content: center; margin: 7px 0 0; flex-wrap: wrap; }
+  .page-nav a { background: transparent; border: 1px solid rgba(255,255,255,.35); font-size: .72rem; padding: 4px 10px; }
+  .page-nav a.current { background: var(--dl-gold); border-color: var(--dl-gold); color: #1b2a4a; }
+  .user-badge { margin: 0; padding: 3px 12px; max-width: none; font-size: .72rem; border-bottom: 1px solid var(--rule); }
+  .topbar { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 94%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--rule); padding: 8px 12px 6px; }
+  .topbar .inner { max-width: 520px; margin: 0 auto; }
+  .toggle-wrap { max-width: none; margin: 0 0 6px; padding: 3px; gap: 4px; box-shadow: none; border: 1px solid var(--rule); }
+  .toggle-option { padding: 6px 8px; font-size: .8rem; }
+  .progress-wrap { max-width: none; margin: 0; padding: 0; background: none; box-shadow: none; border-radius: 0; }
+  .progress-label { font-size: .72rem; margin-bottom: 3px; }
+  .progress-bar { height: 6px; }
+  .controls { padding-top: 8px; }
+  .fold-btn { flex: none; white-space: nowrap; font: inherit; font-size: .75rem; font-weight: 600; padding: 6px 12px; border-radius: 999px; border: 1px dashed var(--chip-border); background: transparent; color: var(--muted); cursor: pointer; }
+  .search-wrap { max-width: none; margin: 0 0 6px; }
+  .search-input { font-size: 16px; padding: 9px 34px 9px 14px; } /* 16px stops iOS zoom-on-focus */
+  .chip-row, .type-filter-wrap, .area-filter-wrap { max-width: none; margin: 0 0 8px; display: flex; flex-wrap: nowrap; justify-content: flex-start; gap: 6px; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding: 1px 0; }
+  .type-filter-wrap, .area-filter-wrap { margin-bottom: 6px; }
+  .type-filter-wrap::-webkit-scrollbar, .area-filter-wrap::-webkit-scrollbar { display: none; }
+  .area-filter-btn, .type-filter-btn, .flag-filter-btn { flex: none; white-space: nowrap; font-size: .75rem; padding: 6px 12px; margin: 0; display: inline-block; cursor: pointer; }
+  .area-filter-btn, .type-filter-btn { background: var(--chip); border-color: var(--chip-border); }
+  .area-filter-btn:not(.active), .type-filter-btn:not(.active) { opacity: .7; }
+  .flag-filter-btn { background: var(--chip); border-color: #e5c8a8; }
+  .flag-filter-btn.active { background: #a15c1a; color: #fff; }
+  .section { max-width: none; margin: 0 0 10px; scroll-margin-top: calc(var(--topbar-h, 74px) + 48px); }
+  .section-title { margin: 0; padding: 9px 12px; font-size: 1rem; background: var(--card); border: 1px solid var(--item-border); border-radius: 12px; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; position: sticky; top: var(--topbar-h, 74px); z-index: 5; }
+  .section-title .chev { margin-left: auto; font-size: .8rem; opacity: .6; transition: transform .2s; }
+  .section-title .section-count { font-size: .7rem; font-weight: 700; color: var(--muted); background: var(--soft); padding: 2px 8px; border-radius: 999px; }
+  .section.collapsed .chev { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+  .section-body { padding-top: 8px; }
+  .restaurant-group { margin-bottom: 8px; background: var(--paper); border: 1px solid var(--item-border); border-radius: 12px; padding: 0 8px 2px; }
+  .restaurant-name { display: flex; align-items: center; gap: 4px; margin: 0; padding: 9px 2px 7px; cursor: pointer; font-size: .74rem; -webkit-tap-highlight-color: transparent; }
+  .restaurant-name .g-chev { margin-left: 4px; font-size: .7rem; opacity: .55; transition: transform .2s; }
+  .restaurant-name .g-title { flex: 1; min-width: 0; line-height: 1.25; }
+  .restaurant-name .restaurant-land { display: block; font-size: .68rem; margin-top: 1px; }
+  .restaurant-name .g-count { margin-left: 0; font-size: .68rem; opacity: .75; font-weight: 600; text-transform: none; letter-spacing: 0; }
+  .restaurant-group.collapsed .g-chev { transform: rotate(-90deg); }
+  .restaurant-group.collapsed .item { display: none; }
+  .restaurant-map { padding: 4px 6px; }
+  .item { padding: 8px 10px; gap: 10px; margin-bottom: 5px; border-radius: 10px; border-color: var(--item-border); }
+  .checkbox { width: 24px; height: 24px; margin-top: 1px; color: transparent; }
+  .item.done .checkbox { color: #fff; }
+  .item-name { font-size: .92rem; }
+  .item-desc { font-size: .76rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .flag-btn, .delete-btn { width: 32px; height: 32px; margin: -4px -4px -4px 0; }
+  .flag-btn { margin-right: -8px; }
+  .footer-note { max-width: none; font-size: .72rem; margin-top: 14px; }
+  .save-status { max-width: none; margin: 14px 0 4px; }
+  .tools { margin: 14px 0 0; border: 1px solid var(--item-border); border-radius: 12px; background: var(--card); }
+  .tools > summary { cursor: pointer; padding: 11px 12px; font-size: .85rem; font-weight: 700; color: var(--muted); list-style: none; display: flex; align-items: center; gap: 8px; }
+  .tools > summary::-webkit-details-marker { display: none; }
+  .tools > summary::after { content: "▾"; margin-left: auto; opacity: .6; }
+  .tools[open] > summary::after { content: "▴"; }
+  .tools-body { padding: 0 12px 12px; }
+  .tools .reset-btn { margin-top: 12px; }
+  .tools .backup-wrap { max-width: none; margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+  .tools .backup-btn { margin: 0; }
+  .tools .backup-panel { max-width: none; }
+  .to-top { position: fixed; right: 14px; bottom: 16px; z-index: 30; width: 44px; height: 44px; border-radius: 50%; border: none; background: var(--dl-gold); color: #1b2a4a; font-size: 1.2rem; font-weight: 800; box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; opacity: 0; pointer-events: none; transform: translateY(10px); transition: opacity .2s, transform .2s; }
+  .to-top.show { opacity: 1; pointer-events: auto; transform: none; }
+  .item.done { transition: background .2s, border-color .2s; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
 </style>
 </head>
 <body>
@@ -573,103 +662,123 @@
 
 <div id="app-root" style="display:none">
 
+<header class="hero">
+  <h1 id="page-title">🎢 Disneyland Resort Food &amp; Drink List</h1>
+  <p id="page-subtitle">New items to try — updated Oct 2026</p>
+  <nav class="page-nav" aria-label="Pages"><a href="/" class="current" aria-current="page">🍔 Food</a><a href="/rides.html">🎢 Ride Heights</a><a href="/events.html">📰 Events</a></nav>
+</header>
+
 <div class="user-badge" id="user-badge">
   <img class="user-avatar" id="user-avatar" src="" alt="">
   <span id="user-name"></span>
   <button class="user-signout-btn" id="signout-btn" type="button">Sign out</button>
 </div>
 
-<div class="header">
-  <h1 id="page-title">🎢 Disneyland Resort Food &amp; Drink List</h1>
-  <p id="page-subtitle">New items to try — updated Oct 2026</p>
-</div>
+<div class="topbar"><div class="inner">
+  <div class="toggle-wrap">
+    <div class="toggle-option regular active" id="toggle-regular">🎢 Regular</div>
+    <div class="toggle-option holiday" id="toggle-holiday">🎃 Halloween</div>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span id="progress-text">0 of 0 tried</span>
+      <span id="progress-pct">0%</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  </div>
+</div></div>
 
-<div class="page-nav"><a href="/rides.html">🎢 Ride Heights →</a> <a href="/events.html">📰 Events Newsletter →</a></div>
+<div class="wrap controls">
 
 <div class="storage-banner" id="storage-banner" style="display:none"></div>
 
-<div class="save-status" id="save-status"><span class="dot"></span><span id="save-status-text">All changes saved automatically</span></div>
-
-<div class="toggle-wrap">
-  <div class="toggle-option regular active" id="toggle-regular">🎢 Regular</div>
-  <div class="toggle-option holiday" id="toggle-holiday">🎃 Halloween</div>
-</div>
-
-<div class="progress-wrap">
-  <div class="progress-label">
-    <span id="progress-text">0 of 0 tried</span>
-    <span id="progress-pct">0%</span>
-  </div>
-  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
-</div>
-
 <div class="search-wrap">
-  <input type="text" class="search-input" id="search-input" placeholder="Search items or restaurants...">
+  <input type="text" class="search-input" id="search-input" placeholder="Search items or restaurants..." enterkeyhint="search">
   <button class="search-clear" id="search-clear" aria-label="Clear search">✕</button>
 </div>
-
-<button class="flag-filter-btn" id="flag-filter-btn">🚩 Flagged for next trip only</button>
 
 <div class="type-filter-wrap" id="type-filter-wrap">
   <button class="type-filter-btn active" data-type="snack">🍿 Snacks</button>
   <button class="type-filter-btn active" data-type="food">🍽️ Food</button>
   <button class="type-filter-btn active" data-type="drink">🥤 Drinks</button>
+  <button class="flag-filter-btn" id="flag-filter-btn">🚩 Flagged</button>
+  <button class="fold-btn" id="fold-btn" type="button">↕ Fold all</button>
 </div>
 
 <div class="area-filter-wrap" id="area-filter-wrap">
-  <button class="area-filter-btn active" id="area-filter-dl" data-area="dl">🏰 Disneyland Park</button>
-  <button class="area-filter-btn active" id="area-filter-dca" data-area="dca">🎡 California Adventure</button>
+  <button class="area-filter-btn active" id="area-filter-dl" data-area="dl">🏰 Disneyland</button>
+  <button class="area-filter-btn active" id="area-filter-dca" data-area="dca">🎡 DCA</button>
   <button class="area-filter-btn active" id="area-filter-hotels" data-area="hotels">🏨 Hotels</button>
-  <button class="area-filter-btn active" id="area-filter-downtown" data-area="downtown">🛍️ Downtown Disney</button>
+  <button class="area-filter-btn active" id="area-filter-downtown" data-area="downtown">🛍️ Downtown</button>
 </div>
 
-<div class="section" id="section-dl">
-  <div class="section-title dl">🏰 Disneyland Park</div>
-  <div id="dl-list"></div>
-  <div class="empty-note" id="dl-empty">No items yet</div>
+<div class="section" id="section-dl" data-sec="dl">
+  <div class="section-title dl" role="button" tabindex="0" aria-expanded="true">🏰 Disneyland Park <span class="section-count" id="count-dl"></span><span class="chev" aria-hidden="true">▾</span></div>
+  <div class="section-body">
+    <div id="dl-list"></div>
+    <div class="empty-note" id="dl-empty">No items yet</div>
+  </div>
 </div>
 
-<div class="section" id="section-dca">
-  <div class="section-title dca">🎡 Disney California Adventure</div>
-  <div id="dca-list"></div>
-  <div class="empty-note" id="dca-empty">No items yet</div>
+<div class="section" id="section-dca" data-sec="dca">
+  <div class="section-title dca" role="button" tabindex="0" aria-expanded="true">🎡 Disney California Adventure <span class="section-count" id="count-dca"></span><span class="chev" aria-hidden="true">▾</span></div>
+  <div class="section-body">
+    <div id="dca-list"></div>
+    <div class="empty-note" id="dca-empty">No items yet</div>
+  </div>
 </div>
 
-<div class="section" id="section-hotels">
-  <div class="section-title hotels">🏨 Disneyland Resort Hotels</div>
-  <div id="hotels-list"></div>
-  <div class="empty-note" id="hotels-empty">No items yet</div>
+<div class="section" id="section-hotels" data-sec="hotels">
+  <div class="section-title hotels" role="button" tabindex="0" aria-expanded="true">🏨 Disneyland Resort Hotels <span class="section-count" id="count-hotels"></span><span class="chev" aria-hidden="true">▾</span></div>
+  <div class="section-body">
+    <div id="hotels-list"></div>
+    <div class="empty-note" id="hotels-empty">No items yet</div>
+  </div>
 </div>
 
-<div class="section" id="section-downtown">
-  <div class="section-title downtown">🛍️ Downtown Disney District</div>
-  <div id="downtown-list"></div>
-  <div class="empty-note" id="downtown-empty">No items yet</div>
+<div class="section" id="section-downtown" data-sec="downtown">
+  <div class="section-title downtown" role="button" tabindex="0" aria-expanded="true">🛍️ Downtown Disney District <span class="section-count" id="count-downtown"></span><span class="chev" aria-hidden="true">▾</span></div>
+  <div class="section-body">
+    <div id="downtown-list"></div>
+    <div class="empty-note" id="downtown-empty">No items yet</div>
+  </div>
 </div>
 
-<div class="section">
-  <div class="section-title deleted">🗑️ Deleted</div>
-  <div id="deleted-list"></div>
-  <div class="empty-note" id="deleted-empty">No deleted items</div>
+<div class="section collapsed" id="section-deleted" data-sec="deleted">
+  <div class="section-title deleted" role="button" tabindex="0" aria-expanded="false">🗑️ Deleted <span class="chev" aria-hidden="true">▾</span></div>
+  <div class="section-body">
+    <div id="deleted-list"></div>
+    <div class="empty-note" id="deleted-empty">No deleted items</div>
+  </div>
 </div>
+
+<div class="save-status" id="save-status"><span class="dot"></span><span id="save-status-text">All changes saved automatically</span></div>
 
 <div class="footer-note">
   Tap an item to mark it as tried. Your progress is saved automatically and will still be here next time you open this checklist.
 </div>
 
-<button class="reset-btn" id="reset-btn">Reset all</button>
-
-<div class="backup-wrap">
-  <button class="backup-btn" id="save-file-btn">💾 Save to file</button>
-  <label class="backup-btn" for="load-file-input" id="load-file-btn">📂 Load from file</label>
-  <input type="file" id="load-file-input" accept="application/json,.json" style="position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;">
-  <button class="backup-btn" id="export-btn">Export progress</button>
-  <button class="backup-btn" id="import-btn">Import progress</button>
-  <div class="backup-panel" id="backup-panel">
-    <textarea class="backup-textarea" id="backup-textarea" placeholder="Paste your saved progress here to restore it..."></textarea>
-    <button class="backup-action" id="backup-action-btn">Copy</button>
+<details class="tools">
+  <summary>⚙️ Backup &amp; reset</summary>
+  <div class="tools-body">
+    <div class="backup-wrap" style="margin-top:0">
+      <button class="backup-btn" id="save-file-btn">💾 Save to file</button>
+      <label class="backup-btn" for="load-file-input" id="load-file-btn">📂 Load from file</label>
+      <input type="file" id="load-file-input" accept="application/json,.json" style="position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;">
+      <button class="backup-btn" id="export-btn">Export progress</button>
+      <button class="backup-btn" id="import-btn">Import progress</button>
+    </div>
+    <div class="backup-panel" id="backup-panel">
+      <textarea class="backup-textarea" id="backup-textarea" placeholder="Paste your saved progress here to restore it..."></textarea>
+      <button class="backup-action" id="backup-action-btn">Copy</button>
+    </div>
+    <button class="reset-btn" id="reset-btn">Reset all</button>
   </div>
+</details>
+
 </div>
+
+<button class="to-top" id="to-top" type="button" aria-label="Back to top">↑</button>
 
 </div><!-- /app-root -->
 
@@ -1400,6 +1509,50 @@
     return groups;
   }
 
+  // Collapsed sections / restaurant groups are a per-device convenience, so
+  // they live in localStorage (when available) rather than the synced payload.
+  const COLLAPSE_KEY = 'food-collapsed-v1';
+  const collapsed = new Set();
+  try { JSON.parse(window.localStorage.getItem(COLLAPSE_KEY) || '[]').forEach(k => collapsed.add(k)); } catch (err) {}
+  function saveCollapsed() {
+    try { window.localStorage.setItem(COLLAPSE_KEY, JSON.stringify([...collapsed])); } catch (err) {}
+  }
+  function setSectionCollapsed(sec, isCollapsed) {
+    sec.classList.toggle('collapsed', isCollapsed);
+    const t = sec.querySelector('.section-title');
+    if (t) t.setAttribute('aria-expanded', String(!isCollapsed));
+  }
+  document.querySelectorAll('.section[data-sec]').forEach(sec => {
+    const key = 'sec:' + sec.dataset.sec;
+    if (collapsed.has(key)) setSectionCollapsed(sec, true);
+    else if (sec.dataset.sec !== 'deleted' && collapsed.has('open:' + key)) setSectionCollapsed(sec, false);
+    const title = sec.querySelector('.section-title');
+    const toggle = () => {
+      const now = !sec.classList.contains('collapsed');
+      setSectionCollapsed(sec, now);
+      if (sec.dataset.sec === 'deleted') { collapsed.delete(key); if (!now) collapsed.add('open:' + key); else collapsed.delete('open:' + key); }
+      else if (now) collapsed.add(key); else collapsed.delete(key);
+      saveCollapsed();
+    };
+    title.addEventListener('click', toggle);
+    title.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+  });
+
+  function updateSectionCounts() {
+    sections.forEach(s => {
+      let total = 0, done = 0;
+      data[s.key].forEach(item => {
+        if (item.holiday !== holidayMode) return;
+        const key = itemKey(s.key, item);
+        if (deletedKeys.has(key)) return;
+        total++;
+        if (doneKeys.has(key)) done++;
+      });
+      const el = document.getElementById('count-' + s.key);
+      if (el) el.textContent = done + '/' + total;
+    });
+  }
+
   function renderList(containerId, items, keyPrefix, emptyId) {
     const container = document.getElementById(containerId);
     const emptyNote = emptyId ? document.getElementById(emptyId) : null;
@@ -1423,15 +1576,24 @@
     groups.forEach(group => {
       const groupEl = document.createElement('div');
       groupEl.className = 'restaurant-group';
+      const gKey = 'grp:' + keyPrefix + ':' + group.loc;
+      groupEl.dataset.gkey = gKey;
+      if (collapsed.has(gKey)) groupEl.classList.add('collapsed');
       const heading = document.createElement('div');
       heading.className = 'restaurant-name';
-      heading.textContent = group.loc;
+      heading.setAttribute('role', 'button');
+      heading.tabIndex = 0;
+      heading.setAttribute('aria-expanded', String(!groupEl.classList.contains('collapsed')));
+      const gTitle = document.createElement('span');
+      gTitle.className = 'g-title';
+      gTitle.appendChild(document.createTextNode(group.loc));
+      heading.appendChild(gTitle);
       const land = group.entries[0].item.land;
       if (land) {
         const landEl = document.createElement('span');
         landEl.className = 'restaurant-land';
-        landEl.textContent = ' · ' + land;
-        heading.appendChild(landEl);
+        landEl.textContent = land;
+        gTitle.appendChild(landEl);
       }
       const mapLink = window.mapLinkFor && window.mapLinkFor(group.loc, { coords: window.MAP_COORDS });
       if (mapLink) {
@@ -1445,6 +1607,25 @@
         a.setAttribute('aria-label', (mapLink.exact ? 'Open ' : 'Search for ') + group.loc + ' in Maps');
         heading.appendChild(a);
       }
+      const gCount = document.createElement('span');
+      gCount.className = 'g-count';
+      const gDone = group.entries.filter(({ item }) => doneKeys.has(itemKey(keyPrefix, item))).length;
+      gCount.textContent = gDone + '/' + group.entries.length;
+      heading.appendChild(gCount);
+      const gChev = document.createElement('span');
+      gChev.className = 'g-chev';
+      gChev.setAttribute('aria-hidden', 'true');
+      gChev.textContent = '▾';
+      heading.appendChild(gChev);
+      const toggleGroup = () => {
+        const now = !groupEl.classList.contains('collapsed');
+        groupEl.classList.toggle('collapsed', now);
+        heading.setAttribute('aria-expanded', String(!now));
+        if (now) collapsed.add(gKey); else collapsed.delete(gKey);
+        saveCollapsed();
+      };
+      heading.addEventListener('click', (e) => { if (e.target.closest('a.restaurant-map')) return; toggleGroup(); });
+      heading.addEventListener('keydown', (e) => { if (e.target === heading && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); toggleGroup(); } });
       groupEl.appendChild(heading);
 
       group.entries.forEach(({ item }) => {
@@ -1552,6 +1733,9 @@
       doneKeys.add(key);
     }
     el.classList.toggle('done', doneKeys.has(key));
+    const grp = el.closest('.restaurant-group');
+    const gc = grp && grp.querySelector('.g-count');
+    if (gc) gc.textContent = grp.querySelectorAll('.item.done').length + '/' + grp.querySelectorAll('.item').length;
     updateProgress();
     saveState();
   }
@@ -1609,6 +1793,8 @@
     document.getElementById('progress-text').textContent = `${done} of ${total} tried`;
     document.getElementById('progress-pct').textContent = `${pct}%`;
     document.getElementById('progress-fill').style.width = pct + '%';
+    updateSectionCounts();
+    if (typeof syncFoldBtn === 'function') syncFoldBtn();
   }
 
   // Safety-net autosave: catches anything a click handler might have missed,
@@ -1740,6 +1926,38 @@
       if (wrapper) wrapper.style.display = activeAreas.has(area) ? '' : 'none';
     });
   });
+
+  // Fold all: collapse every visible restaurant group (or expand them all if
+  // everything is already folded) so a long list becomes a quick restaurant index.
+  const foldBtn = document.getElementById('fold-btn');
+  function syncFoldBtn() {
+    const groups = document.querySelectorAll('.restaurant-group[data-gkey]');
+    const anyOpen = [...groups].some(g => !g.classList.contains('collapsed'));
+    foldBtn.textContent = anyOpen ? '↕ Fold all' : '↕ Unfold all';
+  }
+  foldBtn.addEventListener('click', () => {
+    const groups = document.querySelectorAll('.restaurant-group[data-gkey]');
+    const fold = [...groups].some(g => !g.classList.contains('collapsed'));
+    groups.forEach(g => {
+      g.classList.toggle('collapsed', fold);
+      const h = g.querySelector('.restaurant-name');
+      if (h) h.setAttribute('aria-expanded', String(!fold));
+      if (fold) collapsed.add(g.dataset.gkey); else collapsed.delete(g.dataset.gkey);
+    });
+    saveCollapsed();
+    syncFoldBtn();
+  });
+  document.addEventListener('click', (e) => { if (e.target.closest('.restaurant-name')) syncFoldBtn(); });
+
+  // Keep sticky section headers just below the sticky progress bar.
+  const topbar = document.querySelector('.topbar');
+  if (topbar && window.ResizeObserver) {
+    new ResizeObserver(() => document.documentElement.style.setProperty('--topbar-h', topbar.offsetHeight + 'px')).observe(topbar);
+  }
+
+  const toTop = document.getElementById('to-top');
+  window.addEventListener('scroll', () => { toTop.classList.toggle('show', window.scrollY > 600); }, { passive: true });
+  toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
   const backupPanel = document.getElementById('backup-panel');
   const backupTextarea = document.getElementById('backup-textarea');
