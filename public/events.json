@@ -1,16 +1,16 @@
 {
-  "issue": 2,
-  "weekOf": "Oct 15 – Oct 21, 2026",
-  "updated": "2026-10-15",
-  "headline": "Snow Hits the Castle as Halloween Winds Down",
-  "tagline": "Two weeks of spooky fun left, a Magic Key perk lands, and the holidays kick off Nov 13.",
+  "issue": 3,
+  "weekOf": "Oct 22 – Oct 28, 2026",
+  "updated": "2026-10-22",
+  "headline": "Last Call for Halloween, Then the Holidays Take Over",
+  "tagline": "Final spooky weeks, a beloved ride gets a reprieve, and Abbott Elementary heads to the park.",
   "lead": {
-    "title": "Magic Key Holders Get More Flexibility",
-    "dates": "Effective Oct 7, 2026",
+    "title": "Holidays at the Disneyland Resort Start Nov 13",
+    "dates": "Nov 13, 2026 – Jan 6, 2027",
     "area": "both",
-    "badge": "New",
-    "body": "Disneyland Resort is dropping the Magic Key no-show penalty, and holders can now modify or cancel park reservations until 11:59 p.m. PT on the day of the visit. Reservations are still required.",
-    "url": "https://disneyblog.com/news/disneyland-enhances-magic-key-flexibility-ends-no-show-penalty/"
+    "badge": "Nov 13",
+    "body": "Returning favorites include \"Believe … in Holiday Magic\" fireworks, \"A Christmas Fantasy Parade\" and it's a small world Holiday, plus a new Santa spot at Mickey's Toontown Trolley Barn. The start date was moved up from an earlier announced Nov 18.",
+    "url": "https://disneyexperiences.com/disneyland-press/release/holidays-at-the-disneyland-resort-returns-with-festival-favorites-and-classic-traditions-nov-13-2026-jan-6-2027/"
   },
   "sections": [
     {
@@ -48,14 +48,6 @@
           "badge": "Long run",
           "body": "Jack Skellington's Nightmare Before Christmas takeover of the Haunted Mansion runs into the new year.",
           "url": "https://attractionsmagazine.com/disneyland-holidays-2026-dates-schedule-rides-entertainment/"
-        },
-        {
-          "title": "Castle Snow Arrives",
-          "dates": "Now",
-          "area": "dl",
-          "badge": "Seasonal",
-          "body": "The first snow has appeared on Sleeping Beauty Castle, with the seasonal display nearly complete.",
-          "url": "https://www.wdwinfo.com/news-stories/disneyland-news/first-snow-appears-on-disneyland-castle-for-2026/"
         }
       ]
     },
@@ -80,12 +72,20 @@
           "url": "https://www.wdwinfo.com/disneylandcalifornia/live-bluey-show-more-coming-to-disneyland-in-2026/"
         },
         {
-          "title": "Disney Lorcana: Hyperia City Release",
-          "dates": "Fri, Oct 16",
-          "area": "downtown",
-          "badge": "Virtual queue",
-          "body": "The new set launches at Disney's Pin Traders in Downtown Disney District; join the virtual queue in the Disneyland app starting at 5 a.m.",
-          "url": "https://wdwnt.com/2026/10/disneyland-resort-using-virtual-queue-for-disney-lorcana-hyperia-city-release/"
+          "title": "Monsters, Inc. Mike & Sulley to the Rescue!",
+          "dates": "Open into 2027; closing date TBA",
+          "area": "dca",
+          "badge": "Reprieve",
+          "body": "The Monstropolis dark ride is staying open longer than planned while construction for the Avatar-themed land is resequenced. No specific closing date has been announced.",
+          "url": "https://www.wdwinfo.com/news-stories/monsters-inc-ride-staying-open-until-2027-at-disneyland-resort/"
+        },
+        {
+          "title": "Abbott Elementary Visits Disneyland",
+          "dates": "Episode airing expected December; date TBA",
+          "area": "dl",
+          "badge": "TV",
+          "body": "The cast was spotted filming the show's 100th episode at the park in early October. Plot and air date haven't been announced.",
+          "url": "https://www.laughingplace.com/disney-entertainment/abbott-elementary-disneyland-100th-episode/"
         }
       ]
     },
@@ -93,14 +93,6 @@
       "title": "Coming Soon: Holidays",
       "emoji": "🎄",
       "events": [
-        {
-          "title": "Holidays at the Disneyland Resort",
-          "dates": "Nov 13, 2026 – Jan 6, 2027",
-          "area": "both",
-          "badge": "Nov 13",
-          "body": "Returning favorites include \"Believe … in Holiday Magic\" fireworks, \"A Christmas Fantasy Parade\" and it's a small world Holiday, plus a new Santa spot at Mickey's Toontown Trolley Barn and Festival of Holidays at DCA.",
-          "url": "https://disneyexperiences.com/disneyland-press/release/holidays-at-the-disneyland-resort-returns-with-festival-favorites-and-classic-traditions-nov-13-2026-jan-6-2027/"
-        },
         {
           "title": "World of Color – Season of Light",
           "dates": "Nov 13, 2026 – Jan 6, 2027",
@@ -116,10 +108,18 @@
           "badge": "Seasonal",
           "body": "Hunt for hidden ornaments around Downtown Disney District and redeem your map for a keepsake. Start date unconfirmed, so check Disneyland.com.",
           "url": "https://disneyexperiences.com/disneyland-press/release/holidays-at-the-disneyland-resort-returns-with-festival-favorites-and-classic-traditions-nov-13-2026-jan-6-2027/"
+        },
+        {
+          "title": "Festival of Holidays & Santa",
+          "dates": "Opens Nov 13; Santa Nov 13 – Dec 24",
+          "area": "dca",
+          "badge": "Nov 13",
+          "body": "Six festive food marketplaces and the Sip and Savor Pass return, with a mariachi holiday show on Buena Vista Street. Santa greets at Redwood Creek Challenge Trail.",
+          "url": "https://www.foxla.com/news/disneyland-resort-holiday-season-dates-announcement-2026"
         }
       ]
     }
   ],
-  "tip": "Most Halloween and holiday entertainment is included with park admission. Oogie Boogie Bash needs its own ticket, and Magic Key holders can now cancel reservations same-day.",
-  "caveats": "Dates come from Disney press releases and fan sites as of Oct 15, 2026. Always confirm in the Disneyland app."
+  "tip": "Halloween Time and Plaza de la Familia are included with park admission; Oogie Boogie Bash needs its own ticket. Get your photos before Halloween décor comes down Nov 1.",
+  "caveats": "Dates come from Disney press releases and fan sites as of Oct 22, 2026. Always confirm in the Disneyland app."
 }
