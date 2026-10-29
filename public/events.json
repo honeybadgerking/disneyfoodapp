@@ -1,15 +1,15 @@
 {
-  "issue": 3,
-  "weekOf": "Oct 22 – Oct 28, 2026",
-  "updated": "2026-10-22",
-  "headline": "Last Call for Halloween, Then the Holidays Take Over",
-  "tagline": "Final spooky weeks, a beloved ride gets a reprieve, and Abbott Elementary heads to the park.",
+  "issue": 4,
+  "weekOf": "Oct 29 – Nov 4, 2026",
+  "updated": "2026-10-29",
+  "headline": "Boo-dbye Halloween, Hello Holidays (and a Peek at 2027!)",
+  "tagline": "Halloween Time takes its final bows, the holidays are two weeks out, and February brings back some classics.",
   "lead": {
     "title": "Holidays at the Disneyland Resort Start Nov 13",
     "dates": "Nov 13, 2026 – Jan 6, 2027",
     "area": "both",
     "badge": "Nov 13",
-    "body": "Returning favorites include \"Believe … in Holiday Magic\" fireworks, \"A Christmas Fantasy Parade\" and it's a small world Holiday, plus a new Santa spot at Mickey's Toontown Trolley Barn. The start date was moved up from an earlier announced Nov 18.",
+    "body": "Just two weeks to go! Returning favorites include \"Believe … in Holiday Magic\" fireworks, \"A Christmas Fantasy Parade\" and it's a small world Holiday, plus a new Santa spot at Mickey's Toontown Trolley Barn. The start date was moved up from an earlier announced Nov 18.",
     "url": "https://disneyexperiences.com/disneyland-press/release/holidays-at-the-disneyland-resort-returns-with-festival-favorites-and-classic-traditions-nov-13-2026-jan-6-2027/"
   },
   "sections": [
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "title": "Coming Soon: Holidays",
+      "title": "Coming Soon: Holidays & 2027",
       "emoji": "🎄",
       "events": [
         {
@@ -102,24 +102,40 @@
           "url": "https://www.wdwmagic.com/wdwmagic-plus/disneyland-resort/news/26aug2026-disneyland-resort-announces-2026-holiday-season-dates-and-details.htm"
         },
         {
-          "title": "Chip and Dale's Ornament Trail",
-          "dates": "Holiday season; start date unconfirmed",
-          "area": "downtown",
-          "badge": "Seasonal",
-          "body": "Hunt for hidden ornaments around Downtown Disney District and redeem your map for a keepsake. Start date unconfirmed, so check Disneyland.com.",
-          "url": "https://disneyexperiences.com/disneyland-press/release/holidays-at-the-disneyland-resort-returns-with-festival-favorites-and-classic-traditions-nov-13-2026-jan-6-2027/"
-        },
-        {
           "title": "Festival of Holidays & Santa",
           "dates": "Opens Nov 13; Santa Nov 13 – Dec 24",
           "area": "dca",
           "badge": "Nov 13",
           "body": "Six festive food marketplaces and the Sip and Savor Pass return, with a mariachi holiday show on Buena Vista Street. Santa greets at Redwood Creek Challenge Trail.",
           "url": "https://www.foxla.com/news/disneyland-resort-holiday-season-dates-announcement-2026"
+        },
+        {
+          "title": "Remember… Dreams Come True Returns",
+          "dates": "February 2027; exact date TBA",
+          "area": "dl",
+          "badge": "2027",
+          "body": "A refreshed version of the Disneyland fireworks spectacular is slated to return in February 2027. Nightly schedules haven't been announced yet.",
+          "url": "https://deeparrival.com/news/disneyland-entertainment-returns-2027-remember-dreams-magic-happens/"
+        },
+        {
+          "title": "World of Color (Original) Returns",
+          "dates": "February 2027; exact date TBA",
+          "area": "dca",
+          "badge": "2027",
+          "body": "An updated version of the original World of Color is slated to return to Paradise Bay in February 2027.",
+          "url": "https://deeparrival.com/news/disneyland-entertainment-returns-2027-remember-dreams-magic-happens/"
+        },
+        {
+          "title": "Magic Happens Parade Returns",
+          "dates": "Summer 2027; exact date TBA",
+          "area": "dl",
+          "badge": "2027",
+          "body": "The daytime parade is expected back at Disneyland park next summer. Dates haven't been announced.",
+          "url": "https://deeparrival.com/news/disneyland-entertainment-returns-2027-remember-dreams-magic-happens/"
         }
       ]
     }
   ],
   "tip": "Halloween Time and Plaza de la Familia are included with park admission; Oogie Boogie Bash needs its own ticket.",
-  "caveats": "Dates come from Disney press releases and fan sites as of Oct 22, 2026. Always confirm in the Disneyland app."
+  "caveats": "Dates come from Disney press releases and fan sites as of Oct 29, 2026. Always confirm in the Disneyland app."
 }
