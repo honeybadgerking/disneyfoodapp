@@ -101,3 +101,24 @@ Expected: all pass
 ### Task 4: Ship
 
 - [ ] **Step 1:** `git push -u origin rides-page`, open a PR against `main` describing the page, data sources, how to update `rides.json`, and that merging deploys.
+
+---
+
+## Revision 2026-11-02 (supersedes Tasks 1–3 where they conflict)
+
+Spec revision: "Revision 2026-11-02" in the spec. Execution: Native.
+
+### Task 1 (revised): data functions in `public/js/rides.js`, tests in `tests/rides.test.js`
+- `normalizeRides(liveData) -> Ride[]`, `Ride = { id, name, park, status }` (no wait/badges). Drops non-attractions and unknown parks.
+- `statusFor(ids: string[], byId: Map<string, Ride>) -> status|null`: best of `OPERATING` > `DOWN` > `CLOSED` > `REFURBISHMENT`; `null` if no id is live.
+- `refurbList(rides|null, meta|null, today)` and `downList(rides)`: as in the original Task 1.
+- Tests: the original Task 1 cases minus wait/badges/groupByLand, plus: `statusFor` picks OPERATING over CLOSED for a two-id ride; returns null for unknown ids.
+
+### Task 2 (revised): data
+- `rides.json`: add `ids` to every ride (script-assisted name match, manual aliases for overlays and Pixar Pal-A-Round); remove the four A Bug's Land rides.
+- New `refurbs.json` with notes for current refurbs ("it's a small world" holiday conversion, Redwood Creek Challenge Trail), sourced or null.
+- Tests: every ride has a non-empty `ids` array of distinct strings; no id is used by two rides; `refurbs.json` passes the original well-formedness test.
+
+### Task 3 (revised): `rides.html`
+- Fetch live once with `Promise.allSettled` alongside `rides.json` and `refurbs.json`; render the two status sections above the tabs, a status pill per ride card, and the footer time. No `setInterval`.
+- Verify at 375px: no horizontal scroll, no "null" text, sections render, and the API-failure path shows heights plus notes plus the notice.
