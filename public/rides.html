@@ -67,6 +67,23 @@
   .footer { padding: 16px 20px 24px; border-top: 3px double var(--navy); text-align: center; font-size: .78rem; color: var(--muted); }
   .footer a { color: var(--accent); font-weight: 700; text-decoration: none; }
   .status { padding: 30px; text-align: center; color: var(--muted); }
+  .board { padding: 4px 16px 6px; }
+  .board h2 { margin: 18px 0 10px; font-size: 1.05rem; color: var(--text); display: flex; align-items: baseline; gap: 8px; }
+  .board h2 small { font-size: .74rem; font-weight: 500; color: var(--muted); }
+  .board-item { background: var(--card); border: 1px solid var(--rule); border-left: 5px solid #c0392b; border-radius: 12px; padding: 10px 12px; margin-bottom: 8px; }
+  .board-item.down { border-left-color: #e67e22; }
+  .board-item.upcoming { border-left-color: var(--gold); }
+  .board-item b { display: block; font-size: .95rem; color: var(--text); }
+  .board-item .meta { font-size: .76rem; color: var(--muted); margin-top: 2px; }
+  .board-item .when { font-size: .82rem; font-weight: 700; margin-top: 4px; color: var(--text); }
+  .board-item .why { font-size: .8rem; margin-top: 3px; color: var(--text); opacity: .85; }
+  .board-item a { font-size: .76rem; font-weight: 700; color: var(--teal); text-decoration: none; }
+  .board-empty, .board-notice { font-size: .85rem; color: var(--muted); padding: 4px 2px 8px; }
+  .pill { display: inline-block; vertical-align: middle; margin-left: 6px; font-size: .66rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; padding: 2px 7px; border-radius: 999px; }
+  .pill.OPERATING { background: rgba(46,160,67,.16); color: #2a8a3e; }
+  .pill.DOWN { background: rgba(230,126,34,.18); color: #b85d10; }
+  .pill.CLOSED { background: rgba(107,114,128,.18); color: var(--muted); }
+  .pill.REFURBISHMENT { background: rgba(192,57,43,.16); color: #c0392b; }
   @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 </style>
 </head>
@@ -86,6 +103,7 @@
       <div class="stat"><b id="n-thrill">–</b><span>42"+ thrills</span></div>
     </div>
   </div>
+  <div class="board" id="board"></div>
   <div class="controls">
     <div class="tabs">
       <button class="tab on" data-park="dl" type="button">🏰 Disneyland Park</button>
@@ -100,9 +118,11 @@
   <div id="content"><div class="status">Loading rides…</div></div>
   <div class="footer">
     <div id="caveats"></div>
+    <div id="live-time"></div>
     <p><a href="/">Open the Food &amp; Drink Checklist →</a></p>
   </div>
 </div>
+<script src="/js/rides.js"></script>
 <script>
   function el(tag, cls, text) {
     const e = document.createElement(tag);
@@ -113,13 +133,28 @@
   const cm = n => Math.round(n * 2.54);
   let data = null;
   let park = 'dl';
+  let liveById = null; // Map of API id -> ride, or null if live status didn't load
+  const PILL = { OPERATING: 'Open', DOWN: 'Down', CLOSED: 'Closed', REFURBISHMENT: 'Refurb' };
+  const PARK_NAME = { dl: 'Disneyland', dca: 'California Adventure' };
+  const TZ = 'America/Los_Angeles';
+  const today = new Intl.DateTimeFormat('en-CA', { timeZone: TZ }).format(new Date());
+  const safeUrl = u => /^https:\/\//.test(u || '') ? u : null;
+  // "2026-11-10" -> "Nov. 10, 2026" (same style as the hand-written dates in refurbs.json)
+  const prettyDate = ymd => {
+    const d = new Date(ymd + 'T12:00:00Z');
+    const mon = d.toLocaleDateString('en-US', { timeZone: 'UTC', month: 'short' });
+    return mon + (mon === 'May' ? ' ' : '. ') + d.getUTCDate() + ', ' + d.getUTCFullYear();
+  };
 
   function rideCard(r, kid, i, total) {
     const c = el('div', 'ride' + (kid && r.min && kid < r.min ? ' blocked' : ''));
     c.style.setProperty('--i', Math.min(i, 20));
     c.appendChild(el('div', 'rank' + (r.rank <= 3 ? ' top' : ''), r.rank));
     const info = el('div', 'info');
-    info.appendChild(el('h3', null, r.name));
+    const name = el('h3', null, r.name);
+    const st = liveById && Rides.statusFor(r.ids, liveById);
+    if (st) name.appendChild(el('span', 'pill ' + st, PILL[st]));
+    info.appendChild(name);
     info.appendChild(el('div', 'land', r.land));
     if (r.note) info.appendChild(el('div', 'note', r.note));
     const bar = el('div', 'bar');
@@ -139,6 +174,55 @@
     return c;
   }
 
+  function boardItem(cls, title, meta) {
+    const d = el('div', 'board-item' + (cls ? ' ' + cls : ''));
+    d.appendChild(el('b', null, title));
+    if (meta) d.appendChild(el('div', 'meta', meta));
+    return d;
+  }
+
+  function refurbItem(r, upcoming) {
+    const d = boardItem(upcoming ? 'upcoming' : '', r.name, r.park ? PARK_NAME[r.park] : null);
+    const when = upcoming
+      ? 'Closing ' + prettyDate(r.starts) + (r.expectedReopen ? ' · back ' + r.expectedReopen : '')
+      : (r.expectedReopen ? 'Expected back ' + r.expectedReopen : 'Reopening date not announced');
+    d.appendChild(el('div', 'when', when));
+    if (r.note) d.appendChild(el('div', 'why', r.note));
+    const u = safeUrl(r.url);
+    if (u) {
+      const a = el('a', null, 'Source ↗');
+      a.href = u; a.target = '_blank'; a.rel = 'noopener';
+      d.appendChild(a);
+    }
+    return d;
+  }
+
+  function renderBoard(live, meta) {
+    const board = document.getElementById('board');
+    board.textContent = '';
+    const { current, upcoming } = Rides.refurbList(live, meta, today);
+
+    board.appendChild(el('h2', null, '🔧 Down for Refurbishment'));
+    if (!live) board.appendChild(el('div', 'board-notice', 'Live ride status unavailable right now. Showing announced closures only.'));
+    if (!current.length && !upcoming.length) {
+      board.appendChild(el('div', 'board-empty', live ? 'No rides are down for refurbishment right now 🎉' : 'No announced closures.'));
+    }
+    current.forEach(r => board.appendChild(refurbItem(r, false)));
+    if (upcoming.length) {
+      const h = el('h2', null, '📅 Coming Up');
+      board.appendChild(h);
+      upcoming.forEach(r => board.appendChild(refurbItem(r, true)));
+    }
+
+    const down = Rides.downList(live);
+    if (down.length) {
+      const h = el('h2', null, '⚠️ Temporarily Down');
+      h.appendChild(el('small', null, 'usually back within hours'));
+      board.appendChild(h);
+      down.forEach(r => board.appendChild(boardItem('down', r.name, PARK_NAME[r.park])));
+    }
+  }
+
   function render() {
     const kid = Number(document.getElementById('kid').value) || 0;
     const q = document.getElementById('q').value.trim().toLowerCase();
@@ -156,33 +240,48 @@
     root.appendChild(wrap);
   }
 
-  fetch('/rides.json', { cache: 'no-cache' })
-    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then(d => {
-      data = d;
-      const all = d.parks.flatMap(p => p.rides);
-      document.getElementById('n-total').textContent = all.length;
-      document.getElementById('n-any').textContent = all.filter(r => !r.min).length;
-      document.getElementById('n-thrill').textContent = all.filter(r => r.min >= 42).length;
-      const sel = document.getElementById('kid');
-      for (let i = 30; i <= 54; i += 2) {
-        const o = el('option', null, i + '" (' + cm(i) + ' cm)');
-        o.value = i;
-        sel.appendChild(o);
-      }
-      sel.addEventListener('change', render);
-      document.getElementById('q').addEventListener('input', render);
-      document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
-        park = t.dataset.park;
-        document.querySelectorAll('.tab').forEach(x => x.classList.toggle('on', x === t));
-        render();
-      }));
-      document.getElementById('caveats').textContent = d.caveats + ' Updated ' + d.updated + '.';
-      render();
-    })
-    .catch(() => {
+  const getJson = (url, opts) => fetch(url, opts).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); });
+
+  Promise.allSettled([
+    getJson('/rides.json', { cache: 'no-cache' }),
+    getJson('/refurbs.json', { cache: 'no-cache' }),
+    getJson('https://api.themeparks.wiki/v1/entity/bfc89fd6-314d-44b4-b89e-df1a89cf991e/live'),
+  ]).then(([ridesRes, refurbRes, liveRes]) => {
+    const live = liveRes.status === 'fulfilled' ? Rides.normalizeRides(liveRes.value.liveData) : null;
+    const meta = refurbRes.status === 'fulfilled' ? refurbRes.value : null;
+    liveById = live ? new Map(live.map(r => [r.id, r])) : null;
+    if (live) {
+      document.getElementById('live-time').textContent = 'Ride status checked ' +
+        new Date().toLocaleTimeString('en-US', { timeZone: TZ, hour: 'numeric', minute: '2-digit' }) + ' (Anaheim time) via ThemeParks.wiki.';
+    }
+    renderBoard(live, meta);
+
+    if (ridesRes.status !== 'fulfilled') {
       document.getElementById('content').innerHTML = '<div class="status">Couldn\'t load the ride list. Please try again shortly.</div>';
-    });
+      return;
+    }
+    const d = ridesRes.value;
+    data = d;
+    const all = d.parks.flatMap(p => p.rides);
+    document.getElementById('n-total').textContent = all.length;
+    document.getElementById('n-any').textContent = all.filter(r => !r.min).length;
+    document.getElementById('n-thrill').textContent = all.filter(r => r.min >= 42).length;
+    const sel = document.getElementById('kid');
+    for (let i = 30; i <= 54; i += 2) {
+      const o = el('option', null, i + '" (' + cm(i) + ' cm)');
+      o.value = i;
+      sel.appendChild(o);
+    }
+    sel.addEventListener('change', render);
+    document.getElementById('q').addEventListener('input', render);
+    document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+      park = t.dataset.park;
+      document.querySelectorAll('.tab').forEach(x => x.classList.toggle('on', x === t));
+      render();
+    }));
+    document.getElementById('caveats').textContent = d.caveats + ' Updated ' + d.updated + '.';
+    render();
+  });
 </script>
 </body>
 </html>

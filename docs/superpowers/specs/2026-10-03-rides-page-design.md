@@ -138,3 +138,38 @@ once with `cache: 'no-cache'`, like `events.json`.
 - Wait-time forecasts and charts.
 - Shows and parades (the API lists only `ATTRACTION` entities here, which include
   a few walkthroughs such as The Disney Gallery; these are kept).
+
+---
+
+## Revision 2026-11-02: build into the Ride Heights page (supersedes the layout above)
+
+A Ride Height Requirements page (`public/rides.html` + `public/rides.json`, rides keyed by
+name with `land`, `min`, `note`, `rank`) was added to `main` after this spec was written.
+Decisions from the user:
+
+- **Option A:** live status and refurbishment tracking are added **to the existing Ride
+  Heights page**, not a separate page.
+- **No live wait times and no auto-refresh.** Live status is fetched **once on page load**
+  and used only for status: the refurbishment and temporarily-down sections and a per-ride
+  status pill. No standby minutes, no ⚡/🧍 badges, no 5-minute refresh.
+- **Remove the four A Bug's Land rides** (Francis' Ladybug Boogie, Flik's Flyers,
+  Heimlich's Chew Chew Train, Tuck and Roll's Drive 'Em Buggies); the land closed in 2018.
+
+Changes to the design above:
+
+- **Matching by API id.** Each ride in `rides.json` gains `ids: [<ThemeParks.wiki id>, …]`
+  (an array, because Pixar Pal-A-Round is two API entities). Ids survive seasonal overlay
+  renames (e.g. Haunted Mansion Holiday, Soarin' Across America). A ride's status is the
+  "best" of its ids: `OPERATING` > `DOWN` > `CLOSED` > `REFURBISHMENT`, so a single open
+  side counts as open.
+- **Notes file.** Refurbishment notes live in a new `public/refurbs.json`
+  (`{ updated, refurbs: [...] }`, entry schema as above); `rides.json` keeps heights.
+- **Lands** come from `rides.json`; `groupByLand` is dropped.
+- **Layout.** Between the hero and the park tabs: 🔧 Down for Refurbishment (current and
+  upcoming) and ⚠️ Temporarily Down, each listing rides from both parks. Each ride card shows
+  a status pill (Open / Down / Closed / Refurb) when live data loaded. The footer shows "Ride
+  status checked h:mm a". Refurbishment sections include API rides not on the heights list
+  (e.g. Redwood Creek Challenge Trail), by API name.
+- **Error handling.** API failure: heights render as today, refurb notes render from
+  `refurbs.json`, no pills, and a one-line notice "Live ride status unavailable". `refurbs.json`
+  failure: refurb rows show "Reopening date not announced".

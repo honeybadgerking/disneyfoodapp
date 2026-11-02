@@ -1,0 +1,27 @@
+{
+ "updated": "2026-11-02",
+ "refurbs": [
+  {
+   "id": "3638ac09-9fce-4a43-8c79-8ebbe17afce2",
+   "name": "\"it's a small world\"",
+   "expectedReopen": "Nov. 13, 2026",
+   "note": "Closed Oct. 30 to install the “it’s a small world” Holiday overlay",
+   "url": "https://www.ocregister.com/2026/10/29/disneyland-closes-7-attractions-as-christmas-holidays-kick-off/"
+  },
+  {
+   "id": "c9803366-6f37-4406-82af-7692357e3ca9",
+   "name": "Redwood Creek Challenge Trail",
+   "expectedReopen": "Nov. 13, 2026",
+   "note": "Closed Nov. 1–12 to remove the Villains Grove overlay from Oogie Boogie Bash",
+   "url": "https://www.ocregister.com/2026/10/29/disneyland-closes-7-attractions-as-christmas-holidays-kick-off/"
+  },
+  {
+   "id": "9167db1d-e5e7-46da-a07f-ae30a87bc4c4",
+   "name": "Space Mountain",
+   "starts": "2026-11-10",
+   "expectedReopen": "Nov. 11, 2026",
+   "note": "One-day refurbishment",
+   "url": "https://www.ocregister.com/2026/10/29/disneyland-closes-7-attractions-as-christmas-holidays-kick-off/"
+  }
+ ]
+}
