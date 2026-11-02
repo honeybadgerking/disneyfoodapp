@@ -102,3 +102,32 @@ test('downList returns only DOWN rides, sorted by name', () => {
   assert.deepStrictEqual(downList(normalizeRides(live)).map(r => r.name), ['Grizzly River Run', 'Monorail']);
   assert.deepStrictEqual(downList(null), []);
 });
+
+test('rides.json: every ride has distinct API ids, none shared, no closed A Bug\'s Land rides', () => {
+  const data = require('../public/rides.json');
+  const seen = new Map();
+  for (const park of data.parks) {
+    for (const r of park.rides) {
+      assert.ok(Array.isArray(r.ids) && r.ids.length > 0, r.name + ' has no ids');
+      assert.strictEqual(new Set(r.ids).size, r.ids.length, r.name + ' repeats an id');
+      for (const id of r.ids) {
+        assert.ok(typeof id === 'string' && id.length > 0, r.name + ' has a bad id');
+        assert.ok(!seen.has(id), id + ' used by both ' + seen.get(id) + ' and ' + r.name);
+        seen.set(id, r.name);
+      }
+      assert.notStrictEqual(r.land, "A Bug's Land", r.name + ' is in A Bug\'s Land, which closed in 2018');
+    }
+  }
+});
+
+test('refurbs.json is well-formed', () => {
+  const data = require('../public/refurbs.json');
+  assert.match(data.updated, /^\d{4}-\d{2}-\d{2}$/);
+  assert.ok(Array.isArray(data.refurbs));
+  for (const r of data.refurbs) {
+    assert.strictEqual(typeof r.id, 'string');
+    assert.strictEqual(typeof r.name, 'string');
+    if (r.url != null) assert.match(r.url, /^https:\/\//);
+    if (r.starts != null) assert.match(r.starts, /^\d{4}-\d{2}-\d{2}$/);
+  }
+});
