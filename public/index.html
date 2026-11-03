@@ -673,6 +673,9 @@
   .toggle-option.active { box-shadow: 0 4px 12px rgba(0,0,0,.18); }
   .toggle-option.active.regular { background: linear-gradient(135deg, #0f6b6b, #1aa3a3); }
   .toggle-option.active.holiday { background: linear-gradient(135deg, #b3262e, #2a8a3e); }
+  .toggle-option.active.menu { background: linear-gradient(135deg, #1b2a4a, #c9a24b); color: #fff; }
+  .item-price { display: inline-block; margin-top: 3px; font-size: .7rem; font-weight: 800; color: var(--muted); background: var(--soft); border-radius: 999px; padding: 1px 8px; }
+  .menu-note { font-size: .74rem; color: var(--muted); text-align: center; margin: 0 0 8px; }
   .progress-bar { height: 8px; border-radius: 999px; overflow: hidden; }
   .progress-fill { position: relative; border-radius: 999px; transition: width .5s cubic-bezier(.2,.8,.2,1); overflow: hidden; }
   .progress-fill::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent); transform: translateX(-100%); animation: shimmer 2.4s ease-in-out infinite; }
@@ -759,6 +762,7 @@
   <div class="toggle-wrap">
     <div class="toggle-option regular active" id="toggle-regular">🎢 Regular</div>
     <div class="toggle-option holiday" id="toggle-holiday">🎄 Holiday</div>
+    <div class="toggle-option menu" id="toggle-menu">📖 Full Menu</div>
   </div>
   <div class="progress-wrap">
     <div class="progress-label">
@@ -772,6 +776,7 @@
 <div class="wrap controls">
 
 <div class="storage-banner" id="storage-banner" style="display:none"></div>
+<p class="menu-note" id="menu-note" style="display:none"></p>
 
 <div class="search-wrap">
   <input type="text" class="search-input" id="search-input" placeholder="Search items or restaurants..." enterkeyhint="search">
@@ -1236,6 +1241,36 @@
   let currentUser = null;
   let storageWorks = true;
   let holidayMode = false;
+  // "Full Menu" view: every permanent menu item from /menu.json plus the
+  // regular list. Remembered on this device only (not synced), so the
+  // Firestore checklist schema doesn't change.
+  const VIEW_KEY = 'disneyland-menu-view';
+  let menuMode = false;
+  try { menuMode = localStorage.getItem(VIEW_KEY) === '1'; } catch (e) {}
+  const menuData = { dl: [], dca: [], hotels: [], downtown: [] };
+  let menuInfo = null;
+  function setMenuMode(on) {
+    menuMode = on;
+    try { localStorage.setItem(VIEW_KEY, on ? '1' : '0'); } catch (e) {}
+  }
+  // Which items belong to the current view.
+  function inView(item) {
+    return menuMode ? !item.holiday : (item.holiday === holidayMode && !item.menu);
+  }
+  function itemsFor(park) {
+    return menuMode ? data[park].concat(menuData[park] || []) : data[park];
+  }
+  fetch('/menu.json', { cache: 'no-cache' })
+    .then(r => r.ok ? r.json() : null)
+    .then(doc => {
+      if (!doc) return;
+      menuInfo = doc;
+      Object.keys(menuData).forEach(park => {
+        menuData[park] = (doc[park] || []).map(it => Object.assign({}, it, { menu: true, holiday: false }));
+      });
+      if (currentUser) renderAll();
+    })
+    .catch(err => console.error('Menu load failed', err));
   let searchQuery = '';
   let flaggedOnly = false;
   const activeAreas = new Set(['dl', 'dca', 'hotels', 'downtown']);
@@ -1244,7 +1279,7 @@
   const TYPE_ICON = { snack: '🍿', food: '🍽️', drink: '🥤' };
 
   function itemKey(park, item) {
-    return `${park}::${item.holiday ? 'h' : 'r'}::${item.loc}::${item.name}`;
+    return `${park}::${item.menu ? 'm' : (item.holiday ? 'h' : 'r')}::${item.loc}::${item.name}`;
   }
 
   // Escapes text before it's inserted via innerHTML, so item names/descriptions
@@ -1385,10 +1420,18 @@
     const toggleHolidayBtn = document.getElementById('toggle-holiday');
     const fill = document.getElementById('progress-fill');
 
-    toggleRegular.classList.toggle('active', !holidayMode);
-    toggleHolidayBtn.classList.toggle('active', holidayMode);
+    toggleRegular.classList.toggle('active', !holidayMode && !menuMode);
+    toggleHolidayBtn.classList.toggle('active', holidayMode && !menuMode);
+    document.getElementById('toggle-menu').classList.toggle('active', menuMode);
+    const note = document.getElementById('menu-note');
+    note.style.display = menuMode ? '' : 'none';
+    if (menuMode && menuInfo) note.textContent = '📖 Every permanent menu item at Disneyland Park, from the official menus (' + menuInfo.updated + '). California Adventure, hotels & Downtown Disney coming next.';
 
-    if (holidayMode) {
+    if (menuMode) {
+      title.textContent = '📖 Disneyland Full Menu';
+      subtitle.textContent = 'Everything on the regular menus — not just the new stuff';
+      fill.style.background = 'linear-gradient(90deg, #1b2a4a, var(--dl-gold))';
+    } else if (holidayMode) {
       title.textContent = '🎄 Holidays Food & Drink List';
       subtitle.textContent = 'Holiday items — season starts mid-Nov 2026 · full menu still being posted';
       fill.style.background = 'var(--holiday)';
@@ -1401,7 +1444,7 @@
 
   function renderAll() {
     applyModeUI();
-    sections.forEach(s => renderList(s.containerId, data[s.key], s.key, s.emptyId));
+    sections.forEach(s => renderList(s.containerId, itemsFor(s.key), s.key, s.emptyId));
     renderDeleted();
     updateProgress();
   }
@@ -1411,7 +1454,7 @@
   function itemNameHtml(item) {
     const name = escapeHtml(item.name);
     if (typeof item.url === 'string' && /^https?:\/\//i.test(item.url)) {
-      return `<a class="item-link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer" title="${item.vref ? 'Photos of this restaurant' : 'See a photo'}">${name}</a>`;
+      return `<a class="item-link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer" title="${item.menu ? 'Official menu' : (item.vref ? 'Photos of this restaurant' : 'See a photo')}">${name}</a>`;
     }
     return name;
   }
@@ -1475,8 +1518,8 @@
   function updateSectionCounts() {
     sections.forEach(s => {
       let total = 0, done = 0;
-      data[s.key].forEach(item => {
-        if (item.holiday !== holidayMode) return;
+      itemsFor(s.key).forEach(item => {
+        if (!inView(item)) return;
         const key = itemKey(s.key, item);
         if (deletedKeys.has(key)) return;
         total++;
@@ -1492,7 +1535,7 @@
     const emptyNote = emptyId ? document.getElementById(emptyId) : null;
 
     const visibleItems = items.filter(item =>
-      item.holiday === holidayMode &&
+      inView(item) &&
       !deletedKeys.has(itemKey(keyPrefix, item)) &&
       activeTypes.has(item.type) &&
       matchesSearch(item) &&
@@ -1503,7 +1546,7 @@
       emptyNote.textContent = searchQuery
         ? 'No matches'
         : (flaggedOnly ? 'No items flagged for next trip'
-          : (holidayMode ? 'Full Holiday menu not yet posted — check back soon' : 'No items yet'));
+          : (menuMode && !menuData[keyPrefix].length ? 'Full menu for this area coming soon' : (holidayMode && !menuMode ? 'Full Holiday menu not yet posted — check back soon' : 'No items yet')));
     }
     container.innerHTML = '';
 
@@ -1578,6 +1621,7 @@
           <div class="item-text">
             <div class="item-name">${item.pop ? '<span class="item-star" title="Fan favorite">⭐</span>' : ''}<span class="item-type" title="${item.type || ''}">${TYPE_ICON[item.type] || ''}</span>${itemNameHtml(item)}</div>
             ${item.desc ? `<div class="item-desc">${escapeHtml(item.desc)}</div>` : ''}
+            ${typeof item.price === 'number' ? `<span class="item-price">$${item.price.toFixed(2)}</span>` : ''}
           </div>
           <button class="flag-btn ${isFlagged ? 'flagged' : ''}" aria-label="Flag for next trip">${isFlagged ? '🚩' : '🏳️'}</button>
           <a class="share-btn" href="${escapeHtml(shareHref(key, item.name, item.loc))}" aria-label="Share with the crew" title="Share with the crew">💬</a>
@@ -1613,8 +1657,8 @@
 
     const deletedEntries = [];
     sections.forEach(s => {
-      data[s.key].forEach(item => {
-        if (item.holiday !== holidayMode) return;
+      itemsFor(s.key).forEach(item => {
+        if (!inView(item)) return;
         const key = itemKey(s.key, item);
         if (deletedKeys.has(key)) deletedEntries.push({ park: s.key, item, key });
       });
@@ -1752,8 +1796,8 @@
     let total = 0;
     let done = 0;
     sections.forEach(s => {
-      data[s.key].forEach(item => {
-        if (item.holiday !== holidayMode) return;
+      itemsFor(s.key).forEach(item => {
+        if (!inView(item)) return;
         const key = itemKey(s.key, item);
         if (deletedKeys.has(key)) return;
         total++;
@@ -1764,7 +1808,8 @@
     document.getElementById('progress-text').textContent = `${done} of ${total} tried`;
     document.getElementById('progress-pct').textContent = `${pct}%`;
     document.getElementById('progress-fill').style.width = pct + '%';
-    const flagged = [...flaggedKeys].filter(k => !deletedKeys.has(k) && k.split('::')[1] === (holidayMode ? 'h' : 'r')).length;
+    let flagged = 0;
+    sections.forEach(s => itemsFor(s.key).forEach(item => { const k = itemKey(s.key, item); if (inView(item) && flaggedKeys.has(k) && !deletedKeys.has(k)) flagged++; }));
     countUp(document.getElementById('hstat-tried'), done);
     countUp(document.getElementById('hstat-left'), total - done);
     countUp(document.getElementById('hstat-flagged'), flagged);
@@ -1843,16 +1888,24 @@
 
 
   document.getElementById('toggle-regular').addEventListener('click', () => {
-    if (!holidayMode) return;
+    if (!holidayMode && !menuMode) return;
+    setMenuMode(false);
     holidayMode = false;
     renderAll();
     saveState();
   });
   document.getElementById('toggle-holiday').addEventListener('click', () => {
-    if (holidayMode) return;
+    if (holidayMode && !menuMode) return;
+    setMenuMode(false);
     holidayMode = true;
     renderAll();
     saveState();
+  });
+
+  document.getElementById('toggle-menu').addEventListener('click', () => {
+    if (menuMode) return;
+    setMenuMode(true);
+    renderAll();
   });
 
   const searchInput = document.getElementById('search-input');
@@ -1867,13 +1920,13 @@
   searchInput.addEventListener('input', (e) => {
     searchQuery = e.target.value.trim();
     searchClear.classList.toggle('visible', !!searchQuery);
-    sections.forEach(s => renderList(s.containerId, data[s.key], s.key, s.emptyId));
+    sections.forEach(s => renderList(s.containerId, itemsFor(s.key), s.key, s.emptyId));
   });
   searchClear.addEventListener('click', () => {
     searchQuery = '';
     searchInput.value = '';
     searchClear.classList.remove('visible');
-    sections.forEach(s => renderList(s.containerId, data[s.key], s.key, s.emptyId));
+    sections.forEach(s => renderList(s.containerId, itemsFor(s.key), s.key, s.emptyId));
     searchInput.focus();
   });
 
@@ -1881,7 +1934,7 @@
   flagFilterBtn.addEventListener('click', () => {
     flaggedOnly = !flaggedOnly;
     flagFilterBtn.classList.toggle('active', flaggedOnly);
-    sections.forEach(s => renderList(s.containerId, data[s.key], s.key, s.emptyId));
+    sections.forEach(s => renderList(s.containerId, itemsFor(s.key), s.key, s.emptyId));
   });
 
   // Type filter — show/hide snacks, food, and drinks independently.

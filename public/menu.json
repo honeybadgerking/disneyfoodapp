@@ -1,0 +1,1489 @@
+{
+ "updated": "2026-11-03",
+ "source": "Official Disneyland Resort menus (disneyland.disney.go.com), checked Nov 2026. Seasonal items, beer/wine and basic drinks excluded.",
+ "dl": [
+  {
+   "name": "Mega Pepperoni Pizza Slice",
+   "loc": "Alien Pizza Planet",
+   "land": "Tomorrowland",
+   "type": "food",
+   "desc": "Tomato sauce, mozzarella and pepperoni",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/alien-pizza-planet/menus/",
+   "price": 9.99
+  },
+  {
+   "name": "Mozz-114 Cheese Pizza Slice",
+   "loc": "Alien Pizza Planet",
+   "land": "Tomorrowland",
+   "type": "food",
+   "desc": "Tomato sauce with a generous layer of mozzarella",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/alien-pizza-planet/menus/",
+   "price": 9.49
+  },
+  {
+   "name": "Spaghetti & Meatballs",
+   "loc": "Alien Pizza Planet",
+   "land": "Tomorrowland",
+   "type": "food",
+   "desc": "Marinara, meatballs and parmesan",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/alien-pizza-planet/menus/",
+   "price": 14.79
+  },
+  {
+   "name": "Count Down Chicken Fusilli",
+   "loc": "Alien Pizza Planet",
+   "land": "Tomorrowland",
+   "type": "food",
+   "desc": "Grilled chicken in parmesan-pesto sauce",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/alien-pizza-planet/menus/",
+   "price": 14.79
+  },
+  {
+   "name": "Count Down Shrimp Fusilli",
+   "loc": "Alien Pizza Planet",
+   "land": "Tomorrowland",
+   "type": "food",
+   "desc": "Garlic shrimp in parmesan-pesto sauce",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/alien-pizza-planet/menus/",
+   "price": 15.79
+  },
+  {
+   "name": "Centurion Chicken Caesar Salad",
+   "loc": "Alien Pizza Planet",
+   "land": "Tomorrowland",
+   "type": "food",
+   "desc": "Grilled chicken, romaine, Caesar dressing",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/alien-pizza-planet/menus/",
+   "price": 14.79
+  },
+  {
+   "name": "Moonliner Macaron",
+   "loc": "Alien Pizza Planet",
+   "land": "Tomorrowland",
+   "type": "snack",
+   "desc": "Rocket-shaped macaron with salted caramel and brownie",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/alien-pizza-planet/menus/",
+   "price": 9.49
+  },
+  {
+   "name": "Chicken Teriyaki Skewer",
+   "loc": "Bengal Barbecue",
+   "land": "Adventureland",
+   "type": "food",
+   "desc": "Chicken skewer in teriyaki sauce",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/bengal-barbecue/menus/",
+   "price": 6.99
+  },
+  {
+   "name": "Pork & Vegetable Skewer",
+   "loc": "Bengal Barbecue",
+   "land": "Adventureland",
+   "type": "food",
+   "desc": "Pork belly and asparagus in tamarind sauce",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/bengal-barbecue/menus/",
+   "price": 7.29
+  },
+  {
+   "name": "Banyan Beef Skewer",
+   "loc": "Bengal Barbecue",
+   "land": "Adventureland",
+   "type": "food",
+   "desc": "Hot and spicy beef skewer",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/bengal-barbecue/menus/",
+   "price": 7.99
+  },
+  {
+   "name": "Bengal Beef Skewer",
+   "loc": "Bengal Barbecue",
+   "land": "Adventureland",
+   "type": "food",
+   "desc": "Beef skewer in sweet Zulu sauce",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/bengal-barbecue/menus/",
+   "price": 7.99
+  },
+  {
+   "name": "Bengal Rice Plate",
+   "loc": "Bengal Barbecue",
+   "land": "Adventureland",
+   "type": "food",
+   "desc": "Two skewers with rice and slaw",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/bengal-barbecue/menus/",
+   "price": 19.99
+  },
+  {
+   "name": "Garlic Naan",
+   "loc": "Bengal Barbecue",
+   "land": "Adventureland",
+   "type": "snack",
+   "desc": "Grilled bread basted with herb butter",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/bengal-barbecue/menus/",
+   "price": 5.79
+  },
+  {
+   "name": "Bulgogi Bean Salad",
+   "loc": "Bengal Barbecue",
+   "land": "Adventureland",
+   "type": "food",
+   "desc": "Cucumber, edamame, chickpeas, bell peppers",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/bengal-barbecue/menus/",
+   "price": 6.49
+  },
+  {
+   "name": "Iced Pandan Cooler",
+   "loc": "Bengal Barbecue",
+   "land": "Adventureland",
+   "type": "drink",
+   "desc": "Brown sugar popping spheres and ube cream",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/bengal-barbecue/menus/",
+   "price": 7.99
+  },
+  {
+   "name": "Jungle Julep",
+   "loc": "Bengal Barbecue",
+   "land": "Adventureland",
+   "type": "drink",
+   "desc": "Pineapple, orange, grape and lemon slush",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/bengal-barbecue/menus/",
+   "price": 7.99
+  },
+  {
+   "name": "Tropical Slushy",
+   "loc": "Bengal Barbecue",
+   "land": "Adventureland",
+   "type": "drink",
+   "desc": "Passion fruit, orange, guava with chile-lime rim",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/bengal-barbecue/menus/",
+   "price": 7.29
+  },
+  {
+   "name": "Thai Tea Slushy",
+   "loc": "Bengal Barbecue",
+   "land": "Adventureland",
+   "type": "drink",
+   "desc": "Brown sugar spheres and cold foam",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/bengal-barbecue/menus/",
+   "price": 8.29
+  },
+  {
+   "name": "Garlic Cheese Dip with Sourdough Boule",
+   "loc": "Blue Bayou Restaurant",
+   "land": "New Orleans Square",
+   "type": "snack",
+   "desc": "Garlic confit and cheesy grits",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/blue-bayou-restaurant/menus/",
+   "price": 15
+  },
+  {
+   "name": "Ribeye",
+   "loc": "Blue Bayou Restaurant",
+   "land": "New Orleans Square",
+   "type": "food",
+   "desc": "Herb mash, bacon-braised Swiss chard",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/blue-bayou-restaurant/menus/",
+   "price": 61
+  },
+  {
+   "name": "Market Fish",
+   "loc": "Blue Bayou Restaurant",
+   "land": "New Orleans Square",
+   "type": "food",
+   "desc": "Crab rice, fruit chow chow, citrus tea vinaigrette",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/blue-bayou-restaurant/menus/",
+   "price": 50
+  },
+  {
+   "name": "Magnolia Park Pasta",
+   "loc": "Blue Bayou Restaurant",
+   "land": "New Orleans Square",
+   "type": "food",
+   "desc": "Peppers, okra, mushrooms in creamy tomato sauce",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/blue-bayou-restaurant/menus/",
+   "price": 35
+  },
+  {
+   "name": "Crème Brûlée Tart",
+   "loc": "Blue Bayou Restaurant",
+   "land": "New Orleans Square",
+   "type": "snack",
+   "desc": "Vanilla bean crème brûlée in a tart shell",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/blue-bayou-restaurant/menus/",
+   "price": 10
+  },
+  {
+   "name": "Chocolate Fudge Cake",
+   "loc": "Blue Bayou Restaurant",
+   "land": "New Orleans Square",
+   "type": "snack",
+   "desc": "Chocolate sponge with fudge frosting",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/blue-bayou-restaurant/menus/",
+   "price": 13
+  },
+  {
+   "name": "Chicken Bacon Ranch Flop-Over",
+   "loc": "Café Daisy",
+   "land": "Mickey's Toontown",
+   "type": "food",
+   "desc": "Folded pizza with chicken, bacon and ranch",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/cafe-daisy/menus/",
+   "price": 12.49
+  },
+  {
+   "name": "The Daisy Dog",
+   "loc": "Café Daisy",
+   "land": "Mickey's Toontown",
+   "type": "food",
+   "desc": "All-beef foot-long hot dog with fries",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/cafe-daisy/menus/",
+   "price": 14.29
+  },
+  {
+   "name": "Cheesy Pizza Flop-Over",
+   "loc": "Café Daisy",
+   "land": "Mickey's Toontown",
+   "type": "food",
+   "desc": "Mozzarella and provolone",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/cafe-daisy/menus/",
+   "price": 10.99
+  },
+  {
+   "name": "Pepperoni Pizza Flop-Over",
+   "loc": "Café Daisy",
+   "land": "Mickey's Toontown",
+   "type": "food",
+   "desc": "Pepperoni, mozzarella, provolone",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/cafe-daisy/menus/",
+   "price": 11.49
+  },
+  {
+   "name": "Caesar Salad Garden Wrap",
+   "loc": "Café Daisy",
+   "land": "Mickey's Toontown",
+   "type": "food",
+   "desc": "Romaine and kale with sun-dried tomato-bean spread",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/cafe-daisy/menus/",
+   "price": 13.49
+  },
+  {
+   "name": "Picnic Time Watermelon Lemonade",
+   "loc": "Café Daisy",
+   "land": "Mickey's Toontown",
+   "type": "drink",
+   "desc": "Zero-sugar lemonade with watermelon",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/cafe-daisy/menus/",
+   "price": 7.99
+  },
+  {
+   "name": "Granny Goof's Garden Sweet Tea",
+   "loc": "Café Daisy",
+   "land": "Mickey's Toontown",
+   "type": "drink",
+   "desc": "Sweet tea with honey-mango syrup",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/cafe-daisy/menus/",
+   "price": 7.99
+  },
+  {
+   "name": "Braised Beef",
+   "loc": "Cafe Orleans",
+   "land": "New Orleans Square",
+   "type": "food",
+   "desc": "Mashed potatoes, bacon-mushroom demi-glace",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/cafe-orleans/menus/",
+   "price": 35
+  },
+  {
+   "name": "Crispy Chicken Cutlet Alfredo Pasta",
+   "loc": "Cafe Orleans",
+   "land": "New Orleans Square",
+   "type": "food",
+   "desc": "Spinach and lemon-roasted garlic alfredo",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/cafe-orleans/menus/",
+   "price": 30
+  },
+  {
+   "name": "NOLA BBQ Shrimp",
+   "loc": "Cafe Orleans",
+   "land": "New Orleans Square",
+   "type": "food",
+   "desc": "Over a house-made cheddar biscuit",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/cafe-orleans/menus/",
+   "price": 33
+  },
+  {
+   "name": "Garden Vegetable Shepherd's Pie",
+   "loc": "Cafe Orleans",
+   "land": "New Orleans Square",
+   "type": "food",
+   "desc": "Okra, onions, carrots, mushrooms under mash",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/cafe-orleans/menus/",
+   "price": 26
+  },
+  {
+   "name": "Crème Brûlée Tart (Cafe Orleans)",
+   "loc": "Cafe Orleans",
+   "land": "New Orleans Square",
+   "type": "snack",
+   "desc": "Vanilla bean crème brûlée in a tart shell",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/cafe-orleans/menus/",
+   "price": 10
+  },
+  {
+   "name": "Signature Bourbon Julep",
+   "loc": "Cafe Orleans",
+   "land": "New Orleans Square",
+   "type": "drink",
+   "desc": "Bourbon, citrus and mint",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/cafe-orleans/menus/",
+   "price": 21
+  },
+  {
+   "name": "Walt's Chili",
+   "loc": "Carnation Cafe",
+   "land": "Main Street, U.S.A.",
+   "type": "food",
+   "desc": "Walt's own recipe, with cheese and sour cream",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/carnation-cafe/menus/",
+   "price": 12
+  },
+  {
+   "name": "Baked Potato Soup",
+   "loc": "Carnation Cafe",
+   "land": "Main Street, U.S.A.",
+   "type": "food",
+   "desc": "Fried potato, bacon, cheddar and chives",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/carnation-cafe/menus/",
+   "price": 11
+  },
+  {
+   "name": "Spicy Chicken Sandwich",
+   "loc": "Carnation Cafe",
+   "land": "Main Street, U.S.A.",
+   "type": "food",
+   "desc": "Fried chicken in spicy chile sauce",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/carnation-cafe/menus/",
+   "price": 19
+  },
+  {
+   "name": "Chef's Salad",
+   "loc": "Carnation Cafe",
+   "land": "Main Street, U.S.A.",
+   "type": "food",
+   "desc": "Ham, chicken, bacon, cheddar, egg, tomato",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/carnation-cafe/menus/",
+   "price": 18
+  },
+  {
+   "name": "Turkey Club Sandwich",
+   "loc": "Carnation Cafe",
+   "land": "Main Street, U.S.A.",
+   "type": "food",
+   "desc": "Turkey, bacon, tomato, avocado mayo",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/carnation-cafe/menus/",
+   "price": 21
+  },
+  {
+   "name": "Chicken Parmesan Pasta",
+   "loc": "Carnation Cafe",
+   "land": "Main Street, U.S.A.",
+   "type": "food",
+   "desc": "Crispy chicken with cream sauce",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/carnation-cafe/menus/",
+   "price": 23
+  },
+  {
+   "name": "Hearty Veggie Burger",
+   "loc": "Carnation Cafe",
+   "land": "Main Street, U.S.A.",
+   "type": "food",
+   "desc": "House-made bean patty, chipotle mayo",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/carnation-cafe/menus/",
+   "price": 22
+  },
+  {
+   "name": "Peach Pie à la Mode",
+   "loc": "Carnation Cafe",
+   "land": "Main Street, U.S.A.",
+   "type": "snack",
+   "desc": "Warm peach pie with vanilla ice cream",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/carnation-cafe/menus/",
+   "price": 10
+  },
+  {
+   "name": "Brownie with Chocolate Sauce",
+   "loc": "Carnation Cafe",
+   "land": "Main Street, U.S.A.",
+   "type": "snack",
+   "desc": "With vanilla ice cream",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/carnation-cafe/menus/",
+   "price": 10
+  },
+  {
+   "name": "Bounty Bun",
+   "loc": "Docking Bay 7 Food and Cargo",
+   "land": "Star Wars: Galaxy's Edge",
+   "type": "food",
+   "desc": "Bun filled with spiced beef and pork",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/docking-bay-7-food-and-cargo/menus/",
+   "price": 15.99
+  },
+  {
+   "name": "Fried Chicken Tip-Yip with Cheesy Noodles",
+   "loc": "Docking Bay 7 Food and Cargo",
+   "land": "Star Wars: Galaxy's Edge",
+   "type": "food",
+   "desc": "Fried chicken over Adelphi cheesy noodles",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/docking-bay-7-food-and-cargo/menus/",
+   "price": 18.99
+  },
+  {
+   "name": "Surabat Valley Greens Chicken Salad",
+   "loc": "Docking Bay 7 Food and Cargo",
+   "land": "Star Wars: Galaxy's Edge",
+   "type": "food",
+   "desc": "Chicken, quinoa and veggies",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/docking-bay-7-food-and-cargo/menus/",
+   "price": 14.79
+  },
+  {
+   "name": "Fried Chicken Baos",
+   "loc": "Docking Bay 7 Food and Cargo",
+   "land": "Star Wars: Galaxy's Edge",
+   "type": "food",
+   "desc": "Two crispy chicken baos with sweet chili",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/docking-bay-7-food-and-cargo/menus/",
+   "price": 14.99
+  },
+  {
+   "name": "Grogu Cookies",
+   "loc": "Docking Bay 7 Food and Cargo",
+   "land": "Star Wars: Galaxy's Edge",
+   "type": "snack",
+   "desc": "White chocolate macaron cookies with pineapple cream",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/docking-bay-7-food-and-cargo/menus/",
+   "price": 8.49
+  },
+  {
+   "name": "Fantasyland Garlic Cheesy Brat",
+   "loc": "Edelweiss Snacks",
+   "land": "Fantasyland",
+   "type": "food",
+   "desc": "Bratwurst in cheesy garlic pretzel bread",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/edelweiss-snacks/menus/",
+   "price": 13.79
+  },
+  {
+   "name": "Turkey Leg (Edelweiss)",
+   "loc": "Edelweiss Snacks",
+   "land": "Fantasyland",
+   "type": "snack",
+   "desc": "Giant smoked turkey leg",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/edelweiss-snacks/menus/",
+   "price": 14.49
+  },
+  {
+   "name": "Stellar Spicy Chicken Sandwich",
+   "loc": "Galactic Grill",
+   "land": "Tomorrowland",
+   "type": "food",
+   "desc": "Fried chicken, spicy salsa, crispy onions",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/galactic-grill/menus/",
+   "price": 14.99
+  },
+  {
+   "name": "The Tenderverse",
+   "loc": "Galactic Grill",
+   "land": "Tomorrowland",
+   "type": "food",
+   "desc": "Chicken tenders",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/galactic-grill/menus/",
+   "price": 13.99
+  },
+  {
+   "name": "Cheeseburger Constellation",
+   "loc": "Galactic Grill",
+   "land": "Tomorrowland",
+   "type": "food",
+   "desc": "Beef burger with American cheese",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/galactic-grill/menus/",
+   "price": 14.79
+  },
+  {
+   "name": "Galaxy Fish & Chips",
+   "loc": "Galactic Grill",
+   "land": "Tomorrowland",
+   "type": "food",
+   "desc": "Beer-battered fish with fries",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/galactic-grill/menus/",
+   "price": 15.79
+  },
+  {
+   "name": "Grilled Chicken Salad",
+   "loc": "Galactic Grill",
+   "land": "Tomorrowland",
+   "type": "food",
+   "desc": "Grilled chicken and mixed veggies",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/galactic-grill/menus/",
+   "price": 14.79
+  },
+  {
+   "name": "Darth by Chocolate",
+   "loc": "Galactic Grill",
+   "land": "Tomorrowland",
+   "type": "snack",
+   "desc": "Layers of chocolate and red velvet",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/galactic-grill/menus/",
+   "price": 7.79
+  },
+  {
+   "name": "Chocolate Chip Cookie Sundae",
+   "loc": "Gibson Girl Ice Cream Parlor",
+   "land": "Main Street, U.S.A.",
+   "type": "snack",
+   "desc": "Vanilla ice cream with fresh-baked cookies",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/gibson-girl-ice-cream-parlor/menus/",
+   "price": 10.79
+  },
+  {
+   "name": "Firehouse Dalmatian Mint Sundae",
+   "loc": "Gibson Girl Ice Cream Parlor",
+   "land": "Main Street, U.S.A.",
+   "type": "snack",
+   "desc": "Mint chip in a waffle cup",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/gibson-girl-ice-cream-parlor/menus/",
+   "price": 9.79
+  },
+  {
+   "name": "Strawberry Street Car Sundae",
+   "loc": "Gibson Girl Ice Cream Parlor",
+   "land": "Main Street, U.S.A.",
+   "type": "snack",
+   "desc": "Strawberry and vanilla in a dipped waffle cup",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/gibson-girl-ice-cream-parlor/menus/",
+   "price": 12.79
+  },
+  {
+   "name": "Dipped Waffle Cone",
+   "loc": "Gibson Girl Ice Cream Parlor",
+   "land": "Main Street, U.S.A.",
+   "type": "snack",
+   "desc": "Ice cream in a chocolate-dipped waffle cone",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/gibson-girl-ice-cream-parlor/menus/",
+   "price": 8.49
+  },
+  {
+   "name": "Ice Cream Sandwich (Gibson Girl)",
+   "loc": "Gibson Girl Ice Cream Parlor",
+   "land": "Main Street, U.S.A.",
+   "type": "snack",
+   "desc": "Ice cream between fresh-baked chocolate chip cookies",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/gibson-girl-ice-cream-parlor/menus/",
+   "price": 8.79
+  },
+  {
+   "name": "Ice Cream Float (Gibson Girl)",
+   "loc": "Gibson Girl Ice Cream Parlor",
+   "land": "Main Street, U.S.A.",
+   "type": "drink",
+   "desc": "Vanilla ice cream with root beer or Fanta",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/gibson-girl-ice-cream-parlor/menus/",
+   "price": 8.69
+  },
+  {
+   "name": "Mini Corn Dogs with Fries",
+   "loc": "The Golden Horseshoe",
+   "land": "Frontierland",
+   "type": "food",
+   "desc": "Mini corn dogs and fries",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/golden-horseshoe-restaurant/menus/",
+   "price": 10.99
+  },
+  {
+   "name": "Beer-battered Fish & Chips (Golden Horseshoe)",
+   "loc": "The Golden Horseshoe",
+   "land": "Frontierland",
+   "type": "food",
+   "desc": "With tartar sauce",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/golden-horseshoe-restaurant/menus/",
+   "price": 14.99
+  },
+  {
+   "name": "Cookie Butter Churro Sundae",
+   "loc": "The Golden Horseshoe",
+   "land": "Frontierland",
+   "type": "snack",
+   "desc": "Cookie dough ice cream topped with a churro",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/golden-horseshoe-restaurant/menus/",
+   "price": 12.29
+  },
+  {
+   "name": "Clam Chowder Bread Bowl",
+   "loc": "Harbour Galley",
+   "land": "New Orleans Square",
+   "type": "food",
+   "desc": "Clam chowder in a sourdough bread bowl",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/harbour-galley/menus/",
+   "price": 13.99
+  },
+  {
+   "name": "Crab and Shrimp Roll",
+   "loc": "Harbour Galley",
+   "land": "New Orleans Square",
+   "type": "food",
+   "desc": "Lump crab and shrimp salad with chips",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/harbour-galley/menus/",
+   "price": 18.99
+  },
+  {
+   "name": "Ratatouille Soup",
+   "loc": "Harbour Galley",
+   "land": "New Orleans Square",
+   "type": "food",
+   "desc": "Roasted tomato, zucchini, eggplant, with garlic bread",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/harbour-galley/menus/",
+   "price": 12.99
+  },
+  {
+   "name": "Smoked Barbecue Combo Platter",
+   "loc": "Hungry Bear Barbecue Jamboree",
+   "land": "Bayou Country",
+   "type": "food",
+   "desc": "House-smoked meats, baked beans and coleslaw",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/hungry-bear-barbecue/menus/",
+   "price": 22.99
+  },
+  {
+   "name": "Barbecue Salad",
+   "loc": "Hungry Bear Barbecue Jamboree",
+   "land": "Bayou Country",
+   "type": "food",
+   "desc": "Chopped brisket, romaine and kale",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/hungry-bear-barbecue/menus/",
+   "price": 15.79
+  },
+  {
+   "name": "Smoked Angus Beef Burger with Pulled Pork",
+   "loc": "Hungry Bear Barbecue Jamboree",
+   "land": "Bayou Country",
+   "type": "food",
+   "desc": "With fries",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/hungry-bear-barbecue/menus/",
+   "price": 19.49
+  },
+  {
+   "name": "Barbecue Pulled Pork Sandwich",
+   "loc": "Hungry Bear Barbecue Jamboree",
+   "land": "Bayou Country",
+   "type": "food",
+   "desc": "With fries",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/hungry-bear-barbecue/menus/",
+   "price": 16.99
+  },
+  {
+   "name": "Smoked Beef Brisket Sandwich",
+   "loc": "Hungry Bear Barbecue Jamboree",
+   "land": "Bayou Country",
+   "type": "food",
+   "desc": "With fries",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/hungry-bear-barbecue/menus/",
+   "price": 18.99
+  },
+  {
+   "name": "Corn Ribs Plate",
+   "loc": "Hungry Bear Barbecue Jamboree",
+   "land": "Bayou Country",
+   "type": "food",
+   "desc": "Chile-lime aïoli and crispy onions",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/hungry-bear-barbecue/menus/",
+   "price": 15.79
+  },
+  {
+   "name": "Cinnamon Sugar Funnel Cake Fries",
+   "loc": "Hungry Bear Barbecue Jamboree",
+   "land": "Bayou Country",
+   "type": "snack",
+   "desc": "Funnel cake fries with cinnamon sugar",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/hungry-bear-barbecue/menus/",
+   "price": 7.49
+  },
+  {
+   "name": "Banana Pudding",
+   "loc": "Hungry Bear Barbecue Jamboree",
+   "land": "Bayou Country",
+   "type": "snack",
+   "desc": "Whipped cream, bananas and dulce de leche",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/hungry-bear-barbecue/menus/",
+   "price": 7.99
+  },
+  {
+   "name": "Jolly Holiday Combo",
+   "loc": "Jolly Holiday Bakery Cafe",
+   "land": "Main Street, U.S.A.",
+   "type": "food",
+   "desc": "Toasted cheese with tomato basil soup",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/jolly-holiday-bakery-cafe/menus/",
+   "price": 14.49
+  },
+  {
+   "name": "BooGogi Beef Toasted",
+   "loc": "Jolly Holiday Bakery Cafe",
+   "land": "Main Street, U.S.A.",
+   "type": "food",
+   "desc": "Marinated beef, grilled onion, mozzarella",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/jolly-holiday-bakery-cafe/menus/",
+   "price": 15.99
+  },
+  {
+   "name": "Jolly Chopped Salad",
+   "loc": "Jolly Holiday Bakery Cafe",
+   "land": "Main Street, U.S.A.",
+   "type": "food",
+   "desc": "Greens, deli meats, Italian relish, garbanzos",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/jolly-holiday-bakery-cafe/menus/",
+   "price": 14.79
+  },
+  {
+   "name": "Turkey on Ciabatta",
+   "loc": "Jolly Holiday Bakery Cafe",
+   "land": "Main Street, U.S.A.",
+   "type": "food",
+   "desc": "Honey-mustard aïoli",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/jolly-holiday-bakery-cafe/menus/",
+   "price": 11.49
+  },
+  {
+   "name": "Garden Grain Salad",
+   "loc": "Jolly Holiday Bakery Cafe",
+   "land": "Main Street, U.S.A.",
+   "type": "food",
+   "desc": "Arugula, roasted red pepper, cucumber",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/jolly-holiday-bakery-cafe/menus/",
+   "price": 11.99
+  },
+  {
+   "name": "Strawberry-stuffed Croissant",
+   "loc": "Jolly Holiday Bakery Cafe",
+   "land": "Main Street, U.S.A.",
+   "type": "snack",
+   "desc": "Strawberries, pastry cream and coulis",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/jolly-holiday-bakery-cafe/menus/",
+   "price": 9.49
+  },
+  {
+   "name": "Brownie Pie",
+   "loc": "Jolly Holiday Bakery Cafe",
+   "land": "Main Street, U.S.A.",
+   "type": "snack",
+   "desc": "Fudge brownie baked in a pie crust",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/jolly-holiday-bakery-cafe/menus/",
+   "price": 8.49
+  },
+  {
+   "name": "Mickey-shaped Sugar Cookie",
+   "loc": "Jolly Holiday Bakery Cafe",
+   "land": "Main Street, U.S.A.",
+   "type": "snack",
+   "desc": "Classic Mickey sugar cookie",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/jolly-holiday-bakery-cafe/menus/",
+   "price": 6.49
+  },
+  {
+   "name": "Crait Butter Popped Grains",
+   "loc": "Kat Saka's Kettle",
+   "land": "Star Wars: Galaxy's Edge",
+   "type": "snack",
+   "desc": "Popped grains with Crait red salt",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/kat-sakas-kettle/menus/",
+   "price": 8.49
+  },
+  {
+   "name": "Black Spire Waffle",
+   "loc": "Kat Saka's Kettle",
+   "land": "Star Wars: Galaxy's Edge",
+   "type": "snack",
+   "desc": "Waffle with sugar clusters and dipping sauce",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/kat-sakas-kettle/menus/",
+   "price": 7.49
+  },
+  {
+   "name": "Black Caf Slushy",
+   "loc": "Kat Saka's Kettle",
+   "land": "Star Wars: Galaxy's Edge",
+   "type": "drink",
+   "desc": "Cold brew slushy with sweet cream",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/kat-sakas-kettle/menus/",
+   "price": 8.49
+  },
+  {
+   "name": "Pickle",
+   "loc": "Little Red Wagon",
+   "land": "Main Street, U.S.A.",
+   "type": "snack",
+   "desc": "Whole dill pickle",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/little-red-wagon/menus/",
+   "price": 4.99
+  },
+  {
+   "name": "Strawberry Lemonade Wagonade",
+   "loc": "Little Red Wagon",
+   "land": "Main Street, U.S.A.",
+   "type": "drink",
+   "desc": "Lemonade with strawberries",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/little-red-wagon/menus/",
+   "price": 7.49
+  },
+  {
+   "name": "Crispy Grilled Cheese on Sourdough",
+   "loc": "Market House",
+   "land": "Main Street, U.S.A.",
+   "type": "food",
+   "desc": "White cheddar and mozzarella",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/market-house/menus/",
+   "price": 7.99
+  },
+  {
+   "name": "Bacon and Gruyère Sous Vide Egg Bites",
+   "loc": "Market House",
+   "land": "Main Street, U.S.A.",
+   "type": "food",
+   "desc": "Starbucks egg bites",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/market-house/menus/",
+   "price": 5.49
+  },
+  {
+   "name": "Cake Pop",
+   "loc": "Market House",
+   "land": "Main Street, U.S.A.",
+   "type": "snack",
+   "desc": "Chocolate-covered cake pop",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/market-house/menus/",
+   "price": 4.49
+  },
+  {
+   "name": "Chocolate Croissant Cookie",
+   "loc": "Maurice's Treats",
+   "land": "Fantasyland",
+   "type": "snack",
+   "desc": "Flat croissant filled with chocolate, sugar-coated",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/maurices-treats/menus/",
+   "price": 7.49
+  },
+  {
+   "name": "Tiramisù Nitro Cold Brew",
+   "loc": "Maurice's Treats",
+   "land": "Fantasyland",
+   "type": "drink",
+   "desc": "Dark chocolate and tiramisù cream",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/maurices-treats/menus/",
+   "price": 8.49
+  },
+  {
+   "name": "Polystarch Puffbread",
+   "loc": "Milk Stand",
+   "land": "Star Wars: Galaxy's Edge",
+   "type": "snack",
+   "desc": "Layered pastry with a crunchy streusel shell",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/milk-stand/menus/",
+   "price": 7.99
+  },
+  {
+   "name": "Meatloaf",
+   "loc": "Plaza Inn",
+   "land": "Main Street, U.S.A.",
+   "type": "food",
+   "desc": "Glazed meatloaf with mashed potatoes",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/plaza-inn/menus/",
+   "price": 18.49
+  },
+  {
+   "name": "Panko-crusted Salmon",
+   "loc": "Plaza Inn",
+   "land": "Main Street, U.S.A.",
+   "type": "food",
+   "desc": "With mashed potatoes and vegetables",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/plaza-inn/menus/",
+   "price": 19.99
+  },
+  {
+   "name": "Cobb Salad",
+   "loc": "Plaza Inn",
+   "land": "Main Street, U.S.A.",
+   "type": "food",
+   "desc": "Chicken, bacon, egg, tomato on romaine",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/plaza-inn/menus/",
+   "price": 15.79
+  },
+  {
+   "name": "Penne Pasta with Chicken Pesto Alfredo",
+   "loc": "Plaza Inn",
+   "land": "Main Street, U.S.A.",
+   "type": "food",
+   "desc": "With a breadstick",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/plaza-inn/menus/",
+   "price": 17.49
+  },
+  {
+   "name": "Stumpfest Cake",
+   "loc": "Plaza Inn",
+   "land": "Main Street, U.S.A.",
+   "type": "snack",
+   "desc": "Chocolate roulade with white chocolate mousse",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/plaza-inn/menus/",
+   "price": 8.49
+  },
+  {
+   "name": "Duo of Barbacoa Tacos",
+   "loc": "Rancho del Zocalo Restaurante",
+   "land": "Frontierland",
+   "type": "food",
+   "desc": "Shredded beef tacos",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/rancho-del-zocalo-restaurante/menus/",
+   "price": 16.49
+  },
+  {
+   "name": "Duo of Chicken Tacos",
+   "loc": "Rancho del Zocalo Restaurante",
+   "land": "Frontierland",
+   "type": "food",
+   "desc": "Chicken tacos",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/rancho-del-zocalo-restaurante/menus/",
+   "price": 15.49
+  },
+  {
+   "name": "Burrito Sonora",
+   "loc": "Rancho del Zocalo Restaurante",
+   "land": "Frontierland",
+   "type": "food",
+   "desc": "Barbacoa or chicken",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/rancho-del-zocalo-restaurante/menus/",
+   "price": 16.49
+  },
+  {
+   "name": "Pollo Asado",
+   "loc": "Rancho del Zocalo Restaurante",
+   "land": "Frontierland",
+   "type": "food",
+   "desc": "Grilled chicken with sides",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/rancho-del-zocalo-restaurante/menus/",
+   "price": 19.99
+  },
+  {
+   "name": "Cheese Enchilada Plate",
+   "loc": "Rancho del Zocalo Restaurante",
+   "land": "Frontierland",
+   "type": "food",
+   "desc": "Cheese enchiladas baked in sauce",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/rancho-del-zocalo-restaurante/menus/",
+   "price": 14.99
+  },
+  {
+   "name": "Cinnamon Crisps",
+   "loc": "Rancho del Zocalo Restaurante",
+   "land": "Frontierland",
+   "type": "snack",
+   "desc": "Tortilla strips dusted with cinnamon",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/rancho-del-zocalo-restaurante/menus/",
+   "price": 4.79
+  },
+  {
+   "name": "Iced Chocolate Café",
+   "loc": "Rancho del Zocalo Restaurante",
+   "land": "Frontierland",
+   "type": "drink",
+   "desc": "Hot chocolate and espresso over ice",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/rancho-del-zocalo-restaurante/menus/",
+   "price": 8.49
+  },
+  {
+   "name": "Gaston Burger",
+   "loc": "Red Rose Taverne",
+   "land": "Fantasyland",
+   "type": "food",
+   "desc": "Beef patty, pastrami, cheese, onions and peppers",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/red-rose-taverne/menus/",
+   "price": 18.29
+  },
+  {
+   "name": "Provincial Burger",
+   "loc": "Red Rose Taverne",
+   "land": "Fantasyland",
+   "type": "food",
+   "desc": "Cheeseburger with burger sauce",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/red-rose-taverne/menus/",
+   "price": 16.79
+  },
+  {
+   "name": "Chicken Fantasyland Faire Fold",
+   "loc": "Red Rose Taverne",
+   "land": "Fantasyland",
+   "type": "food",
+   "desc": "Tortilla with chicken patty, hash brown, cheese",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/red-rose-taverne/menus/",
+   "price": 15.49
+  },
+  {
+   "name": "Spicy Chicken Fantasyland Faire Fold",
+   "loc": "Red Rose Taverne",
+   "land": "Fantasyland",
+   "type": "food",
+   "desc": "Spicy chicken, hash brown, cheese",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/red-rose-taverne/menus/",
+   "price": 15.49
+  },
+  {
+   "name": "Pétales de Pepperoni Flatbread",
+   "loc": "Red Rose Taverne",
+   "land": "Fantasyland",
+   "type": "food",
+   "desc": "Pepperoni and mozzarella flatbread",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/red-rose-taverne/menus/",
+   "price": 11.49
+  },
+  {
+   "name": "Cottage Salad",
+   "loc": "Red Rose Taverne",
+   "land": "Fantasyland",
+   "type": "food",
+   "desc": "Romaine, egg, bacon, chicken, cucumber",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/red-rose-taverne/menus/",
+   "price": 14.79
+  },
+  {
+   "name": "Little Town Harvest Bowl",
+   "loc": "Red Rose Taverne",
+   "land": "Fantasyland",
+   "type": "food",
+   "desc": "Quinoa, roasted mushrooms, cauliflower, arugula",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/red-rose-taverne/menus/",
+   "price": 9.99
+  },
+  {
+   "name": "Birria Potato",
+   "loc": "Refreshment Corner",
+   "land": "Main Street, U.S.A.",
+   "type": "food",
+   "desc": "Baked potato with beef birria and pepper jack",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/refreshment-corner/menus/",
+   "price": 14.99
+  },
+  {
+   "name": "Chili Cheese Dog Basket",
+   "loc": "Refreshment Corner",
+   "land": "Main Street, U.S.A.",
+   "type": "food",
+   "desc": "Chili, cheese and onion",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/refreshment-corner/menus/",
+   "price": 10.79
+  },
+  {
+   "name": "Mac & Cheese Dog Basket",
+   "loc": "Refreshment Corner",
+   "land": "Main Street, U.S.A.",
+   "type": "food",
+   "desc": "Hot dog topped with mac & cheese and bacon",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/refreshment-corner/menus/",
+   "price": 11.79
+  },
+  {
+   "name": "Mac & Cheese in a Sourdough Bread Bowl",
+   "loc": "Refreshment Corner",
+   "land": "Main Street, U.S.A.",
+   "type": "food",
+   "desc": "Mac & cheese in a bread bowl",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/refreshment-corner/menus/",
+   "price": 13.99
+  },
+  {
+   "name": "Hearty Chili Bread Bowl",
+   "loc": "Refreshment Corner",
+   "land": "Main Street, U.S.A.",
+   "type": "food",
+   "desc": "All-beef chili in a sourdough bread bowl",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/refreshment-corner/menus/",
+   "price": 13.99
+  },
+  {
+   "name": "Mickey Mouse Pretzel",
+   "loc": "Refreshment Corner",
+   "land": "Main Street, U.S.A.",
+   "type": "snack",
+   "desc": "Warm Mickey-shaped pretzel",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/refreshment-corner/menus/",
+   "price": 6.29
+  },
+  {
+   "name": "Cream Cheese-filled Pretzel",
+   "loc": "Refreshment Corner",
+   "land": "Main Street, U.S.A.",
+   "type": "snack",
+   "desc": "Warm pretzel filled with cream cheese",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/refreshment-corner/menus/",
+   "price": 7.29
+  },
+  {
+   "name": "Jalapeño Cheese-filled Pretzel",
+   "loc": "Refreshment Corner",
+   "land": "Main Street, U.S.A.",
+   "type": "snack",
+   "desc": "Warm pretzel filled with jalapeño cheese",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/refreshment-corner/menus/",
+   "price": 7.29
+  },
+  {
+   "name": "Pot Roast",
+   "loc": "River Belle Terrace",
+   "land": "Frontierland",
+   "type": "food",
+   "desc": "Tender beef with creamy potatoes",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/river-belle-terrace/menus/",
+   "price": 30
+  },
+  {
+   "name": "Fried Chicken Plate",
+   "loc": "River Belle Terrace",
+   "land": "Frontierland",
+   "type": "food",
+   "desc": "Crispy fried chicken with sides",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/river-belle-terrace/menus/",
+   "price": 26
+  },
+  {
+   "name": "Shrimp Lemon Caper Pasta",
+   "loc": "River Belle Terrace",
+   "land": "Frontierland",
+   "type": "food",
+   "desc": "Shrimp pasta with lemon and spinach",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/river-belle-terrace/menus/",
+   "price": 27
+  },
+  {
+   "name": "Wedge Salad",
+   "loc": "River Belle Terrace",
+   "land": "Frontierland",
+   "type": "food",
+   "desc": "Thick-cut bacon, soft-boiled egg, heirloom tomatoes",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/river-belle-terrace/menus/",
+   "price": 18
+  },
+  {
+   "name": "Impossible Meatloaf",
+   "loc": "River Belle Terrace",
+   "land": "Frontierland",
+   "type": "food",
+   "desc": "Plant-based meatloaf with tomato glaze",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/river-belle-terrace/menus/",
+   "price": 24
+  },
+  {
+   "name": "Fried Cheese Curds & Peppers",
+   "loc": "River Belle Terrace",
+   "land": "Frontierland",
+   "type": "snack",
+   "desc": "Cheese curds with marinara",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/river-belle-terrace/menus/",
+   "price": 11
+  },
+  {
+   "name": "Creamy Dill, Pickle & Onion Dip",
+   "loc": "River Belle Terrace",
+   "land": "Frontierland",
+   "type": "snack",
+   "desc": "Served with crispy chips",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/river-belle-terrace/menus/",
+   "price": 11
+  },
+  {
+   "name": "Ronto Wrap",
+   "loc": "Ronto Roasters",
+   "land": "Star Wars: Galaxy's Edge",
+   "type": "food",
+   "desc": "Roasted pork, sausage and peppercorn sauce in pita",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/ronto-roasters/menus/lunch-and-dinner/",
+   "price": 14.49
+  },
+  {
+   "name": "Ronto-less Garden Wrap",
+   "loc": "Ronto Roasters",
+   "land": "Star Wars: Galaxy's Edge",
+   "type": "food",
+   "desc": "Impossible sausage and spicy kimchi slaw",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/ronto-roasters/menus/lunch-and-dinner/",
+   "price": 14.49
+  },
+  {
+   "name": "Fried Falumpaset Cheese Skewer",
+   "loc": "Ronto Roasters",
+   "land": "Star Wars: Galaxy's Edge",
+   "type": "snack",
+   "desc": "Crispy potato with mustard-cheese dip",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/ronto-roasters/menus/lunch-and-dinner/",
+   "price": 8.49
+  },
+  {
+   "name": "Ronto Morning Wrap",
+   "loc": "Ronto Roasters",
+   "land": "Star Wars: Galaxy's Edge",
+   "type": "food",
+   "desc": "Breakfast: eggs, pork sausage, cheddar in pita",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/ronto-roasters/menus/lunch-and-dinner/",
+   "price": 13.99
+  },
+  {
+   "name": "Moof Juice",
+   "loc": "Ronto Roasters",
+   "land": "Star Wars: Galaxy's Edge",
+   "type": "drink",
+   "desc": "Fruit punch, orange, pineapple, chipotle-pineapple",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/ronto-roasters/menus/lunch-and-dinner/",
+   "price": 7.99
+  },
+  {
+   "name": "Meiloorun Juice",
+   "loc": "Ronto Roasters",
+   "land": "Star Wars: Galaxy's Edge",
+   "type": "drink",
+   "desc": "Pineapple lemonade with blueberry and cranberry",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/ronto-roasters/menus/lunch-and-dinner/",
+   "price": 7.99
+  },
+  {
+   "name": "Cajun Caesar Chicken Po'Boy",
+   "loc": "Royal Street Veranda",
+   "land": "New Orleans Square",
+   "type": "food",
+   "desc": "Cajun chicken on a French roll",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/royal-street-veranda/menus/",
+   "price": 12.99
+  },
+  {
+   "name": "Royal Street Bread Bowl",
+   "loc": "Royal Street Veranda",
+   "land": "New Orleans Square",
+   "type": "food",
+   "desc": "Clam chowder or broccoli cheddar in sourdough",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/royal-street-veranda/menus/",
+   "price": 13.99
+  },
+  {
+   "name": "Monte Cristo (Royal Street)",
+   "loc": "Royal Street Veranda",
+   "land": "New Orleans Square",
+   "type": "food",
+   "desc": "Ham, turkey and Swiss with powdered sugar and jam",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/royal-street-veranda/menus/",
+   "price": 13.99
+  },
+  {
+   "name": "Tossed Tenders",
+   "loc": "Stage Door Café",
+   "land": "Frontierland",
+   "type": "food",
+   "desc": "Tenders in hot honey or mango-habanero",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/stage-door-cafe/menus/",
+   "price": 14.99
+  },
+  {
+   "name": "Churro Funnel Cake",
+   "loc": "Stage Door Café",
+   "land": "Frontierland",
+   "type": "snack",
+   "desc": "Cinnamon sugar and caramel sauce",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/stage-door-cafe/menus/",
+   "price": 9.99
+  },
+  {
+   "name": "Classic Funnel Cake",
+   "loc": "Stage Door Café",
+   "land": "Frontierland",
+   "type": "snack",
+   "desc": "Powdered sugar and whipped cream",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/stage-door-cafe/menus/",
+   "price": 9.49
+  },
+  {
+   "name": "Strawberry Funnel Cake",
+   "loc": "Stage Door Café",
+   "land": "Frontierland",
+   "type": "snack",
+   "desc": "Strawberry sauce and whipped cream",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/stage-door-cafe/menus/",
+   "price": 10.49
+  },
+  {
+   "name": "Classic Beignets",
+   "loc": "Tiana's Palace",
+   "land": "New Orleans Square",
+   "type": "snack",
+   "desc": "Powdered sugar and honey drizzle",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/tianas-palace/menus/",
+   "price": 7.49
+  },
+  {
+   "name": "French Quarter Fried Chicken Bowl",
+   "loc": "Tiana's Palace",
+   "land": "New Orleans Square",
+   "type": "food",
+   "desc": "Spicy honey chicken, mac and cheese, collards",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/tianas-palace/menus/",
+   "price": 17.99
+  },
+  {
+   "name": "Andouille Sausage Po'Boy",
+   "loc": "Tiana's Palace",
+   "land": "New Orleans Square",
+   "type": "food",
+   "desc": "Roasted andouille on French bread",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/tianas-palace/menus/",
+   "price": 16.99
+  },
+  {
+   "name": "Shrimp and Grits",
+   "loc": "Tiana's Palace",
+   "land": "New Orleans Square",
+   "type": "food",
+   "desc": "Creole shrimp over cheesy grits",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/tianas-palace/menus/",
+   "price": 17.99
+  },
+  {
+   "name": "House Gumbo",
+   "loc": "Tiana's Palace",
+   "land": "New Orleans Square",
+   "type": "food",
+   "desc": "Braised chicken, andouille and heirloom rice",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/tianas-palace/menus/",
+   "price": 17.49
+  },
+  {
+   "name": "7 Greens Gumbo",
+   "loc": "Tiana's Palace",
+   "land": "New Orleans Square",
+   "type": "food",
+   "desc": "White beans, okra, yams and sweet potato",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/tianas-palace/menus/",
+   "price": 14.99
+  },
+  {
+   "name": "Cajun Spiced Half Chicken",
+   "loc": "Tiana's Palace",
+   "land": "New Orleans Square",
+   "type": "food",
+   "desc": "Brushed with BBQ sauce",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/tianas-palace/menus/",
+   "price": 19.99
+  },
+  {
+   "name": "Dole Whip Flavors (Strawberry, Peach)",
+   "loc": "The Tropical Hideaway",
+   "land": "Adventureland",
+   "type": "snack",
+   "desc": "Rotating Dole Whip soft-serve flavors",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/tropical-hideaway/menus/",
+   "price": 7.49
+  },
+  {
+   "name": "Trio of Baos",
+   "loc": "The Tropical Hideaway",
+   "land": "Adventureland",
+   "type": "food",
+   "desc": "Lime chicken and char siu baos",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/tropical-hideaway/menus/",
+   "price": 17.49
+  },
+  {
+   "name": "Char Siu Bao",
+   "loc": "The Tropical Hideaway",
+   "land": "Adventureland",
+   "type": "food",
+   "desc": "Sweet sticky roasted pork",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/tropical-hideaway/menus/",
+   "price": 6.49
+  },
+  {
+   "name": "Lime Chicken Bao",
+   "loc": "The Tropical Hideaway",
+   "land": "Adventureland",
+   "type": "food",
+   "desc": "Lime chicken with fresh herbs",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/tropical-hideaway/menus/",
+   "price": 6.49
+  },
+  {
+   "name": "Shrimp and Chive Potstickers",
+   "loc": "The Tropical Hideaway",
+   "land": "Adventureland",
+   "type": "food",
+   "desc": "Chile-garlic sauce, herbs and lime",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/tropical-hideaway/menus/",
+   "price": 9.49
+  },
+  {
+   "name": "Pizza Girls Baked Potato",
+   "loc": "Troubadour Tavern",
+   "land": "Fantasyland",
+   "type": "food",
+   "desc": "Pepperoni, sausage, bacon, marinara and alfredo",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/troubadour-tavern/menus/",
+   "price": 12.99
+  },
+  {
+   "name": "The Troubadour Baked Potato",
+   "loc": "Troubadour Tavern",
+   "land": "Fantasyland",
+   "type": "food",
+   "desc": "Butter, sour cream, cheese, bacon, green onion",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/troubadour-tavern/menus/",
+   "price": 9.99
+  },
+  {
+   "name": "Poffertjes! Poffertjes!",
+   "loc": "Troubadour Tavern",
+   "land": "Fantasyland",
+   "type": "snack",
+   "desc": "Mini Dutch pancakes with buttered condensed milk",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/troubadour-tavern/menus/",
+   "price": 7.99
+  },
+  {
+   "name": "Pavlova Parfait",
+   "loc": "Troubadour Tavern",
+   "land": "Fantasyland",
+   "type": "snack",
+   "desc": "Meringue, vanilla yogurt mousse, berry compote",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/troubadour-tavern/menus/",
+   "price": 8.29
+  },
+  {
+   "name": "Lime Ice Block Drink",
+   "loc": "Troubadour Tavern",
+   "land": "Fantasyland",
+   "type": "drink",
+   "desc": "Pineapple limeade with coconut milk",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/troubadour-tavern/menus/",
+   "price": 10.99
+  },
+  {
+   "name": "Mud Cake Cold Brew",
+   "loc": "Troubadour Tavern",
+   "land": "Fantasyland",
+   "type": "drink",
+   "desc": "Malted milk topper and brownie bits",
+   "url": "https://disneyland.disney.go.com/dining/disneyland/troubadour-tavern/menus/",
+   "price": 8.49
+  },
+  {
+   "name": "Classic Churro",
+   "loc": "Various churro carts",
+   "land": "Park-wide",
+   "type": "snack",
+   "desc": "Fried dough rolled in cinnamon sugar",
+   "url": "https://disneyland.disney.go.com/dining/churros/"
+  },
+  {
+   "name": "Chocolate-filled Churro",
+   "loc": "Various churro carts",
+   "land": "Park-wide",
+   "type": "snack",
+   "desc": "Churro with a chocolate filling",
+   "url": "https://disneyland.disney.go.com/dining/churros/"
+  }
+ ]
+}
