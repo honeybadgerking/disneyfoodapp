@@ -3,7 +3,7 @@ service cloud.firestore {
   match /databases/{database}/documents {
 
     // One checklist document per signed-in user, at users/{uid}.
-    // Only that user can read or write it. Everything else is closed.
+    // Only that user can read or write it.
     match /users/{userId} {
       allow read, delete: if isOwner(userId);
       allow create: if isOwner(userId) && validChecklist(request.resource.data.keys());
@@ -13,8 +13,119 @@ service cloud.firestore {
         && validChecklist(request.resource.data.diff(resource.data).affectedKeys());
     }
 
+    // ---- Crew (invite-only collaboration) ----
+
+    // admins/{uid}: created by hand in the Firebase console, never by the app.
+    // A user may only check whether they themselves are an admin.
+    match /admins/{uid} {
+      allow get: if signedIn() && request.auth.uid == uid;
+    }
+
+    // invites/{email}: the allow-list. Doc id is the lowercased Google
+    // account email. Only admins can add or remove people.
+    match /invites/{email} {
+      allow get: if signedIn() && (isMember() || email == myEmail());
+      allow list: if isMember();
+      allow create: if isAdmin() && validInvite(email);
+      allow delete: if isAdmin();
+    }
+
+    match /posts/{postId} {
+      allow read: if isMember();
+      allow create: if isMember() && validPost();
+      // The only change anyone can make is adding/removing their own like.
+      allow update: if isMember() && validLikeToggle();
+      allow delete: if isMember() && (resource.data.authorUid == request.auth.uid || isAdmin());
+
+      match /comments/{commentId} {
+        allow read: if isMember();
+        allow create: if isMember() && validComment()
+          && exists(/databases/$(database)/documents/posts/$(postId));
+        allow delete: if isMember() && (resource.data.authorUid == request.auth.uid || isAdmin());
+      }
+    }
+
+    // ---- helpers ----
+
     function isOwner(userId) {
       return request.auth != null && request.auth.uid == userId;
+    }
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function myEmail() {
+      return request.auth.token.email.lower();
+    }
+
+    function isAdmin() {
+      return signedIn()
+        && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    // A member is a signed-in user whose verified email is on the invite list.
+    function isMember() {
+      return signedIn() && (isAdmin() || (
+        request.auth.token.email_verified == true
+        && exists(/databases/$(database)/documents/invites/$(myEmail()))
+      ));
+    }
+
+    function validInvite(email) {
+      let d = request.resource.data;
+      return email == email.lower()
+        && email.matches('^[^@ /]+@[^@ /]+[.][^@ /]+$')
+        && email.size() <= 254
+        && d.keys().hasOnly(['email', 'name', 'invitedBy', 'createdAt'])
+        && d.keys().hasAll(['email', 'invitedBy', 'createdAt'])
+        && d.email == email
+        && d.invitedBy == request.auth.uid
+        && d.createdAt == request.time
+        && (!d.keys().hasAny(['name']) || (d.name is string && d.name.size() <= 60));
+    }
+
+    function validAuthor(d) {
+      return d.authorUid == request.auth.uid
+        && d.authorName is string && d.authorName.size() > 0 && d.authorName.size() <= 80
+        && (!d.keys().hasAny(['authorPhoto']) || (d.authorPhoto is string && d.authorPhoto.size() <= 1000))
+        && d.createdAt == request.time;
+    }
+
+    function validPost() {
+      let d = request.resource.data;
+      return d.keys().hasOnly(['authorUid', 'authorName', 'authorPhoto', 'kind', 'text', 'rating', 'item', 'likes', 'createdAt'])
+        && d.keys().hasAll(['authorUid', 'authorName', 'kind', 'text', 'likes', 'createdAt'])
+        && validAuthor(d)
+        && d.kind in ['tip', 'review', 'plan', 'question']
+        && d.text is string && d.text.size() > 0 && d.text.size() <= 1000
+        && d.likes == []
+        && (!d.keys().hasAny(['rating']) || (d.kind == 'review' && d.rating is int && d.rating >= 1 && d.rating <= 5))
+        && (!d.keys().hasAny(['item']) || (
+          d.item is map
+          && d.item.keys().hasOnly(['key', 'label'])
+          && d.item.key is string && d.item.key.size() <= 300
+          && d.item.label is string && d.item.label.size() <= 200
+        ));
+    }
+
+    function validLikeToggle() {
+      let before = resource.data.likes.toSet();
+      let after = request.resource.data.likes;
+      let me = [request.auth.uid].toSet();
+      return request.resource.data.diff(resource.data).affectedKeys().hasOnly(['likes'])
+        && after is list && after.size() <= 500
+        && after.toSet().size() == after.size()
+        && after.toSet().difference(before).difference(me).size() == 0
+        && before.difference(after.toSet()).difference(me).size() == 0;
+    }
+
+    function validComment() {
+      let d = request.resource.data;
+      return d.keys().hasOnly(['authorUid', 'authorName', 'authorPhoto', 'text', 'createdAt'])
+        && d.keys().hasAll(['authorUid', 'authorName', 'text', 'createdAt'])
+        && validAuthor(d)
+        && d.text is string && d.text.size() > 0 && d.text.size() <= 500;
     }
 
     // Must match what buildStatePayload() + firebaseSaveUserState() in
