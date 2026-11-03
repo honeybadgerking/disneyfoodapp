@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crew Feed · Disneyland Resort Food</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1b2a4a; --navy2: #2d4373; --gold: #c9a24b; --gold2: #e8c25f; --teal: #0f6b6b; --teal2: #1aa3a3;
+    --rose: #e0507a; --bg: #f4efe4; --paper: #fffdf8; --card: #ffffff; --text: #23272f; --muted: #6b7280;
+    --rule: #e6dfcf; --soft: #f1ece0; --danger: #c0392b;
+    --k-tip: #c9a24b; --k-review: #e0507a; --k-plan: #1aa3a3; --k-question: #6b3fa0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0e1424; --paper: #151c30; --card: #1c2540; --text: #eef0f6; --muted: #98a1b8; --rule: #2b3556; --soft: #26304f; --k-question: #b48ae8; }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: Nunito, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); padding: 20px 12px 60px;
+    background-image: radial-gradient(circle at 10% 0%, rgba(201,162,75,.18), transparent 40%), radial-gradient(circle at 95% 8%, rgba(26,163,163,.16), transparent 38%), radial-gradient(circle at 50% 100%, rgba(224,80,122,.10), transparent 45%); background-attachment: fixed; }
+  h1, h2, h3, .brand { font-family: Fredoka, Nunito, sans-serif; }
+  button { font: inherit; cursor: pointer; }
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+  .paper { max-width: 720px; margin: 0 auto; background: var(--paper); border: 1px solid var(--rule); border-radius: 22px; box-shadow: 0 14px 44px rgba(27,42,74,.18); overflow: clip; }
+  .nav { display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 16px; background: linear-gradient(90deg, var(--navy), var(--navy2)); }
+  .nav a { color: #fff; text-decoration: none; font-size: .8rem; font-weight: 700; padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,.35); transition: transform .15s, background .15s; }
+  .nav a:hover { transform: translateY(-2px); background: rgba(255,255,255,.15); }
+  .nav a.current { background: var(--gold); border-color: var(--gold); color: var(--navy); }
+  .hero { position: relative; text-align: center; padding: 34px 18px 24px; color: #fff; overflow: hidden;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 50%, #7a3a78 100%, var(--rose) 140%); }
+  .hero::before, .hero::after { content: "✦"; position: absolute; color: var(--gold2); opacity: .55; font-size: 2.2rem; animation: twinkle 3.2s ease-in-out infinite; }
+  .hero::before { left: 8%; top: 18%; } .hero::after { right: 9%; bottom: 16%; animation-delay: 1.4s; font-size: 1.6rem; }
+  @keyframes twinkle { 0%,100% { opacity: .2; transform: scale(.8) rotate(0); } 50% { opacity: .85; transform: scale(1.15) rotate(20deg); } }
+  .hero h1 { margin: 0; font-size: clamp(1.7rem, 7vw, 2.5rem); text-shadow: 0 2px 12px rgba(0,0,0,.35); }
+  .hero p { margin: 6px 0 0; opacity: .9; font-size: .95rem; }
+  .stats { display: flex; justify-content: center; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+  .stat { background: rgba(255,255,255,.13); border: 1px solid rgba(255,255,255,.28); border-radius: 14px; padding: 8px 16px; backdrop-filter: blur(4px); min-width: 84px; }
+  .stat b { display: block; font-size: 1.4rem; color: var(--gold2); line-height: 1.1; font-family: Fredoka, sans-serif; }
+  .stat span { font-size: .68rem; text-transform: uppercase; letter-spacing: .08em; opacity: .85; }
+  .me { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 14px; font-size: .8rem; }
+  .me button { background: rgba(255,255,255,.14); color: #fff; border: 1px solid rgba(255,255,255,.3); border-radius: 999px; padding: 4px 12px; font-size: .75rem; font-weight: 700; }
+  .badge-admin { background: var(--gold); color: var(--navy); border-radius: 999px; padding: 2px 8px; font-size: .68rem; font-weight: 800; }
+  main { padding: 16px; display: grid; gap: 16px; }
+  main > *, .feed > * { min-width: 0; }
+
+  /* gate */
+  .gate { text-align: center; padding: 34px 20px 40px; }
+  .gate .big { font-size: 3rem; animation: bob 2.4s ease-in-out infinite; display: inline-block; }
+  @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  .gate h2 { margin: 8px 0 6px; font-size: 1.35rem; }
+  .gate p { color: var(--muted); margin: 0 auto 18px; max-width: 360px; line-height: 1.45; font-size: .92rem; }
+  .gate code { background: var(--soft); padding: 2px 6px; border-radius: 6px; font-size: .85rem; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: none; border-radius: 999px; padding: 11px 20px; font-weight: 800; font-size: .92rem; color: #fff;
+    background: linear-gradient(135deg, var(--teal), var(--teal2)); box-shadow: 0 6px 16px rgba(15,107,107,.3); transition: transform .15s, box-shadow .15s, opacity .15s; }
+  .btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(15,107,107,.35); }
+  .btn:disabled { opacity: .55; cursor: default; }
+  .btn.ghost { background: var(--card); color: var(--text); border: 1px solid var(--rule); box-shadow: none; }
+  .btn.google { background: #fff; color: #23272f; border: 1px solid #d1cabb; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+  .gate-status { min-height: 18px; color: var(--danger); font-size: .8rem; margin-top: 12px; }
+
+  /* cards */
+  .card { background: var(--card); border: 1px solid var(--rule); border-radius: 18px; padding: 14px; box-shadow: 0 1px 2px rgba(0,0,0,.05); }
+  .card h2 { margin: 0 0 10px; font-size: 1.05rem; display: flex; align-items: center; gap: 8px; }
+  .card h2 small { font-family: Nunito, sans-serif; font-weight: 600; color: var(--muted); font-size: .75rem; }
+
+  /* composer */
+  .kinds { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+  .kind { border: 1px solid var(--rule); background: var(--paper); color: var(--muted); border-radius: 999px; padding: 6px 12px; font-size: .8rem; font-weight: 700; transition: all .15s; }
+  .kind[aria-pressed="true"] { color: #fff; border-color: transparent; background: var(--kc); box-shadow: 0 4px 12px color-mix(in srgb, var(--kc) 40%, transparent); }
+  .kind[data-kind="tip"], .pill.tip { --kc: var(--k-tip); }
+  .kind[data-kind="review"], .pill.review { --kc: var(--k-review); }
+  .kind[data-kind="plan"], .pill.plan { --kc: var(--k-plan); }
+  .kind[data-kind="question"], .pill.question { --kc: var(--k-question); }
+  .kind[data-kind="all"] { --kc: var(--navy2); }
+  textarea, input[type=text], input[type=email] { width: 100%; font: inherit; font-size: 16px; color: var(--text); background: var(--paper); border: 1px solid var(--rule); border-radius: 14px; padding: 10px 12px; }
+  textarea { min-height: 84px; resize: vertical; line-height: 1.4; }
+  .stars { display: none; gap: 2px; margin-bottom: 8px; }
+  .stars.show { display: flex; }
+  .stars button { background: none; border: none; font-size: 1.5rem; padding: 0 2px; filter: grayscale(1); opacity: .45; transition: transform .12s, filter .12s, opacity .12s; }
+  .stars button.on { filter: none; opacity: 1; }
+  .stars button:hover { transform: scale(1.2); }
+  .linked { display: none; align-items: center; gap: 8px; margin-bottom: 8px; font-size: .82rem; background: color-mix(in srgb, var(--gold) 16%, transparent); border-radius: 12px; padding: 6px 10px; }
+  .linked.show { display: flex; }
+  .linked b { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .linked button { background: none; border: none; color: var(--muted); font-size: 1rem; }
+  .compose-foot { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+  .counter { flex: 1; font-size: .75rem; color: var(--muted); }
+  .counter.over { color: var(--danger); font-weight: 800; }
+
+  /* feed */
+  .filters { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding: 1px 0 4px; }
+  .filters::-webkit-scrollbar { display: none; }
+  .filters .kind { flex: none; }
+  .feed { display: grid; gap: 12px; }
+  .post { position: relative; overflow: hidden; animation: rise .4s both; }
+  .post::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--kc, var(--gold)); }
+  @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  .post-head { display: flex; align-items: center; gap: 10px; }
+  .avatar { flex: none; width: 38px; height: 38px; border-radius: 50%; object-fit: cover; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; color: #fff; font-size: .9rem; }
+  .avatar.sm { width: 28px; height: 28px; font-size: .72rem; }
+  .who { flex: 1; min-width: 0; }
+  .who b { display: block; font-size: .92rem; }
+  .who span { font-size: .74rem; color: var(--muted); }
+  .pill { font-size: .7rem; font-weight: 800; color: #fff; background: var(--kc); border-radius: 999px; padding: 3px 9px; white-space: nowrap; }
+  .post-rating { margin-top: 8px; font-size: 1rem; letter-spacing: 1px; }
+  .post-text { margin: 8px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.45; font-size: .95rem; }
+  .post-item { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; font-size: .78rem; font-weight: 700; color: var(--text); text-decoration: none; background: var(--soft); border-radius: 999px; padding: 5px 11px; }
+  .post-item:hover { background: color-mix(in srgb, var(--gold) 22%, transparent); }
+  .post-actions { display: flex; gap: 6px; margin-top: 10px; align-items: center; }
+  .act { border: 1px solid var(--rule); background: var(--paper); color: var(--text); border-radius: 999px; padding: 5px 12px; font-size: .8rem; font-weight: 700; display: inline-flex; gap: 6px; align-items: center; transition: transform .12s, background .12s; }
+  .act:hover { transform: translateY(-1px); }
+  .act.liked { background: color-mix(in srgb, var(--rose) 16%, var(--paper)); border-color: var(--rose); color: var(--rose); }
+  .act.liked .heart { animation: pop .35s; }
+  @keyframes pop { 50% { transform: scale(1.5); } }
+  .act.del { margin-left: auto; color: var(--muted); }
+  .comments { display: none; margin-top: 10px; border-top: 1px dashed var(--rule); padding-top: 10px; }
+  .post.open .comments { display: block; }
+  .comment { display: flex; gap: 8px; margin-bottom: 8px; }
+  .comment .bubble { flex: 1; min-width: 0; background: var(--soft); border-radius: 4px 14px 14px 14px; padding: 7px 10px; font-size: .86rem; }
+  .comment .bubble b { font-size: .78rem; }
+  .comment .bubble small { color: var(--muted); font-size: .7rem; margin-left: 6px; }
+  .comment .bubble p { margin: 2px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .comment .x { background: none; border: none; color: var(--muted); font-size: .8rem; align-self: flex-start; }
+  .reply { display: flex; gap: 6px; }
+  .reply input { padding: 8px 12px; border-radius: 999px; }
+  .reply .btn { padding: 8px 14px; font-size: .8rem; }
+  .empty { text-align: center; color: var(--muted); padding: 26px 10px; }
+  .empty .big { font-size: 2.2rem; display: block; margin-bottom: 6px; }
+
+  /* roster */
+  .roster { display: flex; flex-wrap: wrap; gap: 8px; }
+  .member { display: inline-flex; align-items: center; gap: 6px; background: var(--paper); border: 1px solid var(--rule); border-radius: 999px; padding: 4px 10px 4px 4px; font-size: .8rem; font-weight: 700; }
+  .member small { color: var(--muted); font-weight: 600; }
+  .member button { background: none; border: none; color: var(--muted); padding: 0 0 0 2px; font-size: .85rem; }
+  .invite-form { display: grid; grid-template-columns: 1fr 1fr auto; gap: 8px; margin-top: 12px; }
+  .invite-note { font-size: .76rem; color: var(--muted); margin: 8px 0 0; }
+  .invite-msg { font-size: .8rem; margin-top: 6px; min-height: 1em; }
+  .invite-msg.err { color: var(--danger); } .invite-msg.ok { color: var(--teal2); }
+  @media (max-width: 520px) { .invite-form { grid-template-columns: 1fr; } }
+
+  .toast { position: fixed; left: 50%; bottom: 22px; transform: translate(-50%, 30px); opacity: 0; background: var(--navy); color: #fff; padding: 10px 18px; border-radius: 999px; font-weight: 700; font-size: .85rem; box-shadow: 0 8px 24px rgba(0,0,0,.3); transition: all .25s; pointer-events: none; z-index: 50; }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+  .footer { padding: 16px 20px 22px; border-top: 3px double var(--navy); text-align: center; font-size: .78rem; color: var(--muted); }
+  .footer a { color: var(--teal2); font-weight: 700; text-decoration: none; }
+  [hidden] { display: none !important; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+<div class="paper">
+  <div class="nav">
+    <a href="/">🍔 Food</a><a href="/rides.html">🎢 Ride Heights</a><a href="/events.html">📰 Events</a><a href="/crew.html" class="current" aria-current="page">💬 Crew</a>
+  </div>
+  <header class="hero">
+    <h1>💬 The Crew Feed</h1>
+    <p>Tips, reviews &amp; plans from your invite-only park crew</p>
+    <div class="stats" id="stats" hidden>
+      <div class="stat"><b id="stat-posts">0</b><span>Posts</span></div>
+      <div class="stat"><b id="stat-crew">0</b><span>Crew</span></div>
+      <div class="stat"><b id="stat-likes">0</b><span>Likes</span></div>
+    </div>
+    <div class="me" id="me" hidden>
+      <span id="me-name"></span><span class="badge-admin" id="me-admin" hidden>ADMIN</span>
+      <button type="button" id="signout">Sign out</button>
+    </div>
+  </header>
+
+  <!-- Gate: loading / signed out / not invited -->
+  <section class="gate" id="gate">
+    <div id="gate-loading"><span class="big">✨</span><h2>Loading the magic…</h2></div>
+    <div id="gate-signin" hidden>
+      <span class="big">🏰</span>
+      <h2>Members only</h2>
+      <p>The Crew Feed is invite-only. Sign in with the Google account you were invited with.</p>
+      <button class="btn google" id="signin" type="button">
+        <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.72v2.26h2.92c1.7-1.57 2.68-3.88 2.68-6.62z"/><path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.92-2.26c-.81.54-1.85.86-3.04.86-2.34 0-4.32-1.58-5.03-3.7H.96v2.33A9 9 0 0 0 9 18z"/><path fill="#FBBC05" d="M3.97 10.72A5.4 5.4 0 0 1 3.69 9c0-.6.1-1.18.28-1.72V4.95H.96A9 9 0 0 0 0 9c0 1.45.35 2.83.96 4.05l3.01-2.33z"/><path fill="#EA4335" d="M9 3.58c1.32 0 2.51.45 3.44 1.35l2.58-2.58C13.46.89 11.43 0 9 0A9 9 0 0 0 .96 4.95l3.01 2.33C4.68 5.16 6.66 3.58 9 3.58z"/></svg>
+        Sign in with Google
+      </button>
+      <div class="gate-status" id="gate-status"></div>
+    </div>
+    <div id="gate-denied" hidden>
+      <span class="big">🔒</span>
+      <h2>You're not on the list (yet!)</h2>
+      <p>Signed in as <code id="denied-email"></code>, which hasn't been invited. Ask the crew admin to invite this exact Google account, then reload.</p>
+      <button class="btn ghost" id="switch" type="button">Use a different account</button>
+    </div>
+  </section>
+
+  <main id="app" hidden>
+    <section class="card" aria-labelledby="compose-h">
+      <h2 id="compose-h">✍️ Share with the crew</h2>
+      <div class="kinds" id="compose-kinds" role="group" aria-label="Post type">
+        <button type="button" class="kind" data-kind="tip" aria-pressed="true">💡 Tip</button>
+        <button type="button" class="kind" data-kind="review" aria-pressed="false">⭐ Review</button>
+        <button type="button" class="kind" data-kind="plan" aria-pressed="false">📅 Plan</button>
+        <button type="button" class="kind" data-kind="question" aria-pressed="false">❓ Question</button>
+      </div>
+      <div class="stars" id="stars" role="group" aria-label="Rating">
+        <button type="button" data-v="1" aria-label="1 star">⭐</button><button type="button" data-v="2" aria-label="2 stars">⭐</button><button type="button" data-v="3" aria-label="3 stars">⭐</button><button type="button" data-v="4" aria-label="4 stars">⭐</button><button type="button" data-v="5" aria-label="5 stars">⭐</button>
+      </div>
+      <div class="linked" id="linked"><span>🔗</span><b id="linked-label"></b><button type="button" id="unlink" aria-label="Remove linked item">✕</button></div>
+      <textarea id="text" maxlength="1000" placeholder="The Dole Whip line is short after the fireworks…" aria-label="Post text"></textarea>
+      <div class="compose-foot">
+        <span class="counter" id="counter">0 / 1000</span>
+        <button class="btn" id="post" type="button" disabled>Post ✨</button>
+      </div>
+    </section>
+
+    <section aria-labelledby="feed-h">
+      <h2 id="feed-h" class="brand" style="margin:0 0 8px;font-size:1.1rem">📣 Latest</h2>
+      <div class="filters" id="filters" role="group" aria-label="Filter posts">
+        <button type="button" class="kind" data-kind="all" aria-pressed="true">All</button>
+        <button type="button" class="kind" data-kind="tip" aria-pressed="false">💡 Tips</button>
+        <button type="button" class="kind" data-kind="review" aria-pressed="false">⭐ Reviews</button>
+        <button type="button" class="kind" data-kind="plan" aria-pressed="false">📅 Plans</button>
+        <button type="button" class="kind" data-kind="question" aria-pressed="false">❓ Questions</button>
+        <button type="button" class="kind" data-kind="mine" aria-pressed="false">🙋 Mine</button>
+      </div>
+      <div class="feed" id="feed" aria-live="polite"></div>
+    </section>
+
+    <section class="card" aria-labelledby="crew-h">
+      <h2 id="crew-h">👥 The crew <small id="crew-count"></small></h2>
+      <div class="roster" id="roster"></div>
+      <div id="admin-tools" hidden>
+        <form class="invite-form" id="invite-form" novalidate>
+          <input type="email" id="invite-email" placeholder="friend@gmail.com" aria-label="Google account email" autocomplete="off" required>
+          <input type="text" id="invite-name" placeholder="Name (optional)" aria-label="Name" maxlength="60">
+          <button class="btn" type="submit">Invite</button>
+        </form>
+        <div class="invite-msg" id="invite-msg"></div>
+        <p class="invite-note">Only these exact Google accounts can sign in to the Crew Feed. Removing someone revokes their access immediately.</p>
+      </div>
+    </section>
+  </main>
+
+  <div class="footer">Only invited crew members can read or post here · <a href="/">Back to the food list</a></div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script type="module">
+  import { auth, db, signIn, signOutUser, redirectResult, onUser } from "/js/firebase-app.js";
+  import {
+    doc, getDoc, setDoc, addDoc, deleteDoc, updateDoc, collection, query, orderBy, limit,
+    onSnapshot, serverTimestamp, arrayUnion, arrayRemove,
+  } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+  import { KINDS, EMAIL_RE, normalizeEmail, relTime, initials, colorFor, itemSearchHref } from "/js/crew-utils.js";
+
+  const $ = (id) => document.getElementById(id);
+  let me = null, isAdmin = false, feedFilter = 'all', composeKind = 'tip', rating = 0, linkedItem = null;
+  let posts = [];
+  const cards = new Map();      // postId -> card element
+  const commentSubs = new Map(); // postId -> unsubscribe
+  let unsubFeed = null, unsubRoster = null;
+
+  function toast(msg) {
+    const t = $('toast'); t.textContent = msg; t.classList.add('show');
+    clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove('show'), 2200);
+  }
+
+  function avatarEl(name, photo, small) {
+    if (photo && /^https:\/\//.test(photo)) {
+      const img = document.createElement('img');
+      img.className = 'avatar' + (small ? ' sm' : ''); img.src = photo; img.alt = ''; img.referrerPolicy = 'no-referrer';
+      return img;
+    }
+    const s = document.createElement('span');
+    s.className = 'avatar' + (small ? ' sm' : ''); s.textContent = initials(name); s.style.background = colorFor(name);
+    s.setAttribute('aria-hidden', 'true');
+    return s;
+  }
+
+  function myName() { return (me.displayName || me.email.split('@')[0]).slice(0, 80); }
+  function authorFields() {
+    const f = { authorUid: me.uid, authorName: myName(), createdAt: serverTimestamp() };
+    if (me.photoURL) f.authorPhoto = me.photoURL.slice(0, 1000);
+    return f;
+  }
+
+  // ---------- gate ----------
+  function showGate(which) {
+    $('gate').hidden = !which; $('app').hidden = !!which;
+    ['loading', 'signin', 'denied'].forEach(w => { $('gate-' + w).hidden = w !== which; });
+  }
+
+  async function checkMembership(user) {
+    const [adminSnap, inviteSnap] = await Promise.all([
+      getDoc(doc(db, 'admins', user.uid)).catch(() => null),
+      user.email ? getDoc(doc(db, 'invites', normalizeEmail(user.email))).catch(() => null) : null,
+    ]);
+    const admin = !!(adminSnap && adminSnap.exists());
+    const invited = !!(inviteSnap && inviteSnap.exists()) && user.emailVerified;
+    return { admin, member: admin || invited };
+  }
+
+  redirectResult().catch((err) => { console.error(err); $('gate-status').textContent = "Sign-in didn't go through — please try again."; });
+  $('signin').addEventListener('click', () => { $('gate-status').textContent = ''; signIn().catch(() => { $('gate-status').textContent = "Sign-in didn't go through — please try again."; }); });
+  $('signout').addEventListener('click', () => signOutUser());
+  $('switch').addEventListener('click', () => signOutUser().then(() => signIn()));
+
+  onUser(async (user) => {
+    teardown();
+    me = user;
+    $('me').hidden = !user; $('stats').hidden = true;
+    if (!user) { showGate('signin'); return; }
+    showGate('loading');
+    $('me-name').textContent = user.displayName || user.email;
+    const { admin, member } = await checkMembership(user);
+    if (me !== user) return; // account changed while checking
+    isAdmin = admin;
+    $('me-admin').hidden = !admin;
+    if (!member) { $('denied-email').textContent = user.email || '(no email)'; showGate('denied'); return; }
+    showGate(null);
+    $('stats').hidden = false;
+    $('admin-tools').hidden = !admin;
+    startFeed(); startRoster();
+  });
+
+  function teardown() {
+    if (unsubFeed) unsubFeed(); if (unsubRoster) unsubRoster();
+    unsubFeed = unsubRoster = null;
+    commentSubs.forEach(u => u()); commentSubs.clear();
+    cards.clear(); $('feed').innerHTML = ''; $('roster').innerHTML = ''; posts = [];
+  }
+
+  // ---------- composer ----------
+  const params = new URLSearchParams(location.search);
+  if (params.get('item') && params.get('label')) {
+    linkedItem = { key: params.get('item').slice(0, 300), label: params.get('label').slice(0, 200) };
+    $('linked-label').textContent = linkedItem.label; $('linked').classList.add('show');
+    composeKind = 'review';
+  }
+  $('unlink').addEventListener('click', () => { linkedItem = null; $('linked').classList.remove('show'); history.replaceState(null, '', location.pathname); });
+
+  function syncCompose() {
+    document.querySelectorAll('#compose-kinds .kind').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.kind === composeKind)));
+    $('stars').classList.toggle('show', composeKind === 'review');
+    document.querySelectorAll('#stars button').forEach(b => b.classList.toggle('on', +b.dataset.v <= rating));
+    const len = $('text').value.trim().length;
+    $('counter').textContent = `${$('text').value.length} / 1000`;
+    $('counter').classList.toggle('over', $('text').value.length > 1000);
+    $('post').disabled = !len || $('text').value.length > 1000;
+    $('text').placeholder = KINDS[composeKind].placeholder;
+  }
+  document.querySelectorAll('#compose-kinds .kind').forEach(b => b.addEventListener('click', () => { composeKind = b.dataset.kind; syncCompose(); }));
+  document.querySelectorAll('#stars button').forEach(b => b.addEventListener('click', () => { rating = rating === +b.dataset.v ? 0 : +b.dataset.v; syncCompose(); }));
+  $('text').addEventListener('input', syncCompose);
+  $('text').addEventListener('keydown', (e) => { if ((e.metaKey || e.ctrlKey) && e.key === 'Enter' && !$('post').disabled) $('post').click(); });
+  syncCompose();
+
+  $('post').addEventListener('click', async () => {
+    const text = $('text').value.trim();
+    if (!text) return;
+    const data = { ...authorFields(), kind: composeKind, text, likes: [] };
+    if (composeKind === 'review' && rating) data.rating = rating;
+    if (linkedItem) data.item = linkedItem;
+    $('post').disabled = true;
+    try {
+      await addDoc(collection(db, 'posts'), data);
+      $('text').value = ''; rating = 0;
+      linkedItem = null; $('linked').classList.remove('show'); history.replaceState(null, '', location.pathname);
+      toast('Posted! ✨');
+    } catch (err) { console.error(err); toast("Couldn't post — try again"); }
+    syncCompose();
+  });
+
+  // ---------- feed ----------
+  document.querySelectorAll('#filters .kind').forEach(b => b.addEventListener('click', () => {
+    feedFilter = b.dataset.kind;
+    document.querySelectorAll('#filters .kind').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    renderFeed();
+  }));
+
+  function startFeed() {
+    const q = query(collection(db, 'posts'), orderBy('createdAt', 'desc'), limit(100));
+    unsubFeed = onSnapshot(q, (snap) => {
+      posts = snap.docs.map(d => ({ id: d.id, ...d.data({ serverTimestamps: 'estimate' }) }));
+      const ids = new Set(posts.map(p => p.id));
+      for (const [id, unsub] of commentSubs) if (!ids.has(id)) { unsub(); commentSubs.delete(id); cards.delete(id); }
+      renderFeed();
+      $('stat-posts').textContent = posts.length;
+      $('stat-likes').textContent = posts.reduce((n, p) => n + (p.likes || []).length, 0);
+    }, (err) => { console.error(err); toast('Lost connection to the feed'); });
+  }
+
+  function renderFeed() {
+    const feed = $('feed');
+    const shown = posts.filter(p => feedFilter === 'all' || (feedFilter === 'mine' ? p.authorUid === me.uid : p.kind === feedFilter));
+    feed.querySelectorAll('.empty').forEach(e => e.remove());
+    [...feed.children].forEach(c => { if (!shown.some(p => p.id === c.dataset.id)) c.remove(); });
+    // Only move nodes that are out of place, so cards don't re-run their entry animation.
+    shown.forEach((p, i) => {
+      const card = cardFor(p);
+      if (feed.children[i] !== card) feed.insertBefore(card, feed.children[i] || null);
+    });
+    if (!shown.length) {
+      const e = document.createElement('div'); e.className = 'empty card';
+      e.innerHTML = posts.length ? '<span class="big">🔍</span>Nothing here yet for this filter.' : '<span class="big">🌟</span>No posts yet — be the first to share a tip!';
+      feed.appendChild(e);
+    }
+  }
+
+  function cardFor(p) {
+    let card = cards.get(p.id);
+    if (!card) {
+      card = document.createElement('article');
+      card.className = 'card post'; card.dataset.id = p.id;
+      card.innerHTML = `
+        <div class="post-head"><span class="av"></span><div class="who"><b></b><span></span></div><span class="pill"></span></div>
+        <div class="post-rating" hidden></div>
+        <p class="post-text"></p>
+        <a class="post-item" hidden></a>
+        <div class="post-actions">
+          <button type="button" class="act like"><span class="heart">🤍</span><span class="n">0</span></button>
+          <button type="button" class="act talk" aria-expanded="false">💬 <span class="n">0</span></button>
+          <button type="button" class="act del" hidden aria-label="Delete post">🗑️</button>
+        </div>
+        <div class="comments"><div class="clist"></div>
+          <form class="reply"><input type="text" maxlength="500" placeholder="Reply…" aria-label="Write a reply"><button class="btn" type="submit">Send</button></form>
+        </div>`;
+      card.querySelector('.like').addEventListener('click', () => toggleLike(p.id));
+      card.querySelector('.talk').addEventListener('click', () => {
+        const open = card.classList.toggle('open');
+        card.querySelector('.talk').setAttribute('aria-expanded', String(open));
+        if (open) card.querySelector('.reply input').focus();
+      });
+      card.querySelector('.del').addEventListener('click', async () => {
+        if (!confirm('Delete this post?')) return;
+        try { await deleteDoc(doc(db, 'posts', p.id)); toast('Post deleted'); } catch (e) { toast("Couldn't delete"); }
+      });
+      card.querySelector('.reply').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const input = card.querySelector('.reply input');
+        const text = input.value.trim();
+        if (!text) return;
+        input.disabled = true;
+        try { await addDoc(collection(db, 'posts', p.id, 'comments'), { ...authorFields(), text }); input.value = ''; }
+        catch (err) { console.error(err); toast("Couldn't send reply"); }
+        input.disabled = false; input.focus();
+      });
+      cards.set(p.id, card);
+      watchComments(p.id, card);
+    }
+    // Refresh the parts that can change.
+    const k = KINDS[p.kind] || KINDS.tip;
+    card.style.setProperty('--kc', `var(--k-${p.kind in KINDS ? p.kind : 'tip'})`);
+    const av = card.querySelector('.av'); av.replaceChildren(avatarEl(p.authorName, p.authorPhoto));
+    card.querySelector('.who b').textContent = p.authorName;
+    const when = p.createdAt && p.createdAt.toDate ? p.createdAt.toDate() : new Date();
+    const ws = card.querySelector('.who span'); ws.textContent = relTime(when); ws.title = when.toLocaleString();
+    const pill = card.querySelector('.pill'); pill.className = 'pill ' + (p.kind in KINDS ? p.kind : 'tip'); pill.textContent = k.label;
+    const r = card.querySelector('.post-rating');
+    r.hidden = !p.rating; r.textContent = p.rating ? '★'.repeat(p.rating) + '☆'.repeat(5 - p.rating) : ''; r.style.color = 'var(--gold)';
+    r.setAttribute('aria-label', p.rating ? `${p.rating} out of 5 stars` : '');
+    card.querySelector('.post-text').textContent = p.text;
+    const it = card.querySelector('.post-item');
+    if (p.item && p.item.label) { it.hidden = false; it.textContent = '🍽️ ' + p.item.label; it.href = itemSearchHref(p.item.label); }
+    else it.hidden = true;
+    const likes = p.likes || [];
+    const liked = likes.includes(me.uid);
+    const lb = card.querySelector('.like');
+    lb.classList.toggle('liked', liked); lb.querySelector('.heart').textContent = liked ? '❤️' : '🤍';
+    lb.querySelector('.n').textContent = likes.length; lb.setAttribute('aria-pressed', String(liked));
+    lb.setAttribute('aria-label', `${liked ? 'Unlike' : 'Like'} (${likes.length})`);
+    card.querySelector('.del').hidden = !(p.authorUid === me.uid || isAdmin);
+    return card;
+  }
+
+  function watchComments(postId, card) {
+    const q = query(collection(db, 'posts', postId, 'comments'), orderBy('createdAt', 'asc'), limit(200));
+    commentSubs.set(postId, onSnapshot(q, (snap) => {
+      card.querySelector('.talk .n').textContent = snap.size;
+      const list = card.querySelector('.clist');
+      list.replaceChildren(...snap.docs.map(d => {
+        const c = d.data({ serverTimestamps: 'estimate' });
+        const row = document.createElement('div'); row.className = 'comment';
+        row.appendChild(avatarEl(c.authorName, c.authorPhoto, true));
+        const b = document.createElement('div'); b.className = 'bubble';
+        const n = document.createElement('b'); n.textContent = c.authorName;
+        const t = document.createElement('small'); t.textContent = relTime(c.createdAt && c.createdAt.toDate ? c.createdAt.toDate() : new Date());
+        const tx = document.createElement('p'); tx.textContent = c.text;
+        b.append(n, t, tx); row.appendChild(b);
+        if (c.authorUid === me.uid || isAdmin) {
+          const x = document.createElement('button'); x.className = 'x'; x.type = 'button'; x.textContent = '✕'; x.setAttribute('aria-label', 'Delete reply');
+          x.addEventListener('click', () => deleteDoc(d.ref).catch(() => toast("Couldn't delete")));
+          row.appendChild(x);
+        }
+        return row;
+      }));
+    }, (err) => console.error(err)));
+  }
+
+  async function toggleLike(postId) {
+    const p = posts.find(x => x.id === postId); if (!p) return;
+    const liked = (p.likes || []).includes(me.uid);
+    try { await updateDoc(doc(db, 'posts', postId), { likes: liked ? arrayRemove(me.uid) : arrayUnion(me.uid) }); }
+    catch (err) { console.error(err); toast("Couldn't update like"); }
+  }
+
+  // Keep relative times fresh.
+  setInterval(() => { if (posts.length) renderFeed(); }, 60000);
+
+  // ---------- roster / invites ----------
+  function startRoster() {
+    unsubRoster = onSnapshot(collection(db, 'invites'), (snap) => {
+      const people = snap.docs.map(d => ({ id: d.id, ...d.data() })).sort((a, b) => (a.name || a.id).localeCompare(b.name || b.id));
+      $('stat-crew').textContent = people.length;
+      $('crew-count').textContent = `${people.length} invited`;
+      $('roster').replaceChildren(...people.map(m => {
+        const el = document.createElement('span'); el.className = 'member';
+        el.appendChild(avatarEl(m.name || m.id, null, true));
+        const label = document.createElement('span'); label.textContent = m.name || m.id.split('@')[0];
+        el.appendChild(label);
+        if (isAdmin) {
+          const em = document.createElement('small'); em.textContent = m.id; el.appendChild(em);
+          const x = document.createElement('button'); x.type = 'button'; x.textContent = '✕'; x.setAttribute('aria-label', 'Remove ' + m.id);
+          x.addEventListener('click', async () => {
+            if (!confirm(`Remove ${m.id} from the crew? They'll lose access right away.`)) return;
+            try { await deleteDoc(doc(db, 'invites', m.id)); toast('Removed'); } catch (e) { toast("Couldn't remove"); }
+          });
+          el.appendChild(x);
+        }
+        return el;
+      }));
+      if (!people.length) $('roster').innerHTML = '<span class="invite-note">No one invited yet.</span>';
+    }, (err) => console.error(err));
+  }
+
+  $('invite-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const msg = $('invite-msg'); msg.className = 'invite-msg';
+    const email = normalizeEmail($('invite-email').value);
+    const name = $('invite-name').value.trim().slice(0, 60);
+    if (!EMAIL_RE.test(email)) { msg.textContent = 'Enter a valid Google account email.'; msg.classList.add('err'); return; }
+    try {
+      const ref = doc(db, 'invites', email);
+      const existing = await getDoc(ref);
+      if (existing.exists()) { msg.textContent = `${email} is already on the crew.`; msg.classList.add('err'); return; }
+      const data = { email, invitedBy: me.uid, createdAt: serverTimestamp() };
+      if (name) data.name = name;
+      await setDoc(ref, data);
+      $('invite-email').value = ''; $('invite-name').value = '';
+      msg.textContent = `Invited ${email} 🎉 — they can sign in now.`; msg.classList.add('ok');
+    } catch (err) { console.error(err); msg.textContent = "Couldn't send invite."; msg.classList.add('err'); }
+  });
+</script>
+</body>
+</html>

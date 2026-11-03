@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Disneyland &amp; DCA Food &amp; Drink Checklist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --dl-navy: #1b2a4a;
@@ -643,6 +646,79 @@
   .to-top.show { opacity: 1; pointer-events: auto; transform: none; }
   .item.done { transition: background .2s, border-color .2s; }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+
+  /* ---- v2 visual layer: "make it magic" ---- */
+  body, button, input, textarea { font-family: Nunito, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  .hero h1, .section-title, .auth-gate-title, .hstat b { font-family: Fredoka, Nunito, sans-serif; }
+  .hero { position: relative; overflow: hidden; padding: 18px 16px 14px; background: linear-gradient(135deg, #1b2a4a 0%, #2d4373 45%, #0f6b6b 100%); background-size: 200% 200%; animation: heroShift 14s ease-in-out infinite; }
+  @keyframes heroShift { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+  .hero::before, .hero::after { content: "✦"; position: absolute; color: #e8c25f; opacity: .5; font-size: 1.6rem; animation: twinkle 3.2s ease-in-out infinite; pointer-events: none; }
+  .hero::before { left: 6%; top: 14%; } .hero::after { right: 7%; bottom: 22%; animation-delay: 1.4s; font-size: 1.2rem; }
+  @keyframes twinkle { 0%,100% { opacity: .2; transform: scale(.8) rotate(0); } 50% { opacity: .85; transform: scale(1.15) rotate(20deg); } }
+  .hero h1 { font-size: clamp(1.15rem, 5vw, 1.55rem); font-weight: 700; letter-spacing: .01em; text-shadow: 0 2px 10px rgba(0,0,0,.35); }
+  .hero p { font-size: .76rem; margin-top: 4px; }
+  .page-nav { margin-top: 10px; }
+  .page-nav a { transition: transform .15s, background .15s; font-weight: 700; }
+  .page-nav a:hover { transform: translateY(-2px); background: rgba(255,255,255,.15); }
+  .page-nav a.current:hover { background: var(--dl-gold); }
+  .hero-stats { display: flex; justify-content: center; gap: 8px; margin-top: 12px; }
+  .hstat { min-width: 76px; padding: 6px 12px; border-radius: 14px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25); backdrop-filter: blur(4px); }
+  .hstat b { display: block; font-size: 1.25rem; line-height: 1.1; color: #e8c25f; font-variant-numeric: tabular-nums; }
+  .hstat span { font-size: .62rem; text-transform: uppercase; letter-spacing: .09em; opacity: .85; }
+  .user-badge { gap: 8px; padding: 6px 12px; }
+  .user-avatar { width: 24px; height: 24px; box-shadow: 0 0 0 2px var(--dl-gold); }
+  .topbar { box-shadow: 0 6px 18px rgba(27,42,74,.08); }
+  .toggle-wrap { background: var(--card); border-radius: 999px; }
+  .toggle-option { transition: background .25s, color .25s, transform .15s, box-shadow .25s; }
+  .toggle-option.active { box-shadow: 0 4px 12px rgba(0,0,0,.18); }
+  .toggle-option.active.regular { background: linear-gradient(135deg, #0f6b6b, #1aa3a3); }
+  .toggle-option.active.holiday { background: linear-gradient(135deg, #b3262e, #2a8a3e); }
+  .progress-bar { height: 8px; border-radius: 999px; overflow: hidden; }
+  .progress-fill { position: relative; border-radius: 999px; transition: width .5s cubic-bezier(.2,.8,.2,1); overflow: hidden; }
+  .progress-fill::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent); transform: translateX(-100%); animation: shimmer 2.4s ease-in-out infinite; }
+  @keyframes shimmer { to { transform: translateX(100%); } }
+  .progress-fill.complete { background: linear-gradient(90deg, #e0507a, #e8c25f, #2a8a3e, #1aa3a3, #6b3fa0) !important; }
+  .progress-label { font-weight: 700; }
+  .search-input { border-radius: 999px; background: var(--card); box-shadow: inset 0 1px 2px rgba(0,0,0,.04); transition: box-shadow .2s, border-color .2s; }
+  .search-input:focus { outline: none; border-color: var(--dl-gold); box-shadow: 0 0 0 4px rgba(201,162,75,.22); }
+  .area-filter-btn, .type-filter-btn, .flag-filter-btn { transition: transform .15s, background .2s, color .2s, opacity .2s, box-shadow .2s; font-weight: 700; }
+  .area-filter-btn:active, .type-filter-btn:active, .flag-filter-btn:active { transform: scale(.94); }
+  .area-filter-btn.active, .type-filter-btn.active, .flag-filter-btn.active { box-shadow: 0 3px 10px rgba(0,0,0,.15); opacity: 1; }
+  .type-filter-btn.active { background: linear-gradient(135deg, #c9a24b, #e8c25f); border-color: transparent; color: #1b2a4a; }
+  .section-title { display: flex; align-items: center; gap: 8px; font-weight: 600; border-radius: 14px; overflow: hidden; box-shadow: 0 2px 8px rgba(27,42,74,.06); padding-left: 16px; }
+  .section-title::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: currentColor; opacity: .85; }
+  .restaurant-group { border-radius: 14px; box-shadow: 0 1px 3px rgba(27,42,74,.05); transition: box-shadow .2s; }
+  .restaurant-group:hover { box-shadow: 0 6px 18px rgba(27,42,74,.10); }
+  .restaurant-name .g-title { font-weight: 800; }
+  .item { position: relative; transition: transform .15s, box-shadow .2s, background .25s, border-color .25s; }
+  @media (hover: hover) { .item:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(27,42,74,.10); } }
+  .checkbox { border-radius: 50%; transition: background .2s, border-color .2s, transform .2s; }
+  .item.done .checkbox { animation: checkPop .35s cubic-bezier(.3,1.6,.5,1); background: linear-gradient(135deg, #2a8a3e, #5cc06e); border-color: transparent; box-shadow: 0 2px 8px rgba(42,138,62,.35); }
+  @keyframes checkPop { 0% { transform: scale(.6); } 100% { transform: scale(1); } }
+  .item.done .item-name { text-decoration: line-through; text-decoration-color: rgba(42,138,62,.55); text-decoration-thickness: 2px; }
+  .share-btn { flex-shrink: 0; width: 32px; height: 32px; margin: -4px -6px -4px 0; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; font-size: .95rem; border-radius: 50%; opacity: .55; transition: opacity .15s, transform .15s, background .15s; }
+  .share-btn:hover, .share-btn:focus-visible { opacity: 1; transform: scale(1.12); background: var(--soft); }
+  .spark { position: fixed; z-index: 200; pointer-events: none; font-size: 14px; transform: translate(-50%, -50%); animation: spark .85s ease-out forwards; }
+  @keyframes spark { to { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(.4) rotate(160deg); opacity: 0; } }
+  .auth-gate { background: radial-gradient(circle at 15% 10%, rgba(201,162,75,.25), transparent 45%), radial-gradient(circle at 90% 90%, rgba(26,163,163,.22), transparent 45%), linear-gradient(160deg, #1b2a4a, #2d4373 60%, #0f6b6b); }
+  .auth-gate-card { border-radius: 24px; box-shadow: 0 24px 60px rgba(0,0,0,.35); animation: rise .5s both; }
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  .auth-gate-emoji { font-size: 3rem; display: inline-block; animation: bob 2.4s ease-in-out infinite; }
+  @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  .auth-gate-title { font-size: 1.35rem; }
+  .google-signin-btn { transition: transform .15s, box-shadow .15s; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+  .google-signin-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(0,0,0,.14); }
+  .crew-cta { display: flex; align-items: center; gap: 10px; margin: 14px 0 0; padding: 12px 14px; border-radius: 14px; text-decoration: none; color: #fff; background: linear-gradient(135deg, #2d4373, #7a3a78 70%, #e0507a); box-shadow: 0 8px 20px rgba(122,58,120,.3); transition: transform .15s; }
+  .crew-cta:hover { transform: translateY(-2px); }
+  .crew-cta b { display: block; font-family: Fredoka, Nunito, sans-serif; font-weight: 600; }
+  .crew-cta span { font-size: .76rem; opacity: .9; }
+  .crew-cta .go { margin-left: auto; font-size: 1.2rem; }
+  .to-top { background: linear-gradient(135deg, #c9a24b, #e8c25f); }
+  @media (prefers-color-scheme: dark) {
+    .share-btn:hover, .share-btn:focus-visible { background: var(--soft); }
+    .section-title, .restaurant-group { box-shadow: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { .hero, .hero::before, .hero::after, .progress-fill::after, .auth-gate-emoji { animation: none !important; } }
 </style>
 </head>
 <body>
@@ -665,7 +741,12 @@
 <header class="hero">
   <h1 id="page-title">🎢 Disneyland Resort Food &amp; Drink List</h1>
   <p id="page-subtitle">New items to try — updated Oct 2026</p>
-  <nav class="page-nav" aria-label="Pages"><a href="/" class="current" aria-current="page">🍔 Food</a><a href="/rides.html">🎢 Ride Heights</a><a href="/events.html">📰 Events</a></nav>
+  <nav class="page-nav" aria-label="Pages"><a href="/" class="current" aria-current="page">🍔 Food</a><a href="/rides.html">🎢 Ride Heights</a><a href="/events.html">📰 Events</a><a href="/crew.html">💬 Crew</a></nav>
+  <div class="hero-stats" aria-label="Your stats">
+    <div class="hstat"><b id="hstat-tried">0</b><span>Tried</span></div>
+    <div class="hstat"><b id="hstat-left">0</b><span>To go</span></div>
+    <div class="hstat"><b id="hstat-flagged">0</b><span>Flagged</span></div>
+  </div>
 </header>
 
 <div class="user-badge" id="user-badge">
@@ -751,6 +832,8 @@
     <div class="empty-note" id="deleted-empty">No deleted items</div>
   </div>
 </div>
+
+<a class="crew-cta" href="/crew.html"><span style="font-size:1.6rem" aria-hidden="true">💬</span><div><b>Crew Feed</b><span>Share tips, reviews &amp; plans with your invited crew</span></div><span class="go" aria-hidden="true">→</span></a>
 
 <div class="save-status" id="save-status"><span class="dot"></span><span id="save-status-text">All changes saved automatically</span></div>
 
@@ -1333,6 +1416,12 @@
     return name;
   }
 
+  // Same as shareHref() in /js/crew-utils.js (this classic script can't import modules).
+  function shareHref(key, name, loc) {
+    const label = loc ? `${name} @ ${loc}` : name;
+    return '/crew.html?item=' + encodeURIComponent(key) + '&label=' + encodeURIComponent(label);
+  }
+
   function groupByLoc(items) {
     const groups = [];
     const map = new Map();
@@ -1491,6 +1580,7 @@
             ${item.desc ? `<div class="item-desc">${escapeHtml(item.desc)}</div>` : ''}
           </div>
           <button class="flag-btn ${isFlagged ? 'flagged' : ''}" aria-label="Flag for next trip">${isFlagged ? '🚩' : '🏳️'}</button>
+          <a class="share-btn" href="${escapeHtml(shareHref(key, item.name, item.loc))}" aria-label="Share with the crew" title="Share with the crew">💬</a>
           <button class="delete-btn" aria-label="Delete item">✕</button>
         `;
         el.querySelector('.item-name').addEventListener('click', (e) => {
@@ -1505,6 +1595,7 @@
           e.stopPropagation();
           toggleFlag(key, keyPrefix);
         });
+        el.querySelector('.share-btn').addEventListener('click', (e) => e.stopPropagation());
         el.querySelector('.delete-btn').addEventListener('click', (e) => {
           e.stopPropagation();
           deleteItem(keyPrefix, item, key);
@@ -1579,6 +1670,7 @@
       doneKeys.add(key);
     }
     el.classList.toggle('done', doneKeys.has(key));
+    if (doneKeys.has(key)) celebrate(el.querySelector('.checkbox'));
     const grp = el.closest('.restaurant-group');
     const gc = grp && grp.querySelector('.g-count');
     if (gc) gc.textContent = grp.querySelectorAll('.item.done').length + '/' + grp.querySelectorAll('.item').length;
@@ -1623,6 +1715,39 @@
     saveState();
   }
 
+  // Animates a stat number from its current value to n.
+  function countUp(el, n) {
+    const from = parseInt(el.textContent, 10) || 0;
+    if (from === n || window.matchMedia('(prefers-reduced-motion: reduce)').matches) { el.textContent = n; return; }
+    const start = performance.now();
+    const step = (t) => {
+      const k = Math.min(1, (t - start) / 450);
+      el.textContent = Math.round(from + (n - from) * (1 - Math.pow(1 - k, 3)));
+      if (k < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  // Little burst of sparkles from an element when an item is ticked off.
+  function celebrate(el) {
+    if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const r = el.getBoundingClientRect();
+    const glyphs = ['✨', '⭐', '🎉', '✦', '💛'];
+    for (let i = 0; i < 10; i++) {
+      const s = document.createElement('span');
+      s.className = 'spark';
+      s.textContent = glyphs[i % glyphs.length];
+      s.style.left = (r.left + r.width / 2) + 'px';
+      s.style.top = (r.top + r.height / 2) + 'px';
+      const a = (Math.PI * 2 * i) / 10 + Math.random() * 0.5;
+      const d = 40 + Math.random() * 40;
+      s.style.setProperty('--dx', Math.cos(a) * d + 'px');
+      s.style.setProperty('--dy', Math.sin(a) * d - 20 + 'px');
+      document.body.appendChild(s);
+      setTimeout(() => s.remove(), 900);
+    }
+  }
+
   function updateProgress() {
     let total = 0;
     let done = 0;
@@ -1639,6 +1764,11 @@
     document.getElementById('progress-text').textContent = `${done} of ${total} tried`;
     document.getElementById('progress-pct').textContent = `${pct}%`;
     document.getElementById('progress-fill').style.width = pct + '%';
+    const flagged = [...flaggedKeys].filter(k => !deletedKeys.has(k) && k.split('::')[1] === (holidayMode ? 'h' : 'r')).length;
+    countUp(document.getElementById('hstat-tried'), done);
+    countUp(document.getElementById('hstat-left'), total - done);
+    countUp(document.getElementById('hstat-flagged'), flagged);
+    document.getElementById('progress-fill').classList.toggle('complete', total > 0 && done === total);
     updateSectionCounts();
     if (typeof syncFoldBtn === 'function') syncFoldBtn();
   }
@@ -1727,6 +1857,13 @@
 
   const searchInput = document.getElementById('search-input');
   const searchClear = document.getElementById('search-clear');
+  // Deep link from the Crew Feed: /?q=Dole%20Whip pre-fills the search.
+  const initialQ = new URLSearchParams(location.search).get('q');
+  if (initialQ) {
+    searchQuery = initialQ.trim().slice(0, 100);
+    searchInput.value = searchQuery;
+    searchClear.classList.add('visible');
+  }
   searchInput.addEventListener('input', (e) => {
     searchQuery = e.target.value.trim();
     searchClear.classList.toggle('visible', !!searchQuery);
@@ -1924,35 +2061,10 @@
   // classic script above has finished defining window.__onFirebaseAuthChange).
   // Exposes a small set of functions on window so the classic script never
   // has to deal with modules or imports directly.
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+  import { auth, db, signIn, signOutUser, redirectResult, onUser } from "/js/firebase-app.js";
   import {
-    getAuth, GoogleAuthProvider, signInWithRedirect, getRedirectResult, signOut, onAuthStateChanged,
-  } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
-  import {
-    getFirestore, doc, getDoc, setDoc, serverTimestamp,
+    doc, getDoc, setDoc, serverTimestamp,
   } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
-
-  // signInWithRedirect only works reliably when authDomain is the same origin
-  // the page is served from — otherwise browsers that block third-party
-  // storage (Safari, Firefox, Chrome) silently drop the redirect result and
-  // the user lands back on the sign-in gate. Firebase Hosting serves the
-  // /__/auth/handler endpoint on every hosted domain, so use the current one.
-  const FIREBASE_HOSTING_DOMAIN = /\.(web\.app|firebaseapp\.com)$/;
-  const firebaseConfig = {
-    apiKey: "AIzaSyC1GOv3zRdr-6KXi0rMwku6lGcU_sC63-I",
-    authDomain: FIREBASE_HOSTING_DOMAIN.test(location.hostname)
-      ? location.host
-      : "disneyland-food-web-app.firebaseapp.com",
-    projectId: "disneyland-food-web-app",
-    storageBucket: "disneyland-food-web-app.firebasestorage.app",
-    messagingSenderId: "684283232564",
-    appId: "1:684283232564:web:c006b289c58734e900e561",
-  };
-
-  const fbApp = initializeApp(firebaseConfig);
-  const auth = getAuth(fbApp);
-  const db = getFirestore(fbApp);
-  const provider = new GoogleAuthProvider();
 
   window.firebaseSignIn = async function() {
     const statusEl = document.getElementById('auth-gate-status');
@@ -1961,7 +2073,7 @@
       // Redirects the whole page to Google's sign-in and back, rather than
       // opening a popup window — this avoids a known Firebase/IndexedDB
       // conflict that popups can trigger on some mobile browsers.
-      await signInWithRedirect(auth, provider);
+      await signIn();
     } catch (err) {
       console.error('Sign-in failed', err);
       if (statusEl) {
@@ -1971,7 +2083,7 @@
   };
 
   // Picks up the result after the redirect above brings the user back.
-  getRedirectResult(auth).catch((err) => {
+  redirectResult().catch((err) => {
     console.error('Redirect sign-in failed', err);
     const statusEl = document.getElementById('auth-gate-status');
     if (statusEl) {
@@ -1980,7 +2092,7 @@
   });
 
   window.firebaseSignOut = function() {
-    signOut(auth).catch(err => console.error('Sign-out failed', err));
+    signOutUser().catch(err => console.error('Sign-out failed', err));
   };
 
   window.firebaseSaveUserState = async function(uid, payload) {
@@ -2007,7 +2119,7 @@
     }
   };
 
-  onAuthStateChanged(auth, (user) => {
+  onUser((user) => {
     if (typeof window.__onFirebaseAuthChange === 'function') {
       window.__onFirebaseAuthChange(user);
     }
