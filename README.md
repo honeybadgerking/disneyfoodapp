@@ -4,6 +4,7 @@ Plain HTML app in `public/` (no build step), hosted on Firebase Hosting.
 
 - `/` — food & drink checklist (per-user, synced via Firestore)
 - `/rides.html`, `/events.html` — ride heights and events
+- `/outside.html` — **Stuff Outside of Disneyland**: SoCal holiday events (lights, parks, parades) from `public/outside.json`. Check off, flag, plan a date and add notes; synced in the same `users/{uid}` doc using `outside::` / `outside-note::` keys, so no rules change is needed.
 - `/crew.html` — **Crew Feed**: invite-only posts (tips, reviews, plans, questions), likes and replies
 
 ## Crew Feed: invite-only access
