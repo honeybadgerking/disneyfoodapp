@@ -43,3 +43,15 @@ test('share and search links round-trip the item name', async () => {
   assert.strictEqual(u.searchParams.get('label'), 'Dole Whip @ Tiki Juice Bar');
   assert.strictEqual(itemSearchHref(u.searchParams.get('label')), '/?q=Dole%20Whip');
 });
+
+test('inviteMailto drafts an email to the invitee with the link', async () => {
+  const { inviteMailto } = await load();
+  const href = inviteMailto('mia@example.com', { name: 'Mia', from: 'Chris', url: 'https://app.test/crew.html' });
+  assert.ok(href.startsWith('mailto:mia%40example.com?subject='));
+  const body = decodeURIComponent(href.split('&body=')[1]);
+  assert.match(body, /^Hi Mia!/);
+  assert.match(body, /Chris added you/);
+  assert.match(body, /https:\/\/app\.test\/crew\.html/);
+  assert.match(body, /mia@example\.com/);
+  assert.ok(!href.includes(' '), 'no raw spaces in the URL');
+});

@@ -48,3 +48,21 @@ export function shareHref(key, name, loc) {
   const label = loc ? `${name} @ ${loc}` : name;
   return '/crew.html?item=' + encodeURIComponent(key) + '&label=' + encodeURIComponent(label);
 }
+
+// mailto: link that opens the admin's own email app with an invite drafted.
+export function inviteMailto(email, { name = '', from = '', url = '' } = {}) {
+  const hi = name ? `Hi ${name}!` : 'Hi!';
+  const subject = "You're invited to our Disneyland food crew 🏰";
+  const body = [
+    hi,
+    '',
+    `${from || 'I'} added you to our Crew Feed for sharing Disneyland food tips, reviews and plans.`,
+    '',
+    `Open ${url} and sign in with Google using this account: ${email}`,
+    '',
+    'See you in the parks! ✨',
+  ].join('\n');
+  return 'mailto:' + encodeURIComponent(email)
+    + '?subject=' + encodeURIComponent(subject)
+    + '&body=' + encodeURIComponent(body);
+}
