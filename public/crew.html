@@ -139,6 +139,8 @@
   .invite-note { font-size: .76rem; color: var(--muted); margin: 8px 0 0; }
   .invite-msg { font-size: .8rem; margin-top: 6px; min-height: 1em; }
   .invite-msg.err { color: var(--danger); } .invite-msg.ok { color: var(--teal2); }
+  .invite-msg .btn { margin: 8px 0 0; padding: 8px 14px; font-size: .82rem; text-decoration: none; }
+  .member a.mail { text-decoration: none; font-size: .85rem; padding-left: 2px; }
   @media (max-width: 520px) { .invite-form { grid-template-columns: 1fr; } }
 
   .toast { position: fixed; left: 50%; bottom: 22px; transform: translate(-50%, 30px); opacity: 0; background: var(--navy); color: #fff; padding: 10px 18px; border-radius: 999px; font-weight: 700; font-size: .85rem; box-shadow: 0 8px 24px rgba(0,0,0,.3); transition: all .25s; pointer-events: none; z-index: 50; }
@@ -247,7 +249,7 @@
     doc, getDoc, setDoc, addDoc, deleteDoc, updateDoc, collection, query, orderBy, limit,
     onSnapshot, serverTimestamp, arrayUnion, arrayRemove,
   } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
-  import { KINDS, EMAIL_RE, normalizeEmail, relTime, initials, colorFor, itemSearchHref } from "/js/crew-utils.js";
+  import { KINDS, EMAIL_RE, normalizeEmail, relTime, initials, colorFor, itemSearchHref, inviteMailto } from "/js/crew-utils.js";
 
   const $ = (id) => document.getElementById(id);
   let me = null, isAdmin = false, feedFilter = 'all', composeKind = 'tip', rating = 0, linkedItem = null;
@@ -516,6 +518,9 @@
         el.appendChild(label);
         if (isAdmin) {
           const em = document.createElement('small'); em.textContent = m.id; el.appendChild(em);
+          const mail = document.createElement('a'); mail.className = 'mail'; mail.href = mailtoFor(m.id, m.name);
+          mail.textContent = '📧'; mail.title = 'Email ' + m.id + ' the invite link'; mail.setAttribute('aria-label', mail.title);
+          el.appendChild(mail);
           const x = document.createElement('button'); x.type = 'button'; x.textContent = '✕'; x.setAttribute('aria-label', 'Remove ' + m.id);
           x.addEventListener('click', async () => {
             if (!confirm(`Remove ${m.id} from the crew? They'll lose access right away.`)) return;
@@ -527,6 +532,10 @@
       }));
       if (!people.length) $('roster').innerHTML = '<span class="invite-note">No one invited yet.</span>';
     }, (err) => console.error(err));
+  }
+
+  function mailtoFor(email, name) {
+    return inviteMailto(email, { name, from: me.displayName || '', url: location.origin + '/crew.html' });
   }
 
   $('invite-form').addEventListener('submit', async (e) => {
@@ -543,7 +552,10 @@
       if (name) data.name = name;
       await setDoc(ref, data);
       $('invite-email').value = ''; $('invite-name').value = '';
-      msg.textContent = `Invited ${email} 🎉 — they can sign in now.`; msg.classList.add('ok');
+      msg.textContent = `Invited ${email} 🎉 — now let them know:`; msg.classList.add('ok');
+      const mail = document.createElement('a');
+      mail.className = 'btn'; mail.href = mailtoFor(email, name); mail.textContent = '📧 Email them the link';
+      msg.append(document.createElement('br'), mail);
     } catch (err) { console.error(err); msg.textContent = "Couldn't send invite."; msg.classList.add('err'); }
   });
 </script>
