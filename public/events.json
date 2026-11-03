@@ -1,53 +1,99 @@
 {
-  "issue": 4,
-  "weekOf": "Oct 29 – Nov 4, 2026",
-  "updated": "2026-10-29",
-  "headline": "Boo-dbye Halloween, Hello Holidays (and a Peek at 2027!)",
-  "tagline": "Halloween Time takes its final bows, the holidays are two weeks out, and February brings back some classics.",
+  "issue": 5,
+  "weekOf": "Nov 5 – 11, 2026",
+  "updated": "2026-11-03",
+  "headline": "The Calm Before the Tinsel",
+  "tagline": "Halloween is packed away, crews are hanging garland, and the holidays kick off Nov 13. Here's what's on (and what's closed) this week.",
   "lead": {
     "title": "Holidays at the Disneyland Resort Start Nov 13",
     "dates": "Nov 13, 2026 – Jan 6, 2027",
     "area": "both",
     "badge": "Nov 13",
-    "body": "Just two weeks to go! Returning favorites include \"Believe … in Holiday Magic\" fireworks, \"A Christmas Fantasy Parade\" and it's a small world Holiday, plus a new Santa spot at Mickey's Toontown Trolley Barn. The start date was moved up from an earlier announced Nov 18.",
+    "body": "One week out! Castle snow and icicles, Toontown and New Orleans Square decor are going up now. Opening day brings back \"Believe … in Holiday Magic\" fireworks, \"A Christmas Fantasy Parade\" and World of Color – Season of Light, with Santa at a new Toontown Trolley Barn spot.",
     "url": "https://disneyexperiences.com/disneyland-press/release/holidays-at-the-disneyland-resort-returns-with-festival-favorites-and-classic-traditions-nov-13-2026-jan-6-2027/"
   },
   "sections": [
     {
-      "title": "Halloween Time",
-      "emoji": "🎃",
+      "title": "This Week",
+      "emoji": "📅",
       "events": [
         {
-          "title": "Oogie Boogie Bash",
-          "dates": "Select nights through Oct 31",
-          "area": "dca",
-          "badge": "Ticketed",
-          "body": "The after-hours Halloween party at Disney California Adventure debuts \"Madame Leota's Swinging Wake – A Haunted Mansion Street Party.\" Many dates have sold out; check the official calendar for what's left.",
-          "url": "https://www.wdwmagic.com/wdwmagic-plus/disneyland-resort/news/02jun2026-oogie-boogie-bash-2026-ticket-dates-new-street-party-and-what-to-expect.htm"
-        },
-        {
-          "title": "Halloween Time at the Disneyland Resort",
-          "dates": "Through Oct 31",
-          "area": "both",
-          "badge": "Ends soon",
-          "body": "Both parks are decked out for the season, including the \"Mickey's Trick and Treat\" daytime show.",
-          "url": "https://disneyexperiences.com/disneyland-press/release/disneyland-resort-2026-halloween/"
-        },
-        {
-          "title": "Plaza de la Familia",
-          "dates": "Through Nov 2",
-          "area": "dca",
-          "badge": "Ends soon",
-          "body": "A Día de los Muertos celebration featuring a Coco-themed street show, live mariachi and a memory wall.",
-          "url": "https://disneyexperiences.com/disneyland-press/release/disneyland-resort-2026-halloween/"
-        },
-        {
-          "title": "Haunted Mansion Holiday",
-          "dates": "Through Jan 6, 2027",
+          "title": "Veterans Day Flag Retreat",
+          "dates": "Wed, Nov 11",
           "area": "dl",
-          "badge": "Long run",
-          "body": "Jack Skellington's Nightmare Before Christmas takeover of the Haunted Mansion runs into the new year.",
-          "url": "https://attractionsmagazine.com/disneyland-holidays-2026-dates-schedule-rides-entertainment/"
+          "badge": "Nov 11",
+          "body": "A special Veterans Day Flag Retreat ceremony on Main Street, U.S.A., plus a new Mickey \"Air • Land • Sea\" Veterans Day merchandise collection.",
+          "url": "https://www.laughingplace.com/disney-merchandise/disney-parks-veterans-day-collection-2026/"
+        },
+        {
+          "title": "Downtown Disney Country Concert Series",
+          "dates": "Daily through Nov 18, 12–3 PM",
+          "area": "downtown",
+          "badge": "Free",
+          "body": "Live country bands on the Downtown Disney LIVE! stage, a new act most days. No park ticket needed.",
+          "url": "https://mickeyvisit.com/downtown-disney-country-concert-series-lineup-november-2-2026/"
+        },
+        {
+          "title": "Bountiful Valley Brews Opens",
+          "dates": "November; exact date TBA",
+          "area": "dca",
+          "badge": "New",
+          "body": "A new drinks-and-snacks spot near the front of the park. The menu includes a Pepperoni Pizza Egg Roll with pesto, a Pomegranate-Blueberry Refresher and a cocktail flight.",
+          "url": "https://www.micechat.com/447033-disneyland-update-imagineering-layoffs-attendance-candy-cane-dates-christmas-decor-construction/"
+        },
+        {
+          "title": "Haunted Mansion Holiday Collectible Cards",
+          "dates": "Card 3 Nov 9; card 4 Nov 16; through Nov 21",
+          "area": "both",
+          "badge": "Magic Key",
+          "body": "Collectible cards for Magic Key holders at Disneyana, Kingswell Shop and WonderGround Gallery.",
+          "url": "https://www.micechat.com/447033-disneyland-update-imagineering-layoffs-attendance-candy-cane-dates-christmas-decor-construction/"
+        }
+      ]
+    },
+    {
+      "title": "Closures & Refurbs",
+      "emoji": "🚧",
+      "events": [
+        {
+          "title": "\"it's a small world\"",
+          "dates": "Closed since Oct 30",
+          "area": "dl",
+          "badge": "Closed",
+          "body": "Getting its holiday overlay. MousePlanet reports it may reopen a little after Nov 13; check the app.",
+          "url": "https://mouseplanet.com/disneyland-resort-update-for-november-2-2026/53554/"
+        },
+        {
+          "title": "Space Mountain",
+          "dates": "Closed Tue, Nov 10 only",
+          "area": "dl",
+          "badge": "1 day",
+          "body": "A one-day refurbishment. Plan Tomorrowland for another day if it's a must-ride.",
+          "url": "https://mouseplanet.com/disneyland-resort-update-for-november-2-2026/53554/"
+        },
+        {
+          "title": "Sailing Ship Columbia & Explorer Canoes",
+          "dates": "Columbia closed Nov 2–6 & 9–13; Canoes Nov 2–5 & 9–12",
+          "area": "dl",
+          "badge": "Closed",
+          "body": "Rivers of America is quiet on weekdays this week and next.",
+          "url": "https://mouseplanet.com/disneyland-resort-update-for-november-2-2026/53554/"
+        },
+        {
+          "title": "Redwood Creek Challenge Trail",
+          "dates": "Closed Nov 1 – 12",
+          "area": "dca",
+          "badge": "Closed",
+          "body": "The Villains Grove overlay is coming out so Santa can move in for the holidays.",
+          "url": "https://mickeyvisit.com/disney-november-ride-closures-october-27-2026/"
+        },
+        {
+          "title": "Pixie Hollow",
+          "dates": "Closed Tuesdays & Thursdays",
+          "area": "dl",
+          "badge": "Ongoing",
+          "body": "Tinker Bell's meet-and-greet area is dark two days a week.",
+          "url": "https://mouseplanet.com/disneyland-resort-update-for-november-2-2026/53554/"
         }
       ]
     },
@@ -56,12 +102,12 @@
       "emoji": "🎭",
       "events": [
         {
-          "title": "World of Color – One",
-          "dates": "Through Halloween",
-          "area": "dca",
-          "badge": "Ends soon",
-          "body": "The fan-favorite World of Color show wraps its limited run before the holiday show takes over.",
-          "url": "https://www.disneytouristblog.com/new-next-disneyland-california-adventure/"
+          "title": "Haunted Mansion Holiday",
+          "dates": "Through Jan 6, 2027",
+          "area": "dl",
+          "badge": "Long run",
+          "body": "Jack Skellington's Nightmare Before Christmas takeover of the Haunted Mansion runs into the new year.",
+          "url": "https://attractionsmagazine.com/disneyland-holidays-2026-dates-schedule-rides-entertainment/"
         },
         {
           "title": "Bluey's Best Day Ever!",
@@ -110,6 +156,22 @@
           "url": "https://www.foxla.com/news/disneyland-resort-holiday-season-dates-announcement-2026"
         },
         {
+          "title": "Handmade Candy Canes",
+          "dates": "DL: Nov 27, 30; Dec 2, 7, 9, 14, 16, 21, 23, 25 · DCA: Nov 28, 29; Dec 1, 6, 8, 13, 15, 20, 22, 24",
+          "area": "both",
+          "badge": "Nov 27",
+          "body": "Candy Palace and Trolley Treats pull handmade candy canes on these days. They sell out early, so arrive at park opening for a wristband. Dates as corrected by MiceChat.",
+          "url": "https://www.micechat.com/447033-disneyland-update-imagineering-layoffs-attendance-candy-cane-dates-christmas-decor-construction/"
+        },
+        {
+          "title": "Breakfast with Santa at Naples",
+          "dates": "Select dates from Nov 28",
+          "area": "downtown",
+          "badge": "Book now",
+          "body": "A Downtown Disney breakfast with Santa. Reservations are open through Patina Group.",
+          "url": "https://www.patinagroup.com/naples-ristorante-e-bar/breakfast-with-santa"
+        },
+        {
           "title": "Remember… Dreams Come True Returns",
           "dates": "February 2027; exact date TBA",
           "area": "dl",
@@ -136,6 +198,6 @@
       ]
     }
   ],
-  "tip": "Halloween Time and Plaza de la Familia are included with park admission; Oogie Boogie Bash needs its own ticket.",
-  "caveats": "Dates come from Disney press releases and fan sites as of Oct 29, 2026. Always confirm in the Disneyland app."
+  "tip": "Coming this week? Weekdays before the Nov 13 holiday launch are some of the quietest of the season, but a few Rivers of America attractions are closed. Check the closures above.",
+  "caveats": "Dates come from Disney press releases and fan sites (MousePlanet, MiceChat, Mickey Visit) as of Nov 3, 2026. Always confirm in the Disneyland app."
 }
