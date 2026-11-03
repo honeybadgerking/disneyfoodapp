@@ -55,6 +55,8 @@
   .chip { flex: none; cursor: pointer; font: inherit; font-weight: 700; font-size: .78rem; padding: 7px 13px; border-radius: 999px; border: 2px solid var(--rule); background: var(--card); color: var(--text); transition: all .2s; }
   .chip[aria-pressed="true"] { color: #fff; border-color: transparent; background: linear-gradient(135deg, var(--navy), var(--navy2)); }
   .chip.flag[aria-pressed="true"] { background: linear-gradient(135deg, var(--berry), #c4585b); }
+  .chip.clear { border-style: dashed; color: var(--muted); }
+  .chip.clear[hidden] { display: none; }
   .chip-label { flex: none; font-size: .68rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding: 0 2px; }
   .hint { font-size: .74rem; color: var(--muted); }
 
@@ -138,13 +140,16 @@
   <div class="controls">
     <input class="search" id="search" type="search" placeholder="Search events, cities or streets…" aria-label="Search events" autocomplete="off" enterkeyhint="search">
     <div class="chips" role="group" aria-label="Filter by area" id="area-chips"></div>
+    <div class="chips" role="group" aria-label="Filter by type" id="type-chips"></div>
     <div class="chips" role="group" aria-label="More filters">
       <span class="chip-label">Price</span>
       <button class="chip" data-price="all" aria-pressed="true">All</button>
       <button class="chip" data-price="free" aria-pressed="false">Free</button>
       <button class="chip" data-price="paid" aria-pressed="false">Ticketed</button>
       <button class="chip flag" id="flag-chip" aria-pressed="false">🚩 Flagged</button>
+      <button class="chip" id="open-chip" aria-pressed="false">Open now</button>
       <button class="chip" id="ended-chip" aria-pressed="false">Show ended</button>
+      <button class="chip clear" id="clear-chip" type="button" hidden>✕ Clear filters</button>
     </div>
     <div class="hint" id="count" aria-live="polite"></div>
   </div>
@@ -173,8 +178,8 @@
   const done = new Set(), flagged = new Set(), deleted = new Set();
   const plans = {}, notes = {};
   let cloud = { done: [], deleted: [], flagged: [], dates: {} };
-  let user = null, events = [], regions = {}, saveTimer = null, saving = false, dirty = false;
-  const f = { area: 'all', price: 'all', q: '', flagged: false, ended: false };
+  let user = null, events = [], regions = {}, types = {}, saveTimer = null, saving = false, dirty = false;
+  const f = { area: 'all', type: 'all', price: 'all', q: '', flagged: false, open: false, ended: false };
   const open = new Set();
 
   const esc = (t) => String(t == null ? '' : t).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -286,6 +291,8 @@
     if (deleted.has(ev.id)) return false;
     if (st.ended && !f.ended) return false;
     if (f.area !== 'all' && ev.r !== f.area) return false;
+    if (f.type !== 'all' && ev.t !== f.type) return false;
+    if (f.open && st.text !== 'Open now') return false;
     if (f.price !== 'all' && (f.price === 'free') !== ev.free) return false;
     if (f.flagged && !flagged.has(ev.id)) return false;
     const q = f.q.trim().toLowerCase();
@@ -338,6 +345,7 @@
     $('content').innerHTML = (html || '<div class="empty">No events match. Try a different word or clear a filter.</div>') +
       (removed.length ? '<details class="deleted"><summary>🗑️ Removed (' + removed.length + ')</summary>' + removed.map((ev) => '<div class="deleted-row" data-id="' + esc(ev.id) + '"><span>' + esc(ev.n) + '</span><button type="button" class="restore">Restore</button></div>').join('') + '</details>' : '');
     $('count').textContent = rows.length + ' shown' + (f.ended ? '' : ' · ended events hidden');
+    $('clear-chip').hidden = !(f.area !== 'all' || f.type !== 'all' || f.price !== 'all' || f.q.trim() || f.flagged || f.open || f.ended);
     updateStats();
   }
   function updateStats() {
@@ -393,6 +401,14 @@
     }));
   }
   bindChips('[data-price]', 'price');
+  $('open-chip').addEventListener('click', (e) => { f.open = !f.open; e.currentTarget.setAttribute('aria-pressed', String(f.open)); render(); });
+  $('clear-chip').addEventListener('click', () => {
+    Object.assign(f, { area: 'all', type: 'all', price: 'all', q: '', flagged: false, open: false, ended: false });
+    $('search').value = '';
+    ['area', 'type', 'price'].forEach((k) => document.querySelectorAll('[data-' + k + ']').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset[k] === 'all'))));
+    ['flag-chip', 'open-chip', 'ended-chip'].forEach((id) => $(id).setAttribute('aria-pressed', 'false'));
+    render();
+  });
   $('flag-chip').addEventListener('click', (e) => { f.flagged = !f.flagged; e.currentTarget.setAttribute('aria-pressed', String(f.flagged)); render(); });
   $('ended-chip').addEventListener('click', (e) => { f.ended = !f.ended; e.currentTarget.setAttribute('aria-pressed', String(f.ended)); render(); });
 
@@ -420,6 +436,9 @@
     wrap.insertAdjacentHTML('beforeend', '<span class="chip-label">Area</span><button class="chip" data-area="all" aria-pressed="true">All</button>' +
       Object.keys(regions).map((k) => '<button class="chip" data-area="' + esc(k) + '" aria-pressed="false">' + esc(regions[k]) + '</button>').join(''));
     bindChips('[data-area]', 'area');
+    $('type-chips').insertAdjacentHTML('beforeend', '<span class="chip-label">Type</span><button class="chip" data-type="all" aria-pressed="true">All</button>' +
+      Object.keys(types).map((k) => '<button class="chip" data-type="' + esc(k) + '" aria-pressed="false">' + esc(types[k]) + '</button>').join(''));
+    bindChips('[data-type]', 'type');
   }
   async function boot() {
     renderAccount();
@@ -427,7 +446,7 @@
       const res = await fetch('/outside.json', { cache: 'no-cache' });
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const data = await res.json();
-      events = data.events; regions = data.regions;
+      events = data.events; regions = data.regions; types = data.types || {};
       $('subtitle').textContent = 'Southern California holiday events · updated ' + data.updated;
     } catch (err) {
       console.error(err);

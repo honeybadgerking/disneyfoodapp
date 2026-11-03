@@ -6,8 +6,9 @@ const path = require('node:path');
 const data = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'public', 'outside.json'), 'utf8'));
 const ISO = /^\d{4}-\d{2}-\d{2}$/;
 
-test('outside.json has regions and events', () => {
+test('outside.json has regions, types and events', () => {
   assert.ok(data.regions && Object.keys(data.regions).length >= 2);
+  assert.ok(data.types && Object.keys(data.types).length >= 2);
   assert.ok(Array.isArray(data.events) && data.events.length > 0);
 });
 
@@ -21,6 +22,7 @@ test('every event has the fields the page renders', () => {
   data.events.forEach((e) => {
     ['id', 'r', 'n', 'u', 'k', 'c', 'a', 'd'].forEach((k) => assert.ok(typeof e[k] === 'string' && e[k].length > 0, `${e.id}: missing ${k}`));
     assert.ok(data.regions[e.r], `${e.id}: unknown region ${e.r}`);
+    assert.ok(data.types[e.t], `${e.id}: unknown type ${e.t}`);
     assert.strictEqual(typeof e.free, 'boolean', `${e.id}: free must be boolean`);
     if (!e.free) assert.ok(e.p, `${e.id}: ticketed events need a price note`);
     assert.match(e.u, /^https:\/\//, `${e.id}: url must be https`);
@@ -40,4 +42,9 @@ test('start and end dates are valid ISO dates in order, or both null', () => {
 test('ids cannot collide with food checklist keys', () => {
   // Food keys look like "dl::r::Loc::Name"; ours are prefixed "outside::" / "outside-note::".
   data.events.forEach((e) => assert.ok(!e.id.includes('::')));
+});
+
+test('every region and every type has at least one event (no dead filter chips)', () => {
+  Object.keys(data.regions).forEach((r) => assert.ok(data.events.some((e) => e.r === r), `no events in region ${r}`));
+  Object.keys(data.types).forEach((t) => assert.ok(data.events.some((e) => e.t === t), `no events of type ${t}`));
 });
