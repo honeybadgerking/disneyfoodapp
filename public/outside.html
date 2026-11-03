@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stuff Outside of Disneyland — Southern California Holiday Events</title>
+<style>
+  :root {
+    --navy: #1b2a4a; --navy2: #2d4373; --gold: #c9a24b; --teal: #0f6b6b; --teal2: #1aa3a3;
+    --pine: #1f6b45; --berry: #a63d40;
+    --bg: #f4efe4; --paper: #fffdf8; --card: #ffffff; --text: #23272f; --muted: #6b7280; --rule: #e6dfcf;
+    --soft: #f1ece0; --link: #0f6b6b; --free: #1f6b45; --paid: #a63d40;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0e1424; --paper: #151c30; --card: #1c2540; --text: #eef0f6; --muted: #98a1b8; --rule: #2b3556;
+      --soft: #26304f; --link: #4fd1d1; --free: #5fd39a; --paid: #ff8a8f;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); padding: 20px 16px 60px;
+    background-image: radial-gradient(circle at 10% 0%, rgba(201,162,75,.18), transparent 40%), radial-gradient(circle at 95% 8%, rgba(26,163,163,.16), transparent 38%); background-attachment: fixed; }
+  a { color: var(--link); }
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, .checkbox:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+  .paper { max-width: 780px; margin: 0 auto; background: var(--paper); border: 1px solid var(--rule); border-radius: 20px; box-shadow: 0 14px 44px rgba(27,42,74,.18); overflow: clip; }
+  .nav { display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 16px; background: linear-gradient(90deg, var(--navy), var(--navy2)); }
+  .nav a { color: #fff; text-decoration: none; font-size: .8rem; font-weight: 600; padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,.35); transition: transform .15s, background .15s; }
+  .nav a:hover { transform: translateY(-2px); background: rgba(255,255,255,.15); }
+  .nav a.current, .nav a.current:hover { background: var(--gold); border-color: var(--gold); color: var(--navy); }
+
+  .hero { position: relative; text-align: center; padding: 34px 18px 22px; color: #fff; overflow: hidden;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 50%, var(--pine) 130%); }
+  .hero::before, .hero::after { content: "✦"; position: absolute; color: var(--gold); opacity: .55; font-size: 2.2rem; animation: twinkle 3.2s ease-in-out infinite; }
+  .hero::before { left: 8%; top: 18%; } .hero::after { right: 9%; bottom: 16%; animation-delay: 1.4s; font-size: 1.6rem; }
+  @keyframes twinkle { 0%,100% { opacity: .2; transform: scale(.8) rotate(0); } 50% { opacity: .8; transform: scale(1.15) rotate(20deg); } }
+  @media (prefers-reduced-motion: reduce) { .hero::before, .hero::after { animation: none; } * { scroll-behavior: auto !important; } }
+  .hero h1 { margin: 0; font-size: clamp(1.6rem, 6.4vw, 2.4rem); letter-spacing: .01em; text-shadow: 0 2px 12px rgba(0,0,0,.35); }
+  .hero p { margin: 8px 0 0; opacity: .9; font-size: .95rem; }
+  .stats { display: flex; justify-content: center; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
+  .stat { background: rgba(255,255,255,.13); border: 1px solid rgba(255,255,255,.28); border-radius: 14px; padding: 8px 16px; backdrop-filter: blur(4px); min-width: 78px; }
+  .stat b { display: block; font-size: 1.4rem; color: var(--gold); line-height: 1.1; }
+  .stat span { font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; opacity: .85; }
+
+  .account { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; padding: 10px 16px; font-size: .82rem; color: var(--muted); border-bottom: 1px solid var(--rule); background: var(--soft); }
+  .account img { width: 26px; height: 26px; border-radius: 50%; }
+  .account button { font: inherit; font-weight: 700; font-size: .78rem; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--rule); background: var(--card); color: var(--text); cursor: pointer; }
+  .account button.primary { background: linear-gradient(135deg, var(--navy), var(--navy2)); color: #fff; border-color: transparent; }
+  #save-status { font-size: .74rem; }
+
+  .controls { position: sticky; top: 0; z-index: 5; padding: 12px 16px; background: color-mix(in srgb, var(--paper) 92%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--rule); display: grid; gap: 8px; }
+  .search { width: 100%; font: inherit; font-size: .95rem; padding: 10px 14px; border-radius: 12px; border: 1px solid var(--rule); background: var(--card); color: var(--text); }
+  .chips { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; align-items: center; }
+  .chips::-webkit-scrollbar { display: none; }
+  .chip { flex: none; cursor: pointer; font: inherit; font-weight: 700; font-size: .78rem; padding: 7px 13px; border-radius: 999px; border: 2px solid var(--rule); background: var(--card); color: var(--text); transition: all .2s; }
+  .chip[aria-pressed="true"] { color: #fff; border-color: transparent; background: linear-gradient(135deg, var(--navy), var(--navy2)); }
+  .chip.flag[aria-pressed="true"] { background: linear-gradient(135deg, var(--berry), #c4585b); }
+  .chip-label { flex: none; font-size: .68rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding: 0 2px; }
+  .hint { font-size: .74rem; color: var(--muted); }
+
+  #content { padding: 6px 16px 8px; }
+  .group-title { margin: 20px 0 10px; font-size: 1.1rem; color: var(--navy); display: flex; align-items: baseline; gap: 10px; }
+  @media (prefers-color-scheme: dark) { .group-title { color: var(--gold); } }
+  .group-title small { font-size: .76rem; color: var(--muted); font-weight: 500; }
+
+  .item { position: relative; display: flex; gap: 12px; align-items: flex-start; background: var(--card); border: 1px solid var(--rule); border-radius: 14px; padding: 12px 10px 12px 14px; margin-bottom: 10px; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,.05); transition: box-shadow .2s, opacity .2s; }
+  .item::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: linear-gradient(180deg, var(--navy), var(--navy2)); }
+  .item[data-r="ie"]::before { background: linear-gradient(180deg, #b5651d, #d98b3a); }
+  .item[data-r="oc"]::before { background: linear-gradient(180deg, var(--teal), var(--teal2)); }
+  .item[data-r="la"]::before { background: linear-gradient(180deg, #4a2a6b, #7a4fa3); }
+  .item[data-r="sd"]::before { background: linear-gradient(180deg, var(--pine), #3d9a6a); }
+  .item:hover { box-shadow: 0 8px 20px rgba(27,42,74,.14); }
+  .item.done { opacity: .72; }
+  .item.done .item-name a { text-decoration: line-through; text-decoration-thickness: 1.5px; }
+  .item.ended { opacity: .6; }
+  .checkbox { flex: none; margin-left: 4px; width: 28px; height: 28px; border-radius: 8px; border: 2px solid var(--rule); background: var(--card); color: transparent; font-weight: 800; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all .2s; }
+  .item.done .checkbox { background: linear-gradient(135deg, var(--teal), var(--teal2)); border-color: transparent; color: #fff; }
+  .item-text { flex: 1; min-width: 0; }
+  .item-name { margin: 0; font-size: 1rem; font-weight: 700; line-height: 1.3; }
+  .item-name a { color: var(--text); text-decoration: none; }
+  .item-name a:hover { color: var(--link); text-decoration: underline; }
+  .item-when { margin-top: 3px; font-size: .82rem; font-weight: 600; }
+  .item-when span { color: var(--muted); font-weight: 500; }
+  .item-where { margin-top: 2px; font-size: .8rem; color: var(--muted); }
+  .item-where a { color: var(--muted); }
+  .item-note { margin-top: 6px; font-size: .8rem; padding: 6px 9px; border-radius: 8px; background: rgba(201,162,75,.15); }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; align-items: center; }
+  .tag { font-size: .68rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; background: var(--soft); color: var(--muted); }
+  .tag.free { color: var(--free); background: color-mix(in srgb, var(--free) 14%, transparent); }
+  .tag.paid { color: var(--paid); background: color-mix(in srgb, var(--paid) 12%, transparent); }
+  .tag.live { color: #fff; background: var(--free); }
+  .tag.plan { color: var(--navy); background: rgba(201,162,75,.35); }
+  @media (prefers-color-scheme: dark) { .tag.plan { color: var(--gold); background: rgba(201,162,75,.2); } .tag.live { color: #06240f; } }
+  .price { font-size: .78rem; font-weight: 600; }
+  .plan-btn { margin-top: 8px; font: inherit; font-size: .76rem; font-weight: 700; padding: 5px 11px; border-radius: 999px; border: 1px dashed var(--rule); background: transparent; color: var(--muted); cursor: pointer; }
+  .plan-btn[aria-expanded="true"] { border-style: solid; color: var(--text); }
+  .plan-panel { display: grid; gap: 8px; margin-top: 8px; padding: 10px; border-radius: 10px; background: var(--soft); }
+  .plan-panel[hidden] { display: none; }
+  .plan-panel label { font-size: .72rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); display: grid; gap: 4px; }
+  .plan-panel input, .plan-panel textarea { font: inherit; font-size: .9rem; font-weight: 400; letter-spacing: 0; text-transform: none; color: var(--text); padding: 8px 10px; border-radius: 8px; border: 1px solid var(--rule); background: var(--card); width: 100%; }
+  .plan-panel textarea { min-height: 70px; resize: vertical; }
+  .actions { flex: none; display: flex; flex-direction: column; gap: 2px; }
+  .icon-btn { width: 36px; height: 36px; border: 0; background: transparent; font-size: 1.05rem; cursor: pointer; border-radius: 10px; color: var(--muted); }
+  .icon-btn:hover { background: var(--soft); }
+  .icon-btn.flag.on { color: var(--berry); }
+
+  details.deleted { margin: 18px 0 8px; border-top: 1px solid var(--rule); padding-top: 12px; }
+  details.deleted summary { cursor: pointer; font-weight: 700; font-size: .9rem; color: var(--muted); }
+  .deleted-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--rule); font-size: .88rem; }
+  .deleted-row button { font: inherit; font-weight: 700; font-size: .76rem; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--rule); background: var(--card); color: var(--text); cursor: pointer; }
+  .empty { text-align: center; color: var(--muted); padding: 40px 10px; }
+  .foot { padding: 14px 20px 22px; font-size: .74rem; color: var(--muted); text-align: center; line-height: 1.5; }
+  .foot a { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="paper">
+  <div class="nav">
+    <a href="/">🍔 Food Checklist</a>
+    <a href="/rides.html">🎢 Ride Heights</a>
+    <a href="/events.html">📰 Events Newsletter</a>
+    <a href="/outside.html" class="current" aria-current="page">🎄 Outside Disneyland</a>
+    <a href="/crew.html">💬 Crew</a>
+  </div>
+
+  <header class="hero">
+    <h1>🎄 Stuff Outside of Disneyland</h1>
+    <p id="subtitle">Southern California holiday events, lights and seasonal fun</p>
+    <div class="stats" aria-label="Your stats">
+      <div class="stat"><b id="stat-been">0</b><span>Been</span></div>
+      <div class="stat"><b id="stat-planned">0</b><span>Planned</span></div>
+      <div class="stat"><b id="stat-flagged">0</b><span>Flagged</span></div>
+    </div>
+  </header>
+
+  <div class="account" id="account"></div>
+
+  <div class="controls">
+    <input class="search" id="search" type="search" placeholder="Search events, cities or streets…" aria-label="Search events" autocomplete="off" enterkeyhint="search">
+    <div class="chips" role="group" aria-label="Filter by area" id="area-chips"></div>
+    <div class="chips" role="group" aria-label="More filters">
+      <span class="chip-label">Price</span>
+      <button class="chip" data-price="all" aria-pressed="true">All</button>
+      <button class="chip" data-price="free" aria-pressed="false">Free</button>
+      <button class="chip" data-price="paid" aria-pressed="false">Ticketed</button>
+      <button class="chip flag" id="flag-chip" aria-pressed="false">🚩 Flagged</button>
+      <button class="chip" id="ended-chip" aria-pressed="false">Show ended</button>
+    </div>
+    <div class="hint" id="count" aria-live="polite"></div>
+  </div>
+
+  <main id="content"><div class="empty">Loading events…</div></main>
+
+  <p class="foot" id="foot">Dates, hours and prices change. Check each event's page before you go.</p>
+</div>
+
+<script type="module">
+  import { auth, db, signIn, signOutUser, redirectResult, onUser } from "/js/firebase-app.js";
+  import { doc, getDoc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+  // ---- Sync model ---------------------------------------------------------
+  // Everything lives in the same users/{uid} document as the food checklist,
+  // using fields the Firestore rules already allow, so no rules change is
+  // needed. Keys are namespaced so they can never collide with food items:
+  //   done / flagged / deleted : "outside::<event id>"
+  //   dates                    : "outside::<id>" = planned date (YYYY-MM-DD)
+  //                              "outside-note::<id>" = note text
+  // Anything that is not ours is copied through untouched when saving.
+  const PFX = 'outside::';
+  const NOTE = 'outside-note::';
+  const NOTE_MAX = 500;
+
+  const done = new Set(), flagged = new Set(), deleted = new Set();
+  const plans = {}, notes = {};
+  let cloud = { done: [], deleted: [], flagged: [], dates: {} };
+  let user = null, events = [], regions = {}, saveTimer = null, saving = false, dirty = false;
+  const f = { area: 'all', price: 'all', q: '', flagged: false, ended: false };
+  const open = new Set();
+
+  const esc = (t) => String(t == null ? '' : t).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const $ = (id) => document.getElementById(id);
+
+  // ---- Dates --------------------------------------------------------------
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const parseDay = (s) => { const p = s.split('-'); return new Date(+p[0], +p[1] - 1, +p[2]); };
+  const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  function status(ev) {
+    if (!ev.s) return { text: 'Dates TBA', cls: '', ended: false };
+    const st = parseDay(ev.s), en = parseDay(ev.e);
+    if (today > en) return { text: 'Ended', cls: '', ended: true };
+    if (today >= st) return { text: 'Open now', cls: 'live', ended: false };
+    if (ev.early) return { text: 'Starts early Dec', cls: '', ended: false };
+    const n = Math.round((st - today) / 864e5);
+    return { text: n === 1 ? 'Opens tomorrow' : 'Opens in ' + n + ' days', cls: '', ended: false };
+  }
+  function groupOf(ev, ended) {
+    if (ended) return { key: '9-ended', label: 'Ended' };
+    if (!ev.s) return { key: '8-tba', label: 'Dates not confirmed' };
+    const d = parseDay(ev.s);
+    const live = d <= today;
+    if (live) return { key: '0-now', label: 'Open now' };
+    return { key: '1-' + ev.s.slice(0, 7), label: MONTHS[d.getMonth()] + ' ' + d.getFullYear() };
+  }
+  const fmtPlan = (iso) => { const d = parseDay(iso); return MONTHS[d.getMonth()].slice(0, 3) + ' ' + d.getDate(); };
+
+  // ---- State load / save --------------------------------------------------
+  const localKey = () => 'outside-state-' + (user ? user.uid : 'anon');
+  function applyPayload(p) {
+    done.clear(); flagged.clear(); deleted.clear();
+    Object.keys(plans).forEach((k) => delete plans[k]);
+    Object.keys(notes).forEach((k) => delete notes[k]);
+    if (!p) return;
+    const ids = (a) => (a || []).filter((k) => typeof k === 'string' && k.startsWith(PFX)).map((k) => k.slice(PFX.length));
+    ids(p.done).forEach((i) => done.add(i));
+    ids(p.flagged).forEach((i) => flagged.add(i));
+    ids(p.deleted).forEach((i) => deleted.add(i));
+    Object.entries(p.dates || {}).forEach(([k, v]) => {
+      if (typeof v !== 'string') return;
+      if (k.startsWith(PFX)) plans[k.slice(PFX.length)] = v;
+      else if (k.startsWith(NOTE)) notes[k.slice(NOTE.length)] = v;
+    });
+  }
+  const isOurs = (k) => k.startsWith(PFX) || k.startsWith(NOTE);
+  function buildPayload() {
+    const other = (a) => (a || []).filter((k) => !isOurs(k));
+    const dates = {};
+    Object.entries(cloud.dates || {}).forEach(([k, v]) => { if (!isOurs(k)) dates[k] = v; });
+    Object.entries(plans).forEach(([i, v]) => { dates[PFX + i] = v; });
+    Object.entries(notes).forEach(([i, v]) => { dates[NOTE + i] = v; });
+    return {
+      done: other(cloud.done).concat([...done].map((i) => PFX + i)),
+      deleted: other(cloud.deleted).concat([...deleted].map((i) => PFX + i)),
+      flagged: other(cloud.flagged).concat([...flagged].map((i) => PFX + i)),
+      dates,
+    };
+  }
+  const setStatus = (t) => { const el = $('save-status'); if (el) el.textContent = t; };
+
+  function queueSave() {
+    dirty = true;
+    setStatus('Saving…');
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(flushSave, 600);
+  }
+  async function flushSave() {
+    if (saving) { saveTimer = setTimeout(flushSave, 300); return; }
+    saving = true; dirty = false;
+    const payload = buildPayload();
+    let localOk = false;
+    try { localStorage.setItem(localKey(), JSON.stringify(payload)); localOk = true; } catch (e) {}
+    let cloudOk = false;
+    if (user) {
+      try {
+        // Merge write: only these fields are touched, holidayMode etc. are left alone.
+        await setDoc(doc(db, 'users', user.uid), Object.assign({}, payload, { updatedAt: serverTimestamp() }), { merge: true });
+        cloudOk = true;
+        cloud = { done: payload.done, deleted: payload.deleted, flagged: payload.flagged, dates: payload.dates };
+      } catch (err) { console.error('Firestore save failed', err); }
+    }
+    saving = false;
+    if (user) setStatus(cloudOk ? 'All changes saved' : (localOk ? 'Saved on this device, will retry' : 'Save failed'));
+    else setStatus(localOk ? 'Saved on this device. Sign in to sync.' : 'Not saved');
+    if (user && !cloudOk) { saveTimer = setTimeout(flushSave, 15000); }
+  }
+
+  async function loadForUser() {
+    let p = null;
+    if (user) {
+      try { const snap = await getDoc(doc(db, 'users', user.uid)); p = snap.exists() ? snap.data() : {}; cloud = { done: p.done || [], deleted: p.deleted || [], flagged: p.flagged || [], dates: p.dates || {} }; }
+      catch (err) { console.error('Firestore load failed', err); p = null; }
+    }
+    const hasOurs = p && ((p.done || []).concat(p.flagged || [], p.deleted || [], Object.keys(p.dates || {}))).some(isOurs);
+    if (!hasOurs) {
+      // First time on this account: adopt anything tracked while signed out or offline.
+      let local = null;
+      try { local = JSON.parse(localStorage.getItem(localKey()) || localStorage.getItem('outside-state-anon') || 'null'); } catch (e) {}
+      applyPayload(local || p);
+      if (user && local) queueSave();
+    } else {
+      applyPayload(p);
+    }
+  }
+
+  // ---- Filtering and rendering -------------------------------------------
+  function matches(ev, st) {
+    if (deleted.has(ev.id)) return false;
+    if (st.ended && !f.ended) return false;
+    if (f.area !== 'all' && ev.r !== f.area) return false;
+    if (f.price !== 'all' && (f.price === 'free') !== ev.free) return false;
+    if (f.flagged && !flagged.has(ev.id)) return false;
+    const q = f.q.trim().toLowerCase();
+    if (q) {
+      const hay = [ev.n, ev.c, ev.a, ev.note || '', ev.d, ev.h || '', ev.p || '', regions[ev.r] || '', notes[ev.id] || ''].join(' ').toLowerCase();
+      if (hay.indexOf(q) < 0) return false;
+    }
+    return true;
+  }
+  function itemHtml(ev, st) {
+    const id = ev.id, isDone = done.has(id), isFlag = flagged.has(id), isOpen = open.has(id);
+    const mq = encodeURIComponent(ev.a + ', ' + ev.c + ', CA');
+    const plan = plans[id], note = notes[id] || '';
+    return '<article class="item' + (isDone ? ' done' : '') + (st.ended ? ' ended' : '') + '" data-id="' + esc(id) + '" data-r="' + esc(ev.r) + '">' +
+      '<div class="checkbox" role="checkbox" tabindex="0" aria-checked="' + isDone + '" aria-label="Mark ' + esc(ev.n) + ' as been there">✓</div>' +
+      '<div class="item-text">' +
+        '<h3 class="item-name"><a href="' + esc(ev.u) + '" target="_blank" rel="noopener">' + esc(ev.n) + '</a></h3>' +
+        '<div class="item-when">' + esc(ev.d) + (ev.h ? ' <span>· ' + esc(ev.h) + '</span>' : '') + '</div>' +
+        '<div class="item-where"><a href="https://www.google.com/maps/search/?api=1&query=' + mq + '" target="_blank" rel="noopener">📍 ' + esc(ev.a) + ', ' + esc(ev.c) + '</a></div>' +
+        (ev.note ? '<div class="item-note">' + esc(ev.note) + '</div>' : '') +
+        '<div class="tags">' +
+          '<span class="tag">' + esc(regions[ev.r] || ev.r) + '</span>' +
+          '<span class="tag ' + (ev.free ? 'free' : 'paid') + '">' + (ev.free ? 'Free' : 'Ticketed') + '</span>' +
+          (ev.free ? '' : '<span class="price">' + esc(ev.p || '') + '</span>') +
+          '<span class="tag ' + st.cls + '">' + esc(st.text) + '</span>' +
+          '<span class="tag plan" data-plan-tag' + (plan ? '' : ' hidden') + '>📅 ' + (plan ? esc(fmtPlan(plan)) : '') + '</span>' +
+        '</div>' +
+        '<button class="plan-btn" type="button" aria-expanded="' + isOpen + '">📅 Plan &amp; notes' + (note ? ' ✎' : '') + '</button>' +
+        '<div class="plan-panel"' + (isOpen ? '' : ' hidden') + '>' +
+          '<label>Planned date<input type="date" class="plan-date" value="' + esc(plan || '') + '"></label>' +
+          '<label>Notes<textarea class="plan-note" maxlength="' + NOTE_MAX + '" placeholder="Who’s coming, tickets bought, where to park…">' + esc(note) + '</textarea></label>' +
+        '</div>' +
+      '</div>' +
+      '<div class="actions">' +
+        '<button class="icon-btn flag' + (isFlag ? ' on' : '') + '" type="button" aria-pressed="' + isFlag + '" aria-label="Flag for later">' + (isFlag ? '🚩' : '🏳️') + '</button>' +
+        '<button class="icon-btn del" type="button" aria-label="Remove ' + esc(ev.n) + '">✕</button>' +
+      '</div>' +
+    '</article>';
+  }
+  function render() {
+    const rows = events.map((ev) => ({ ev, st: status(ev) })).filter(({ ev, st }) => matches(ev, st));
+    const groups = {};
+    rows.forEach(({ ev, st }) => { const g = groupOf(ev, st.ended); (groups[g.key] = groups[g.key] || { label: g.label, rows: [] }).rows.push({ ev, st }); });
+    const html = Object.keys(groups).sort().map((k) => {
+      const g = groups[k];
+      g.rows.sort((a, b) => (a.ev.s || '9999').localeCompare(b.ev.s || '9999') || a.ev.n.localeCompare(b.ev.n));
+      return '<h2 class="group-title">' + esc(g.label) + ' <small>' + g.rows.length + '</small></h2>' + g.rows.map(({ ev, st }) => itemHtml(ev, st)).join('');
+    }).join('');
+    const removed = events.filter((ev) => deleted.has(ev.id));
+    $('content').innerHTML = (html || '<div class="empty">No events match. Try a different word or clear a filter.</div>') +
+      (removed.length ? '<details class="deleted"><summary>🗑️ Removed (' + removed.length + ')</summary>' + removed.map((ev) => '<div class="deleted-row" data-id="' + esc(ev.id) + '"><span>' + esc(ev.n) + '</span><button type="button" class="restore">Restore</button></div>').join('') + '</details>' : '');
+    $('count').textContent = rows.length + ' shown' + (f.ended ? '' : ' · ended events hidden');
+    updateStats();
+  }
+  function updateStats() {
+    const live = events.filter((ev) => !deleted.has(ev.id));
+    $('stat-been').textContent = live.filter((ev) => done.has(ev.id)).length;
+    $('stat-planned').textContent = live.filter((ev) => plans[ev.id] && !done.has(ev.id)).length;
+    $('stat-flagged').textContent = live.filter((ev) => flagged.has(ev.id)).length;
+  }
+
+  // ---- Interaction --------------------------------------------------------
+  function toggle(set, id) { if (set.has(id)) set.delete(id); else set.add(id); }
+  const content = $('content');
+  content.addEventListener('click', (e) => {
+    const rest = e.target.closest('.restore');
+    if (rest) { deleted.delete(rest.closest('.deleted-row').dataset.id); render(); queueSave(); return; }
+    const item = e.target.closest('.item');
+    if (!item) return;
+    const id = item.dataset.id;
+    if (e.target.closest('.checkbox')) { toggle(done, id); render(); queueSave(); }
+    else if (e.target.closest('.icon-btn.flag')) { toggle(flagged, id); render(); queueSave(); }
+    else if (e.target.closest('.icon-btn.del')) { deleted.add(id); done.delete(id); flagged.delete(id); render(); queueSave(); }
+    else if (e.target.closest('.plan-btn')) {
+      const panel = item.querySelector('.plan-panel'), btn = item.querySelector('.plan-btn');
+      const now = panel.hidden; panel.hidden = !now; btn.setAttribute('aria-expanded', String(now));
+      if (now) open.add(id); else open.delete(id);
+    }
+  });
+  content.addEventListener('keydown', (e) => {
+    const cb = e.target.closest && e.target.closest('.checkbox');
+    if (cb && (e.key === ' ' || e.key === 'Enter')) { e.preventDefault(); const id = cb.closest('.item').dataset.id; toggle(done, id); render(); queueSave(); }
+  });
+  content.addEventListener('change', (e) => {
+    if (!e.target.classList.contains('plan-date')) return;
+    const item = e.target.closest('.item'), id = item.dataset.id, v = e.target.value;
+    if (v) plans[id] = v; else delete plans[id];
+    const tag = item.querySelector('[data-plan-tag]');
+    tag.hidden = !v; tag.textContent = v ? '📅 ' + fmtPlan(v) : '';
+    updateStats(); queueSave();
+  });
+  content.addEventListener('input', (e) => {
+    if (!e.target.classList.contains('plan-note')) return;
+    const item = e.target.closest('.item'), id = item.dataset.id, v = e.target.value.slice(0, NOTE_MAX);
+    if (v.trim()) notes[id] = v; else delete notes[id];
+    item.querySelector('.plan-btn').innerHTML = '📅 Plan &amp; notes' + (v.trim() ? ' ✎' : '');
+    queueSave();
+  });
+  $('search').addEventListener('input', (e) => { f.q = e.target.value; render(); });
+  function bindChips(selector, key) {
+    document.querySelectorAll(selector).forEach((b) => b.addEventListener('click', () => {
+      f[key] = b.dataset[key];
+      document.querySelectorAll(selector).forEach((o) => o.setAttribute('aria-pressed', String(o === b)));
+      render();
+    }));
+  }
+  bindChips('[data-price]', 'price');
+  $('flag-chip').addEventListener('click', (e) => { f.flagged = !f.flagged; e.currentTarget.setAttribute('aria-pressed', String(f.flagged)); render(); });
+  $('ended-chip').addEventListener('click', (e) => { f.ended = !f.ended; e.currentTarget.setAttribute('aria-pressed', String(f.ended)); render(); });
+
+  function renderAccount() {
+    const el = $('account');
+    if (user) {
+      el.innerHTML = (user.photoURL ? '<img alt="" referrerpolicy="no-referrer" src="' + esc(user.photoURL) + '">' : '') +
+        '<span>' + esc(user.displayName || user.email || 'Signed in') + '</span><button type="button" id="signout">Sign out</button><span id="save-status"></span>';
+      $('signout').addEventListener('click', () => signOutUser().catch((err) => console.error('Sign-out failed', err)));
+    } else {
+      el.innerHTML = '<span>Sign in to sync your checklist across devices.</span><button type="button" class="primary" id="signin">Sign in with Google</button><span id="save-status"></span>';
+      $('signin').addEventListener('click', () => { signIn().catch((err) => { console.error('Sign-in failed', err); setStatus("Sign-in didn't go through. Please try again."); }); });
+    }
+  }
+
+  // Pick up edits made on another device when this tab comes back into view.
+  document.addEventListener('visibilitychange', async () => {
+    if (document.visibilityState !== 'visible' || !user || dirty || saving || !events.length) return;
+    await loadForUser(); render();
+  });
+
+  // ---- Boot ---------------------------------------------------------------
+  function buildAreaChips() {
+    const wrap = $('area-chips');
+    wrap.insertAdjacentHTML('beforeend', '<span class="chip-label">Area</span><button class="chip" data-area="all" aria-pressed="true">All</button>' +
+      Object.keys(regions).map((k) => '<button class="chip" data-area="' + esc(k) + '" aria-pressed="false">' + esc(regions[k]) + '</button>').join(''));
+    bindChips('[data-area]', 'area');
+  }
+  async function boot() {
+    renderAccount();
+    try {
+      const res = await fetch('/outside.json', { cache: 'no-cache' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      events = data.events; regions = data.regions;
+      $('subtitle').textContent = 'Southern California holiday events · updated ' + data.updated;
+    } catch (err) {
+      console.error(err);
+      content.innerHTML = '<div class="empty">Couldn’t load the events list. Please refresh.</div>';
+      return;
+    }
+    buildAreaChips();
+    await loadForUser();
+    render();
+  }
+
+  redirectResult().catch((err) => console.error('Redirect sign-in failed', err));
+  let first = true;
+  onUser(async (u) => {
+    user = u;
+    renderAccount();
+    if (first) { first = false; await boot(); }
+    else if (events.length) { await loadForUser(); render(); }
+  });
+</script>
+</body>
+</html>
