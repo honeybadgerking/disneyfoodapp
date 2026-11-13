@@ -1,30 +1,22 @@
 {
-  "issue": 5,
-  "weekOf": "Nov 5 – 11, 2026",
-  "updated": "2026-11-03",
-  "headline": "The Calm Before the Tinsel",
-  "tagline": "Halloween is packed away, crews are hanging garland, and the holidays kick off Nov 13. Here's what's on (and what's closed) this week.",
+  "issue": 6,
+  "weekOf": "Nov 12 – 18, 2026",
+  "updated": "2026-11-12",
+  "headline": "Deck the Halls: The Holidays Land Tomorrow",
+  "tagline": "Snow, Santa and a Nightmare Before Christmas mansion arrive Nov 13. Here's what to know for opening week.",
   "lead": {
-    "title": "Holidays at the Disneyland Resort Start Nov 13",
+    "title": "Holidays at the Disneyland Resort Begin Tomorrow, Nov 13",
     "dates": "Nov 13, 2026 – Jan 6, 2027",
     "area": "both",
-    "badge": "Nov 13",
-    "body": "One week out! Castle snow and icicles, Toontown and New Orleans Square decor are going up now. Opening day brings back \"Believe … in Holiday Magic\" fireworks, \"A Christmas Fantasy Parade\" and World of Color – Season of Light, with Santa at a new Toontown Trolley Barn spot.",
-    "url": "https://disneyexperiences.com/disneyland-press/release/holidays-at-the-disneyland-resort-returns-with-festival-favorites-and-classic-traditions-nov-13-2026-jan-6-2027/"
+    "badge": "Starts tomorrow",
+    "body": "The holiday season runs Nov 13, 2026 – Jan 6, 2027, with Santa moving to Mickey's Toontown Trolley Barn and Haunted Mansion Holiday marking its 25th year. \"it's a small world\" and Redwood Creek Challenge Trail are slated to reopen Nov 13 in holiday form.",
+    "url": "https://www.foxla.com/news/disneyland-resort-holiday-season-dates-announcement-2026"
   },
   "sections": [
     {
-      "title": "This Week",
+      "title": "Happening Now",
       "emoji": "📅",
       "events": [
-        {
-          "title": "Veterans Day Flag Retreat",
-          "dates": "Wed, Nov 11",
-          "area": "dl",
-          "badge": "Nov 11",
-          "body": "A special Veterans Day Flag Retreat ceremony on Main Street, U.S.A., plus a new Mickey \"Air • Land • Sea\" Veterans Day merchandise collection.",
-          "url": "https://www.laughingplace.com/disney-merchandise/disney-parks-veterans-day-collection-2026/"
-        },
         {
           "title": "Downtown Disney Country Concert Series",
           "dates": "Daily through Nov 18, 12–3 PM",
@@ -48,43 +40,34 @@
           "badge": "Magic Key",
           "body": "Collectible cards for Magic Key holders at Disneyana, Kingswell Shop and WonderGround Gallery.",
           "url": "https://www.micechat.com/447033-disneyland-update-imagineering-layoffs-attendance-candy-cane-dates-christmas-decor-construction/"
+        },
+        {
+          "title": "Chip and Dale's Ornament Trail",
+          "dates": "Nov 11, 2026 – Jan 6, 2027",
+          "area": "downtown",
+          "badge": "New",
+          "body": "Buy an activity map at a participating Downtown Disney shop and hunt down the ornaments. Per fan-site reports; confirm details on site."
         }
       ]
     },
     {
-      "title": "Closures & Refurbs",
-      "emoji": "🚧",
+      "title": "Holiday Reopenings",
+      "emoji": "🎁",
       "events": [
         {
-          "title": "\"it's a small world\"",
-          "dates": "Closed since Oct 30",
+          "title": "\"it's a small world\" Holiday",
+          "dates": "Reopens Nov 13 (planned)",
           "area": "dl",
-          "badge": "Closed",
-          "body": "Getting its holiday overlay. MousePlanet reports it may reopen a little after Nov 13; check the app.",
-          "url": "https://mouseplanet.com/disneyland-resort-update-for-november-2-2026/53554/"
+          "badge": "Nov 13",
+          "body": "The ride's holiday overlay is set to debut when the season starts; the closure began Oct 30. Reports note construction walls remain, so check the app.",
+          "url": "https://www.disneyfoodblog.com/2026/09/19/disneyland-quietly-announces-its-a-small-world-closure-for-holiday-overlay/"
         },
         {
-          "title": "Space Mountain",
-          "dates": "Closed Tue, Nov 10 only",
-          "area": "dl",
-          "badge": "1 day",
-          "body": "A one-day refurbishment. Plan Tomorrowland for another day if it's a must-ride.",
-          "url": "https://mouseplanet.com/disneyland-resort-update-for-november-2-2026/53554/"
-        },
-        {
-          "title": "Sailing Ship Columbia & Explorer Canoes",
-          "dates": "Columbia closed Nov 2–6 & 9–13; Canoes Nov 2–5 & 9–12",
-          "area": "dl",
-          "badge": "Closed",
-          "body": "Rivers of America is quiet on weekdays this week and next.",
-          "url": "https://mouseplanet.com/disneyland-resort-update-for-november-2-2026/53554/"
-        },
-        {
-          "title": "Redwood Creek Challenge Trail",
-          "dates": "Closed Nov 1 – 12",
+          "title": "Santa's Holiday Visit at Redwood Creek",
+          "dates": "Reopens Nov 13",
           "area": "dca",
-          "badge": "Closed",
-          "body": "The Villains Grove overlay is coming out so Santa can move in for the holidays.",
+          "badge": "Nov 13",
+          "body": "Villains Grove is gone and the trail returns with Santa's holiday setup.",
           "url": "https://mickeyvisit.com/disney-november-ride-closures-october-27-2026/"
         },
         {
@@ -92,7 +75,7 @@
           "dates": "Closed Tuesdays & Thursdays",
           "area": "dl",
           "badge": "Ongoing",
-          "body": "Tinker Bell's meet-and-greet area is dark two days a week.",
+          "body": "Tinker Bell's meet-and-greet area is dark two days a week. Status as of Nov 3; confirm in the app.",
           "url": "https://mouseplanet.com/disneyland-resort-update-for-november-2-2026/53554/"
         }
       ]
@@ -139,6 +122,14 @@
       "title": "Coming Soon: Holidays & 2027",
       "emoji": "🎄",
       "events": [
+        {
+          "title": "Holiday Character Dining at Two Hotels",
+          "dates": "Nov 16, 2026 – Jan 3, 2027",
+          "area": "dl",
+          "badge": "Nov 16",
+          "body": "Holiday-themed character dining returns at two Disneyland Resort hotels.",
+          "url": "https://www.foxla.com/news/disneyland-resort-holiday-season-dates-announcement-2026"
+        },
         {
           "title": "World of Color – Season of Light",
           "dates": "Nov 13, 2026 – Jan 6, 2027",
@@ -198,6 +189,6 @@
       ]
     }
   ],
-  "tip": "Coming this week? Weekdays before the Nov 13 holiday launch are some of the quietest of the season, but a few Rivers of America attractions are closed. Check the closures above.",
-  "caveats": "Dates come from Disney press releases and fan sites (MousePlanet, MiceChat, Mickey Visit) as of Nov 3, 2026. Always confirm in the Disneyland app."
+  "tip": "Opening day Nov 13 will be busy. Arrive early, and grab candy cane wristbands on pull days (first is Nov 27).",
+  "caveats": "Dates come from Disney press coverage and fan sites as of Nov 12, 2026. Always confirm in the Disneyland app."
 }
