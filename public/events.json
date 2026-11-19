@@ -1,82 +1,53 @@
 {
-  "issue": 6,
-  "weekOf": "Nov 12 – 18, 2026",
-  "updated": "2026-11-12",
-  "headline": "Deck the Halls: The Holidays Land Tomorrow",
-  "tagline": "Snow, Santa and a Nightmare Before Christmas mansion arrive Nov 13. Here's what to know for opening week.",
+  "issue": 7,
+  "weekOf": "Nov 19 – 25, 2026",
+  "updated": "2026-11-19",
+  "headline": "Candy Cane Countdown: Thanksgiving Week at the Holidays",
+  "tagline": "The holiday season is in full swing, and the first handmade candy cane day lands Nov 27. Here's what to know before the Thanksgiving crowds.",
   "lead": {
-    "title": "Holidays at the Disneyland Resort Begin Tomorrow, Nov 13",
-    "dates": "Nov 13, 2026 – Jan 6, 2027",
+    "title": "Handmade Candy Canes Start Pulling Nov 27",
+    "dates": "Nov 27 – Dec 25, 2026",
     "area": "both",
-    "badge": "Starts tomorrow",
-    "body": "The holiday season runs Nov 13, 2026 – Jan 6, 2027, with Santa moving to Mickey's Toontown Trolley Barn and Haunted Mansion Holiday marking its 25th year. \"it's a small world\" and Redwood Creek Challenge Trail are slated to reopen Nov 13 in holiday form.",
-    "url": "https://www.foxla.com/news/disneyland-resort-holiday-season-dates-announcement-2026"
+    "badge": "Nov 27",
+    "body": "Candy Palace at Disneyland and Trolley Treats at Disney California Adventure pull handmade candy canes on set days, starting Nov 27 (Disneyland) and Nov 28 (DCA). Wristbands are handed out in person at the shop with one cane per guest, so arrive early.",
+    "url": "https://www.laughingplace.com/disney-parks/disneyland-2026-candy-cane-distribution-dates/"
   },
   "sections": [
     {
-      "title": "Happening Now",
-      "emoji": "📅",
+      "title": "Happening Now: Holiday Season",
+      "emoji": "🎄",
       "events": [
         {
-          "title": "Downtown Disney Country Concert Series",
-          "dates": "Daily through Nov 18, 12–3 PM",
-          "area": "downtown",
-          "badge": "Free",
-          "body": "Live country bands on the Downtown Disney LIVE! stage, a new act most days. No park ticket needed.",
-          "url": "https://mickeyvisit.com/downtown-disney-country-concert-series-lineup-november-2-2026/"
+          "title": "\"it's a small world\" Holiday",
+          "dates": "Now open for the holidays; season runs through Jan 6, 2027",
+          "area": "dl",
+          "badge": "Reopened",
+          "body": "The ride's new holiday version reopened after its Oct 30 closure; one report says it opened a day early on Nov 12, others cite Nov 13. Check the app for current status.",
+          "url": "https://insidethemagic.net/?p=854367"
         },
         {
-          "title": "Bountiful Valley Brews Opens",
-          "dates": "November; exact date TBA",
-          "area": "dca",
-          "badge": "New",
-          "body": "A new drinks-and-snacks spot near the front of the park. The menu includes a Pepperoni Pizza Egg Roll with pesto, a Pomegranate-Blueberry Refresher and a cocktail flight.",
-          "url": "https://www.micechat.com/447033-disneyland-update-imagineering-layoffs-attendance-candy-cane-dates-christmas-decor-construction/"
+          "title": "Christmas Fantasy Parade",
+          "dates": "Nov 13, 2026 – Jan 6, 2027",
+          "area": "dl",
+          "badge": "Holiday",
+          "body": "Santa, toy soldiers, dancing reindeer and Disney characters head down Main Street, U.S.A. One guide lists showings at 3:15 and 5:30 PM; confirm times in the app.",
+          "url": "https://www.disneytouristblog.com/whats-new-returning-pausing-changing-for-christmas-2026-at-disneyland-dca/"
         },
         {
-          "title": "Haunted Mansion Holiday Collectible Cards",
-          "dates": "Card 3 Nov 9; card 4 Nov 16; through Nov 21",
-          "area": "both",
-          "badge": "Magic Key",
-          "body": "Collectible cards for Magic Key holders at Disneyana, Kingswell Shop and WonderGround Gallery.",
-          "url": "https://www.micechat.com/447033-disneyland-update-imagineering-layoffs-attendance-candy-cane-dates-christmas-decor-construction/"
+          "title": "Believe… In Holiday Magic Fireworks",
+          "dates": "Nov 13, 2026 – Jan 6, 2027",
+          "area": "dl",
+          "badge": "Holiday",
+          "body": "The holiday fireworks spectacular is back with seasonal music and simulated snowfall over Main Street.",
+          "url": "https://www.disneytouristblog.com/whats-new-returning-pausing-changing-for-christmas-2026-at-disneyland-dca/"
         },
         {
           "title": "Chip and Dale's Ornament Trail",
           "dates": "Nov 11, 2026 – Jan 6, 2027",
           "area": "downtown",
           "badge": "New",
-          "body": "Buy an activity map at a participating Downtown Disney shop and hunt down the ornaments. Per fan-site reports; confirm details on site."
-        }
-      ]
-    },
-    {
-      "title": "Holiday Reopenings",
-      "emoji": "🎁",
-      "events": [
-        {
-          "title": "\"it's a small world\" Holiday",
-          "dates": "Reopens Nov 13 (planned)",
-          "area": "dl",
-          "badge": "Nov 13",
-          "body": "The ride's holiday overlay is set to debut when the season starts; the closure began Oct 30. Reports note construction walls remain, so check the app.",
-          "url": "https://www.disneyfoodblog.com/2026/09/19/disneyland-quietly-announces-its-a-small-world-closure-for-holiday-overlay/"
-        },
-        {
-          "title": "Santa's Holiday Visit at Redwood Creek",
-          "dates": "Reopens Nov 13",
-          "area": "dca",
-          "badge": "Nov 13",
-          "body": "Villains Grove is gone and the trail returns with Santa's holiday setup.",
-          "url": "https://mickeyvisit.com/disney-november-ride-closures-october-27-2026/"
-        },
-        {
-          "title": "Pixie Hollow",
-          "dates": "Closed Tuesdays & Thursdays",
-          "area": "dl",
-          "badge": "Ongoing",
-          "body": "Tinker Bell's meet-and-greet area is dark two days a week. Status as of Nov 3; confirm in the app.",
-          "url": "https://mouseplanet.com/disneyland-resort-update-for-november-2-2026/53554/"
+          "body": "Pick up a map and stickers at a participating Downtown Disney shop ($11.99 plus tax per the fact sheet) and hunt for ornaments.",
+          "url": "https://disneyexperiences.com/disneyland-press/?p=40755"
         }
       ]
     },
@@ -85,11 +56,27 @@
       "emoji": "🎭",
       "events": [
         {
+          "title": "World of Color – Season of Light",
+          "dates": "Nov 13, 2026 – Jan 6, 2027",
+          "area": "dca",
+          "badge": "Holiday",
+          "body": "The holiday edition of World of Color lights up Paradise Bay.",
+          "url": "https://www.wdwmagic.com/wdwmagic-plus/disneyland-resort/news/26aug2026-disneyland-resort-announces-2026-holiday-season-dates-and-details.htm"
+        },
+        {
+          "title": "Festival of Holidays & Santa",
+          "dates": "Nov 13, 2026 – Jan 6, 2027; Santa through Dec 24",
+          "area": "dca",
+          "badge": "Food",
+          "body": "Festive food marketplaces and the Sip and Savor Pass return to Disney California Adventure, with a mariachi holiday show on Buena Vista Street. Santa greets guests at the parks and hotels through Dec 24.",
+          "url": "https://www.foxla.com/news/disneyland-resort-holiday-season-dates-announcement-2026"
+        },
+        {
           "title": "Haunted Mansion Holiday",
           "dates": "Through Jan 6, 2027",
           "area": "dl",
           "badge": "Long run",
-          "body": "Jack Skellington's Nightmare Before Christmas takeover of the Haunted Mansion runs into the new year.",
+          "body": "Jack Skellington's Nightmare Before Christmas takeover of the mansion runs into the new year.",
           "url": "https://attractionsmagazine.com/disneyland-holidays-2026-dates-schedule-rides-entertainment/"
         },
         {
@@ -99,60 +86,20 @@
           "badge": "New in 2026",
           "body": "A live stage show starring Bluey and Bingo. Showtimes vary, so check the Disneyland app.",
           "url": "https://www.wdwinfo.com/disneylandcalifornia/live-bluey-show-more-coming-to-disneyland-in-2026/"
-        },
-        {
-          "title": "Monsters, Inc. Mike & Sulley to the Rescue!",
-          "dates": "Open into 2027; closing date TBA",
-          "area": "dca",
-          "badge": "Reprieve",
-          "body": "The Monstropolis dark ride is staying open longer than planned while construction for the Avatar-themed land is resequenced. No specific closing date has been announced.",
-          "url": "https://www.wdwinfo.com/news-stories/monsters-inc-ride-staying-open-until-2027-at-disneyland-resort/"
-        },
-        {
-          "title": "Abbott Elementary Visits Disneyland",
-          "dates": "Episode airing expected December; date TBA",
-          "area": "dl",
-          "badge": "TV",
-          "body": "The cast was spotted filming the show's 100th episode at the park in early October. Plot and air date haven't been announced.",
-          "url": "https://www.laughingplace.com/disney-entertainment/abbott-elementary-disneyland-100th-episode/"
         }
       ]
     },
     {
-      "title": "Coming Soon: Holidays & 2027",
-      "emoji": "🎄",
+      "title": "Coming Soon: Candy Canes & 2027",
+      "emoji": "🍬",
       "events": [
         {
-          "title": "Holiday Character Dining at Two Hotels",
-          "dates": "Nov 16, 2026 – Jan 3, 2027",
-          "area": "dl",
-          "badge": "Nov 16",
-          "body": "Holiday-themed character dining returns at two Disneyland Resort hotels.",
-          "url": "https://www.foxla.com/news/disneyland-resort-holiday-season-dates-announcement-2026"
-        },
-        {
-          "title": "World of Color – Season of Light",
-          "dates": "Nov 13, 2026 – Jan 6, 2027",
-          "area": "dca",
-          "badge": "Nov 13",
-          "body": "The holiday edition of World of Color returns to Paradise Bay.",
-          "url": "https://www.wdwmagic.com/wdwmagic-plus/disneyland-resort/news/26aug2026-disneyland-resort-announces-2026-holiday-season-dates-and-details.htm"
-        },
-        {
-          "title": "Festival of Holidays & Santa",
-          "dates": "Opens Nov 13; Santa Nov 13 – Dec 24",
-          "area": "dca",
-          "badge": "Nov 13",
-          "body": "Six festive food marketplaces and the Sip and Savor Pass return, with a mariachi holiday show on Buena Vista Street. Santa greets at Redwood Creek Challenge Trail.",
-          "url": "https://www.foxla.com/news/disneyland-resort-holiday-season-dates-announcement-2026"
-        },
-        {
-          "title": "Handmade Candy Canes",
-          "dates": "DL: Nov 27, 30; Dec 2, 7, 9, 14, 16, 21, 23, 25 · DCA: Nov 28, 29; Dec 1, 6, 8, 13, 15, 20, 22, 24",
+          "title": "Handmade Candy Cane Schedule",
+          "dates": "DL: Nov 27, 30; Dec 2, 7, 9, 14, 16 + late-Dec dates · DCA: Nov 28, 29; Dec 1, 6, 8, 13, 15, 20, 22, 24",
           "area": "both",
           "badge": "Nov 27",
-          "body": "Candy Palace and Trolley Treats pull handmade candy canes on these days. They sell out early, so arrive at park opening for a wristband. Dates as corrected by MiceChat.",
-          "url": "https://www.micechat.com/447033-disneyland-update-imagineering-layoffs-attendance-candy-cane-dates-christmas-decor-construction/"
+          "body": "Wristbands are given out in person at Candy Palace and Trolley Treats, and a mobile waitlist isn't expected this year. Sources disagree on the last Disneyland dates (Dec 21/23 vs 22/24, plus Dec 25), so confirm before you go.",
+          "url": "https://mickeyvisit.com/disneyland-handmade-candy-cane-dates-october-18-2026/"
         },
         {
           "title": "Breakfast with Santa at Naples",
@@ -163,32 +110,24 @@
           "url": "https://www.patinagroup.com/naples-ristorante-e-bar/breakfast-with-santa"
         },
         {
+          "title": "Lunar New Year Marketplaces Return",
+          "dates": "2027; dates TBA",
+          "area": "dca",
+          "badge": "2027",
+          "body": "Disney's event page says the festival returns in 2027, with offerings subject to change. Dates haven't been announced; the 2026 run was Jan 23 – Feb 22.",
+          "url": "https://disneyland.disney.go.com/ca/events/lunar-new-year"
+        },
+        {
           "title": "Remember… Dreams Come True Returns",
           "dates": "February 2027; exact date TBA",
           "area": "dl",
           "badge": "2027",
-          "body": "A refreshed version of the Disneyland fireworks spectacular is slated to return in February 2027. Nightly schedules haven't been announced yet.",
-          "url": "https://deeparrival.com/news/disneyland-entertainment-returns-2027-remember-dreams-magic-happens/"
-        },
-        {
-          "title": "World of Color (Original) Returns",
-          "dates": "February 2027; exact date TBA",
-          "area": "dca",
-          "badge": "2027",
-          "body": "An updated version of the original World of Color is slated to return to Paradise Bay in February 2027.",
-          "url": "https://deeparrival.com/news/disneyland-entertainment-returns-2027-remember-dreams-magic-happens/"
-        },
-        {
-          "title": "Magic Happens Parade Returns",
-          "dates": "Summer 2027; exact date TBA",
-          "area": "dl",
-          "badge": "2027",
-          "body": "The daytime parade is expected back at Disneyland park next summer. Dates haven't been announced.",
+          "body": "A refreshed version of the Disneyland fireworks spectacular is slated to return in February 2027. Nightly schedules haven't been announced.",
           "url": "https://deeparrival.com/news/disneyland-entertainment-returns-2027-remember-dreams-magic-happens/"
         }
       ]
     }
   ],
-  "tip": "Opening day Nov 13 will be busy. Arrive early, and grab candy cane wristbands on pull days (first is Nov 27).",
-  "caveats": "Dates come from Disney press coverage and fan sites as of Nov 12, 2026. Always confirm in the Disneyland app."
+  "tip": "Thanksgiving week is busy. Hit the candy cane shop at park opening on Nov 27 (Disneyland) or Nov 28 (DCA) for a wristband.",
+  "caveats": "Dates come from Disney press coverage and fan sites as of Nov 19, 2026. Always confirm in the Disneyland app."
 }
